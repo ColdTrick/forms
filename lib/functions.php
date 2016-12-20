@@ -54,6 +54,10 @@ function forms_is_valid_friendly_url($friendly_url) {
 		return false;
 	}
 	
+	if (in_array($friendly_url, \ColdTrick\Forms\PageHandler::HANDLERS)) {
+		return false;
+	}
+	
 	// ignore access and include hidden (disabled) entities
 	$ia = elgg_set_ignore_access(true);
 	$hidden = access_show_hidden_entities(true);

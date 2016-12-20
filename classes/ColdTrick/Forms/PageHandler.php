@@ -4,6 +4,11 @@ namespace ColdTrick\Forms;
 
 class PageHandler {
 	
+	public const HANDLERS = [
+		'all',
+		'add',
+	];
+	
 	/**
 	 * Handler /forms pages
 	 *
