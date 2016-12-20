@@ -15,6 +15,7 @@ $footer = '';
 echo elgg_view_field([
 	'#type' => 'text',
 	'#label' => elgg_echo('title'),
+	'id' => 'form_title',
 	'name' => 'title',
 	'value' => elgg_extract('title', $vars),
 	'required' => true,
