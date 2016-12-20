@@ -16,6 +16,9 @@ function forms_init() {
 	// register page handler
 	elgg_register_page_handler('forms', '\ColdTrick\Forms\PageHandler::forms');
 	
+	// ajax views
+	elgg_register_ajax_view('form/friendly_title');
+	
 	// register plugin hooks
 	elgg_register_plugin_hook_handler('access:collections:write', 'user', '\ColdTrick\Forms\Access::formWriteAccess');
 	
