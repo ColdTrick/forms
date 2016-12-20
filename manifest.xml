@@ -16,5 +16,10 @@
 		<version>2.3</version>
 	</requires>
 	
+	<requires>
+		<type>php_version</type>
+		<version>5.5</version>
+	</requires>
+	
 	<category>ColdTrick</category>
 </plugin_manifest>
