@@ -20,7 +20,9 @@ class PageHandler {
 	 */
 	public static function forms($page) {
 		
-		switch (elgg_extract(0, $page)) {
+		$resource = elgg_extract(0, $page, 'all');
+		
+		switch ($resource) {
 			case 'all':
 				echo elgg_view_resource('forms/all');
 				return true;
