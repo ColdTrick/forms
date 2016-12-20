@@ -4,7 +4,7 @@ namespace ColdTrick\Forms;
 
 class PageHandler {
 	
-	public const HANDLERS = [
+	const HANDLERS = [
 		'all',
 		'add',
 		'edit',
