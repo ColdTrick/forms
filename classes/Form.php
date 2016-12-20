@@ -1,8 +1,14 @@
 <?php
+use \ColdTrick\Forms\Definition;
 
 class Form extends \ElggObject {
 	
 	const SUBTYPE = 'form';
+	
+	/**
+	 * @var Definition
+	 */
+	protected $definition;
 	
 	/**
 	 * {@inheritDoc}
@@ -37,5 +43,18 @@ class Form extends \ElggObject {
 	 */
 	public function canComment($user_guid = 0, $default = null) {
 		return false;
+	}
+	
+	/**
+	 * Get the form definition
+	 *
+	 * @return \ColdTrick\Forms\Definition
+	 */
+	public function getDefinition() {
+		if (!isset($this->definition)) {
+			$this->definition = new Definition($this);
+		}
+		
+		return $this->definition;
 	}
 }

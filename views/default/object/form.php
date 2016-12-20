@@ -24,7 +24,7 @@ if (!elgg_in_context('widgets')) {
 
 if ($full_view) {
 	// @TODO make this
-	
+	echo $entity->title;
 } else {
 	
 	$params = [
