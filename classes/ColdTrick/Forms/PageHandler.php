@@ -8,6 +8,7 @@ class PageHandler {
 		'all',
 		'add',
 		'edit',
+		'view',
 	];
 	
 	/**
@@ -60,7 +61,7 @@ class PageHandler {
 	 * @return void|mixed
 	 */
 	public static function routeRewrite($hook, $type, $return_value, $params) {
-		if (in_array($type, ['all', 'view', 'add'])) {
+		if (in_array($type, self::HANDLERS)) {
 			return;
 		}
 		
