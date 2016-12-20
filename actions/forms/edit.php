@@ -23,7 +23,7 @@ if (empty($title) || empty($friendly_url) || empty($container_guid)) {
 	return elgg_error_response(elgg_echo('error:missing_data'));
 }
 
-if (!forms_is_valid_friendly_url($friendly_url)) {
+if (!forms_is_valid_friendly_url($friendly_url, $guid)) {
 	return elgg_error_response(elgg_echo('forms:action:edit:error:friendly_url'));
 }
 

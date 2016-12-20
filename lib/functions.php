@@ -28,6 +28,8 @@ function forms_prepare_form_vars($container_guid, $entity = null) {
 		foreach ($vars as $name => $value) {
 			$vars[$name] = $entity->$name;
 		}
+		
+		$vars['entity'] = $entity;
 	}
 	
 	// from sticky form
@@ -45,10 +47,11 @@ function forms_prepare_form_vars($container_guid, $entity = null) {
  * Check if a friendly url exists and is valid for use
  *
  * @param string $friendly_url the string to test
+ * @param int    $entity_guid  if editing don't compare with same entity
  *
  * @return bool
  */
-function forms_is_valid_friendly_url($friendly_url) {
+function forms_is_valid_friendly_url($friendly_url, $entity_guid = null) {
 	
 	if (empty($friendly_url) || !is_string($friendly_url)) {
 		return false;
@@ -62,14 +65,21 @@ function forms_is_valid_friendly_url($friendly_url) {
 	$ia = elgg_set_ignore_access(true);
 	$hidden = access_show_hidden_entities(true);
 	
-	$count = elgg_get_entities_from_metadata([
+	$options = [
 		'type' => 'object',
 		'subtype' => Form::SUBTYPE,
 		'count' => true,
 		'metadata_name_value_pairs' => [
 			'friendly_url' => $friendly_url,
 		],
-	]);
+	];
+	
+	if (!empty($entity_guid)) {
+		$entity_guid = (int) $entity_guid;
+		$options['wheres'] = "e.guid != {$entity_guid}";
+	}
+	
+	$count = elgg_get_entities_from_metadata($options);
 	
 	// restore access/hidden
 	elgg_set_ignore_access($ia);
