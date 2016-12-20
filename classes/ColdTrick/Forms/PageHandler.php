@@ -61,9 +61,6 @@ class PageHandler {
 	 * @return void|mixed
 	 */
 	public static function routeRewrite($hook, $type, $return_value, $params) {
-		if (in_array($type, self::HANDLERS)) {
-			return;
-		}
 		
 		$segments = elgg_extract('segments', $return_value);
 		if (empty($segments)) {
@@ -72,6 +69,10 @@ class PageHandler {
 		
 		$friendly_url = elgg_extract(0, $segments);
 		if (empty($friendly_url)) {
+			return;
+		}
+		
+		if (in_array($friendly_url, self::HANDLERS)) {
 			return;
 		}
 		
