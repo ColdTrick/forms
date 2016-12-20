@@ -10,4 +10,6 @@ return [
 	'forms:edit:title' => "Edit form: %s",
 	
 	'forms:edit:friendly_url' => "URL to the form",
+	
+	'forms:action:edit:error:friendly_url' => "The friendly URL is not valid or already in use, please change it",
 ];

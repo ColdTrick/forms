@@ -21,6 +21,8 @@ if (!($container instanceof ElggGroup)) {
 	$container_guid = $container->getGUID();
 }
 
+elgg_require_js('forms/edit');
+
 // page owner
 elgg_set_page_owner_guid($container->getGUID());
 

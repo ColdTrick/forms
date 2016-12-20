@@ -4,6 +4,12 @@ namespace ColdTrick\Forms;
 
 class PageHandler {
 	
+	public const HANDLERS = [
+		'all',
+		'add',
+		'edit',
+	];
+	
 	/**
 	 * Handler /forms pages
 	 *
@@ -28,6 +34,13 @@ class PageHandler {
 				
 				echo elgg_view_resource('forms/edit', [
 					'container_guid' => (int) elgg_extract(1, $page),
+				]);
+				return true;
+				break;
+			case 'edit':
+				
+				echo elgg_view_resource('forms/edit', [
+					'guid' => (int) elgg_extract(1, $page),
 				]);
 				return true;
 				break;

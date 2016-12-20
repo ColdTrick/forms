@@ -15,6 +15,7 @@ $footer = '';
 echo elgg_view_field([
 	'#type' => 'text',
 	'#label' => elgg_echo('title'),
+	'id' => 'form_title',
 	'name' => 'title',
 	'value' => elgg_extract('title', $vars),
 	'required' => true,
@@ -41,9 +42,10 @@ echo elgg_view_field([
 	'#label' => elgg_echo('access'),
 	'name' => 'access_id',
 	'value' => (int) elgg_extract('access_id', $vars),
-	'type' => 'object',
-	'subtype' => Form::SUBTYPE,
+	'entity_type' => 'object',
+	'entity_subtype' => Form::SUBTYPE,
 	'entity' => $entity,
+	'container_guid' => elgg_extract('container_guid', $vars),
 ]);
 
 // footer

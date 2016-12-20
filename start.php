@@ -16,6 +16,10 @@ function forms_init() {
 	// register page handler
 	elgg_register_page_handler('forms', '\ColdTrick\Forms\PageHandler::forms');
 	
+	// register plugin hooks
+	elgg_register_plugin_hook_handler('access:collections:write', 'user', '\ColdTrick\Forms\Access::formWriteAccess');
+	
 	// register actions
 	elgg_register_action('forms/edit', dirname(__FILE__) . '/actions/forms/edit.php', 'admin');
+	elgg_register_action('forms/delete', dirname(__FILE__) . '/actions/forms/delete.php', 'admin');
 }
