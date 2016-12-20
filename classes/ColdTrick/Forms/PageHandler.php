@@ -13,6 +13,20 @@ class PageHandler {
 	 */
 	public static function forms($page) {
 		
+		switch (elgg_extract(0, $page)) {
+			case 'all':
+				echo elgg_view_resource('forms/all');
+				return true;
+				break;
+			case 'add':
+				
+				echo elgg_view_resource('forms/edit', [
+					'container_guid' => (int) elgg_extract(1, $page),
+				]);
+				return true;
+				break;
+		}
+		
 		return false;
 	}
 	
