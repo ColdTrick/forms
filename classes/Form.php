@@ -30,4 +30,12 @@ class Form extends \ElggObject {
 		
 		return "forms/view/{$this->getGUID()}";
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @see ElggObject::canComment()
+	 */
+	public function canComment($user_guid = 0, $default = null) {
+		return false;
+	}
 }

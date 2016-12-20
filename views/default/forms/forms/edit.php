@@ -46,6 +46,7 @@ echo elgg_view_field([
 	'entity_subtype' => Form::SUBTYPE,
 	'entity' => $entity,
 	'container_guid' => elgg_extract('container_guid', $vars),
+	'entity_allows_comments' => false,
 ]);
 
 // footer
