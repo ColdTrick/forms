@@ -6,7 +6,6 @@ class Form extends \ElggObject {
 	const SUBTYPE = 'form';
 	
 	/**
-	 *
 	 * @var Definition
 	 */
 	protected $definition;
@@ -38,6 +37,19 @@ class Form extends \ElggObject {
 		return "forms/view/{$this->getGUID()}";
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 * @see ElggObject::canComment()
+	 */
+	public function canComment($user_guid = 0, $default = null) {
+		return false;
+	}
+	
+	/**
+	 * Get the form definition
+	 *
+	 * @return \ColdTrick\Forms\Definition
+	 */
 	public function getDefinition() {
 		if (!isset($this->definition)) {
 			$this->definition = new Definition($this);
