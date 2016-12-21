@@ -106,14 +106,7 @@ function forms_generate_valid_friendly_url($friendly_url, $entity_guid = null) {
 		return $friendly_url;
 	}
 	
-	$parts = explode('-', $friendly_url);
-	$last = array_pop($parts);
-	
 	$i = 2;
-	if (is_numeric($last)) {
-		$i = (int) $last;
-		$friendly_url = implode('-', $parts);
-	}
 	while (!forms_is_valid_friendly_url("{$friendly_url}-{$i}", $entity_guid)) {
 		$i++;
 	}
