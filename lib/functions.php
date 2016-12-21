@@ -87,3 +87,36 @@ function forms_is_valid_friendly_url($friendly_url, $entity_guid = null) {
 	
 	return empty($count);
 }
+
+/**
+ * Generate a valid(unique) friendly url
+ *
+ * @param string $friendly_url the base to start from
+ * @param int    $entity_guid  (optional) the entity to generate for
+ *
+ * @return false|string
+ */
+function forms_generate_valid_friendly_url($friendly_url, $entity_guid = null) {
+	
+	if (empty($friendly_url)) {
+		return false;
+	}
+	
+	if (forms_is_valid_friendly_url($friendly_url, $entity_guid)) {
+		return $friendly_url;
+	}
+	
+	$parts = explode('-', $friendly_url);
+	$last = array_pop($parts);
+	
+	$i = 2;
+	if (is_numeric($last)) {
+		$i = (int) $last;
+		$friendly_url = implode('-', $parts);
+	}
+	while (!forms_is_valid_friendly_url("{$friendly_url}-{$i}", $entity_guid)) {
+		$i++;
+	}
+	
+	return "{$friendly_url}-{$i}";
+}

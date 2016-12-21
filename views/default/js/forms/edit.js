@@ -19,8 +19,8 @@ define(function(require) {
 				}
 				
 				var result = data.responseJSON;
-				if (result.friendly_title) {
-					$('#friendly_url').prop('value', result.friendly_title);
+				if (result.friendly_url) {
+					$('#friendly_url').prop('value', result.friendly_url);
 				}
 			}
 		});

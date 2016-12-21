@@ -15,5 +15,7 @@ return [
 	
 	'forms:edit:friendly_url' => "URL to the form",
 	
+	'forms:entity:clone:title' => "Copy of %s",
+	
 	'forms:action:edit:error:friendly_url' => "The friendly URL is not valid or already in use, please change it",
 ];

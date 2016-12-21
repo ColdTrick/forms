@@ -26,4 +26,5 @@ function forms_init() {
 	// register actions
 	elgg_register_action('forms/edit', dirname(__FILE__) . '/actions/forms/edit.php', 'admin');
 	elgg_register_action('forms/delete', dirname(__FILE__) . '/actions/forms/delete.php', 'admin');
+	elgg_register_action('forms/copy', dirname(__FILE__) . '/actions/forms/copy.php', 'admin');
 }
