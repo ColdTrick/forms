@@ -21,6 +21,7 @@ function forms_init() {
 	
 	// register plugin hooks
 	elgg_register_plugin_hook_handler('access:collections:write', 'user', '\ColdTrick\Forms\Access::formWriteAccess');
+	elgg_register_plugin_hook_handler('register', 'menu:entity', '\ColdTrick\Forms\EntityMenu::registerForm');
 	
 	// register actions
 	elgg_register_action('forms/edit', dirname(__FILE__) . '/actions/forms/edit.php', 'admin');
