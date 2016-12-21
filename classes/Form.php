@@ -46,6 +46,18 @@ class Form extends \ElggObject {
 	}
 	
 	/**
+	 * {@inheritDoc}
+	 * @see ElggEntity::__clone()
+	 */
+	public function __clone() {
+		parent::__clone();
+		
+		$this->attributes['time_created'] = null;
+		$this->title = elgg_echo('forms:entity:clone:title', [$this->title]);
+		$this->friendly_url = forms_generate_valid_friendly_url("{$this->friendly_url}-copy");
+	}
+	
+	/**
 	 * Get the form definition
 	 *
 	 * @return \ColdTrick\Forms\Definition
