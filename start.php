@@ -19,6 +19,8 @@ function forms_init() {
 	// ajax views
 	elgg_register_ajax_view('form/friendly_title');
 	
+	elgg_extend_view('css/elgg', 'css/forms.css');
+	
 	// register plugin hooks
 	elgg_register_plugin_hook_handler('access:collections:write', 'user', '\ColdTrick\Forms\Access::formWriteAccess');
 	elgg_register_plugin_hook_handler('register', 'menu:entity', '\ColdTrick\Forms\EntityMenu::registerForm');
@@ -27,4 +29,5 @@ function forms_init() {
 	elgg_register_action('forms/edit', dirname(__FILE__) . '/actions/forms/edit.php', 'admin');
 	elgg_register_action('forms/delete', dirname(__FILE__) . '/actions/forms/delete.php', 'admin');
 	elgg_register_action('forms/copy', dirname(__FILE__) . '/actions/forms/copy.php', 'admin');
+	elgg_register_action('forms/compose', dirname(__FILE__) . '/actions/forms/compose.php', 'admin');
 }

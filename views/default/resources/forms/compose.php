@@ -1,8 +1,13 @@
 <?php
 
-elgg_require_js('js/forms/compose');
+$guid = elgg_extract('guid', $vars);
+elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE);
 
-$content = elgg_view('form/compose', $vars);
+$entity = get_entity($guid);
+
+$title = $entity->getDisplayName();
+
+$content = elgg_view_form('forms/compose', [], ['entity' => $entity]);
 
 $body = elgg_view_layout('one_column', [
 	'title' => $title,

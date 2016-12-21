@@ -1,0 +1,30 @@
+.forms-compose-list-page {
+	padding: 10px;
+	background: #F0F0F0;
+	margin-bottom: 10px;
+}
+
+.forms-compose-list-section {
+	padding: 10px;
+	background: #ccc;
+	margin-bottom: 10px;
+}
+
+.forms-compose-list-section > ul {
+	padding: 10px;
+}
+
+.forms-compose-list-field {
+	background: red;
+	margin-bottom: 5px;
+}
+
+
+.forms-compose-fields {
+	padding: 20px;	
+}
+
+.forms-compose-fields > li {
+	background: green;
+	margin-bottom: 5px;	
+}
