@@ -17,5 +17,10 @@ return [
 	
 	'forms:entity:clone:title' => "Copy of %s",
 	
+	'forms:sidebar:history:title' => "History",
+	'forms:sidebar:history:create' => "created",
+	'forms:sidebar:history:update' => "updated",
+	'forms:sidebar:history:delete' => "deleted",
+	
 	'forms:action:edit:error:friendly_url' => "The friendly URL is not valid or already in use, please change it",
 ];
