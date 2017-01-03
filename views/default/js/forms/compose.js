@@ -23,9 +23,55 @@ define(function(require) {
 		initSortableFields();
 	};
 
-	var deletePageOrSection = function(elem) {	
-		console.log($(this).parents('li'));
+	var deleteFormElement = function(elem) {	
+		// resolves to parent li (which could be Field, Section or Page)
 		$(this).parents('li').eq(0).remove();
+	};
+	
+	var editField = function(elem) {
+		var $field = $(this).parents('.forms-compose-list-field').eq(0);
+
+		var $form = $field.find('.forms-compose-edit-field');
+		// close form if it is visible/expanded
+		if ($form.is(':visible')) {
+			$form.slideToggle();
+			return;
+		}
+		
+		// append edit form
+		if ($form.length === 0) {
+			$field.append($('#forms-compose-edit-field').clone());
+			
+			// load selector
+			$form = $field.find('.forms-compose-edit-field');
+			$form.removeAttr('id');
+		}
+		
+		// load form data
+		$.each($field.data('params'), function(key, value) {
+			$form.find('[name="' + key + '"]').val(value);
+		});
+		
+		// show form
+		$form.slideToggle();
+	};
+	
+	var saveField = function(elem) {
+		var $field = $(this).parents('.forms-compose-list-field').eq(0);
+		
+		var $form = $field.find('.forms-compose-edit-field');
+		
+		var params = $field.data('params');
+		
+		$.each($form.find('[name]').serializeArray(), function(key, field) {
+			params[field.name] = field.value;
+		});
+		$field.data('params', params);
+		
+		$field.find('span:first').html($field.data('params').title);
+		
+		// hide form
+		$form.slideToggle();
 	};
 	
 	var initSortablePages = function() {
@@ -72,10 +118,8 @@ define(function(require) {
 				};
 				
 				$(this).find('.forms-compose-list-field').each(function(field_index, field_element) {
-					var field = {
-						'title' :  $(field_element).find(' > span').text()
-					};
-					
+					var field = $(field_element).data('params');
+				
 					section['fields'].push(field);
 				});
 				
@@ -106,7 +150,9 @@ define(function(require) {
 		$(document).on('click', '.forms-compose-add-page', addPage);
 		$(document).on('click', '.forms-compose-add-section', addSection);
 		$(document).on('click', '.forms-compose-save', saveDefinition);
-		$(document).on('click', '.forms-compose-delete', deletePageOrSection);
+		$(document).on('click', '.forms-compose-delete', deleteFormElement);
+		$(document).on('click', '.forms-compose-field-edit', editField);
+		$(document).on('click', '.forms-compose-field-save', saveField);
 		
 	};
 	

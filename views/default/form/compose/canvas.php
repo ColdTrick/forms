@@ -29,10 +29,21 @@ foreach ($pages as $page) {
 		$fields_result = '';
 		
 		foreach (elgg_extract('fields', $section) as $field) {
+			
 			$field_body = elgg_format_element('span', [], elgg_extract('title', $field));
+			
+			$field_body .= elgg_view_icon('edit', [
+				'title' => elgg_echo('edit'),
+				'class' => 'link forms-compose-field-edit',
+			]);
+			$field_body .= elgg_view_icon('delete', [
+				'title' => elgg_echo('delete'),
+				'class' => 'link forms-compose-delete',
+			]);
 			
 			$fields_result .= elgg_format_element('li', [
 				'class' => 'forms-compose-list-field',
+				'data-params' => json_encode($field),
 			], $field_body);
 		}
 		

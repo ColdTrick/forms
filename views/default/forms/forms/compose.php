@@ -22,6 +22,8 @@ echo '</div>';
 
 echo '</div>';
 
+echo elgg_view('form/compose/edit_field', $vars);
+
 $footer = elgg_view_field([
 	'#type' => 'submit',
 	'class' => 'forms-compose-save',
