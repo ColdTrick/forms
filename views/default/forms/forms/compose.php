@@ -24,7 +24,7 @@ echo '</div>';
 
 $footer = elgg_view_field([
 	'#type' => 'submit',
-	'class' => 'form-compose-save',
+	'class' => 'forms-compose-save',
 	'value' => elgg_echo('save'),
 ]);
 

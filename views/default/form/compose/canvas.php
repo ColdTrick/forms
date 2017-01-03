@@ -35,8 +35,16 @@ foreach ($pages as $page) {
 				'class' => 'forms-compose-list-field',
 			], $field_body);
 		}
-				
-		$section_body = elgg_format_element('span', [], elgg_extract('title', $section));
+		
+		$section_title = elgg_view('output/url', [
+			'link' => false,
+			'class' => 'float-alt link forms-compose-delete',
+			'text' => elgg_view_icon('delete'),
+			'title' => elgg_echo('delete'),
+		]);
+		$section_title .= elgg_extract('title', $section);
+		
+		$section_body = elgg_format_element('span', [], $section_title);
 		$section_body .= elgg_format_element('ul', [], $fields_result);
 		
 		$sections_result .= elgg_format_element('li', [
@@ -46,11 +54,19 @@ foreach ($pages as $page) {
 	
 	$sections_result .= elgg_format_element('li', [], elgg_view_field([
 		'#type' => 'button',
-		'class' => 'elgg-button-action form-compose-add-section',
+		'class' => 'elgg-button-action forms-compose-add-section',
 		'value' => elgg_echo('add-section'),
 	]));
 
-	$page_body = elgg_format_element('span', [], elgg_extract('title', $page));
+	$page_title = elgg_view('output/url', [
+		'link' => false,
+		'class' => 'float-alt link forms-compose-delete',
+		'text' => elgg_view_icon('delete'),
+		'title' => elgg_echo('delete'),
+	]);
+	$page_title .= elgg_extract('title', $page);
+	
+	$page_body = elgg_format_element('span', [], $page_title);
 	$page_body .= elgg_format_element('ul', [], $sections_result);
 	
 	$pages_result .= elgg_format_element('li', [
@@ -61,7 +77,7 @@ foreach ($pages as $page) {
 
 $pages_result .= elgg_format_element('li', [], elgg_view_field([
 	'#type' => 'button',
-	'class' => 'elgg-button-action form-compose-add-page',
+	'class' => 'elgg-button-action forms-compose-add-page',
 	'value' => elgg_echo('add-page'),
 ]));
 

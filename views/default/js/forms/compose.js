@@ -14,7 +14,6 @@ define(function(require) {
 		initSortableSections();
 	};
 	
-	
 	var addSection = function(page) {
 		var html = '<li class="forms-compose-list-section"><span>' + elgg.echo('forms:compose:section:new') + '</span>';
 		html += '<ul></ul></li>';
@@ -22,6 +21,11 @@ define(function(require) {
 		$(this).parents('li').eq(0).before(html);
 		
 		initSortableFields();
+	};
+
+	var deletePageOrSection = function(elem) {	
+		console.log($(this).parents('li'));
+		$(this).parents('li').eq(0).remove();
 	};
 	
 	var initSortablePages = function() {
@@ -99,9 +103,10 @@ define(function(require) {
 			connectToSortable: '.forms-compose-list-section > ul'
 		});
 		
-		$(document).on('click', '.form-compose-add-page', addPage);
-		$(document).on('click', '.form-compose-add-section', addSection);
-		$(document).on('click', '.form-compose-save', saveDefinition);
+		$(document).on('click', '.forms-compose-add-page', addPage);
+		$(document).on('click', '.forms-compose-add-section', addSection);
+		$(document).on('click', '.forms-compose-save', saveDefinition);
+		$(document).on('click', '.forms-compose-delete', deletePageOrSection);
 		
 	};
 	
