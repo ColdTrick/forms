@@ -25,9 +25,11 @@ return [
 	'forms:compose:field:type:radio' => "Radio",
 	'forms:compose:field:type:select' => "Select",
 	'forms:compose:field:type:checkbox' => "Checkbox",
+	'forms:compose:field:type:checkboxes' => "Checkboxes",
 	
 	'forms:compose:field:edit:label' => "Label",
 	'forms:compose:field:edit:type' => "Type",
+	'forms:compose:field:edit:help' => "Help text",
 	'forms:compose:field:edit:required' => "Required",
 	
 	'forms:edit:friendly_url' => "URL to the form",

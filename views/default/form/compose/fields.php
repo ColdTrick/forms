@@ -2,31 +2,35 @@
 
 $types = [
 	[
-		'type' => 'text',
-		'label' => elgg_echo('forms:compose:field:type:text'),
+		'#type' => 'text',
+		'#label' => elgg_echo('forms:compose:field:type:text'),
 	],
 	[
-		'type' => 'longtext',
-		'label' => elgg_echo('forms:compose:field:type:longtext'),
+		'#type' => 'longtext',
+		'#label' => elgg_echo('forms:compose:field:type:longtext'),
 	],
 	[
-		'type' => 'checkbox',
-		'label' => elgg_echo('forms:compose:field:type:checkbox'),
+		'#type' => 'checkbox',
+		'#label' => elgg_echo('forms:compose:field:type:checkbox'),
 	],
 	[
-		'type' => 'radio',
-		'label' => elgg_echo('forms:compose:field:type:radio'),
+		'#type' => 'checkboxes',
+		'#label' => elgg_echo('forms:compose:field:type:checkboxes'),
 	],
 	[
-		'type' => 'select',
-		'label' => elgg_echo('forms:compose:field:type:select'),
+		'#type' => 'radio',
+		'#label' => elgg_echo('forms:compose:field:type:radio'),
+	],
+	[
+		'#type' => 'select',
+		'#label' => elgg_echo('forms:compose:field:type:select'),
 	],
 ];
 
 $list = '';
 foreach ($types as $type_params) {
 	
-	$type_body = elgg_format_element('span', [], elgg_extract('label', $type_params));
+	$type_body = elgg_format_element('span', [], elgg_extract('#label', $type_params));
 			
 	$type_body .= elgg_view_icon('edit', [
 		'title' => elgg_echo('edit'),

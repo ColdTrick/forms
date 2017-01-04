@@ -74,8 +74,8 @@ define(function(require) {
 			params[field.name] = field.value;
 		});
 		$field.data('params', params);
-		
-		$field.find('span:first').html($field.data('params').label);
+
+		$field.find('span:first').html($field.data('params')['#label']);
 		
 		// hide form
 		$form.slideToggle(function() { $(this).remove(); });

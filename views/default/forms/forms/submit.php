@@ -2,34 +2,34 @@
 
 $entity = elgg_extract('entity', $vars);
 
-$config = $entity->getDefinition()->getConfig();
-
-$pages = elgg_extract('pages', $config, []);
+$pages = $entity->getDefinition()->getPages();
 foreach ($pages as $page) {
-	echo elgg_format_element('h3', [], elgg_extract('title', $page));
 	
-	$sections = elgg_extract('sections', $page, []);
-	foreach ($sections as $section) {
+	$page_body = '';
+	foreach ($page->getSections() as $section) {
 		
-		$fields = elgg_extract('fields', $section, []);
-		foreach ($fields as $index => $field) {
-			
-			$field['#type'] = $field['type'];
-			unset($field['type']);
-			
-			$field['#label'] = $field['label'];
-			unset($field['label']);
-			
-			
-			$fields[$index] = $field;
+		$fields = [];
+		foreach ($section->getFields() as $field) {
+			$fields[] = $field->getInputVars();
+		}
+		
+		if (empty($fields)) {
+			continue;
 		}
 		
 		$section_body = elgg_view('input/fieldset', [
 			'fields' => $fields,
 		]);
 		
-		echo elgg_view_module('info', elgg_extract('title', $section), $section_body);
+		$page_body .= elgg_view_module('info', $section->getTitle(), $section_body);
 	}
+	
+	if (empty($page_body)) {
+		continue;
+	}
+	
+	echo elgg_format_element('h3', [], $page->getTitle());
+	echo $page_body;
 }
 
 $footer = elgg_view_field([

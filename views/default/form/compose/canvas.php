@@ -30,7 +30,7 @@ foreach ($pages as $page) {
 		
 		foreach (elgg_extract('fields', $section) as $field) {
 			
-			$field_body = elgg_format_element('span', [], elgg_extract('label', $field));
+			$field_body = elgg_format_element('span', [], elgg_extract('#label', $field));
 			
 			$field_body .= elgg_view_icon('edit', [
 				'title' => elgg_echo('edit'),
