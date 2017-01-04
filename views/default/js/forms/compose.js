@@ -34,7 +34,7 @@ define(function(require) {
 		var $form = $field.find('.forms-compose-edit-field');
 		// close form if it is visible/expanded
 		if ($form.is(':visible')) {
-			$form.slideToggle();
+			$form.slideToggle(function() { $(this).remove(); });
 			return;
 		}
 		
@@ -49,7 +49,14 @@ define(function(require) {
 		
 		// load form data
 		$.each($field.data('params'), function(key, value) {
-			$form.find('[name="' + key + '"]').val(value);
+			$form.find('[name="' + key + '"]').each(function() {
+				var $field = $(this);
+				if ($field.is('[type="checkbox"]')) {
+					$field.prop('checked', value == $field.val());
+				} else {
+					$field.val(value);
+				}
+			});
 		});
 		
 		// show form
@@ -68,10 +75,10 @@ define(function(require) {
 		});
 		$field.data('params', params);
 		
-		$field.find('span:first').html($field.data('params').title);
+		$field.find('span:first').html($field.data('params').label);
 		
 		// hide form
-		$form.slideToggle();
+		$form.slideToggle(function() { $(this).remove(); });
 	};
 	
 	var initSortablePages = function() {
@@ -96,7 +103,11 @@ define(function(require) {
 	var initSortableFields = function() {
 		$('.forms-compose-list-section > ul').sortable({
 			axis: 'y',
-			connectWith: '.forms-compose-list-section > ul'
+			connectWith: '.forms-compose-list-section > ul',
+			receive: function (event, ui) {
+				// remove style added during drag
+				$(ui.helper).removeAttr('style');
+			}
 		});
 	};
 	
@@ -130,8 +141,9 @@ define(function(require) {
 		});	
 		
 		result = JSON.stringify(result);
-		console.log(result);
+
 		$('.elgg-form-forms-compose input[name="definition"]').val(result);
+		$('.elgg-form-forms-compose').submit();
 	};
 	
 	
@@ -144,6 +156,7 @@ define(function(require) {
 		// draggable
 		$('.forms-compose-fields > li').draggable({
 			helper: 'clone',
+			stack: '.forms-compose-list-field',
 			connectToSortable: '.forms-compose-list-section > ul'
 		});
 		

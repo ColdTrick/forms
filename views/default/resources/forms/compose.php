@@ -9,7 +9,7 @@ $title = $entity->getDisplayName();
 
 $content = elgg_view_form('forms/compose', [], ['entity' => $entity]);
 
-$body = elgg_view_layout('one_column', [
+$body = elgg_view_layout('forms_compose', [
 	'title' => $title,
 	'content' => $content,
 ]);

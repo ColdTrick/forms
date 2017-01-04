@@ -10,23 +10,13 @@ echo elgg_view_field([
 	'value' => $entity->guid,
 ]);
 
-echo '<div class="clearfix">';
-
-echo '<div class="elgg-col elgg-col-3of4">';
 echo elgg_view('form/compose/canvas', $vars);
-echo '</div>';
-
-echo '<div class="elgg-col elgg-col-1of4">';
-echo elgg_view('form/compose/fields', $vars);
-echo '</div>';
-
-echo '</div>';
 
 echo elgg_view('form/compose/edit_field', $vars);
 
 $footer = elgg_view_field([
-	'#type' => 'submit',
-	'class' => 'forms-compose-save',
+	'#type' => 'button', // don't use submit to prevent submit on enter keydown
+	'class' => 'elgg-button-submit forms-compose-save',
 	'value' => elgg_echo('save'),
 ]);
 

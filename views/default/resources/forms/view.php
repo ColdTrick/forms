@@ -7,7 +7,7 @@ $entity = get_entity($guid);
 
 $title = $entity->getDisplayName();
 
-$body = elgg_view_form('forms/submit', [], ['fields' => $entity->getDefinition()->getFields()]);
+$body = elgg_view_form('forms/submit', [], ['entity' => $entity]);
 
 $body = elgg_view_layout('content', [
 	'title' => $title,

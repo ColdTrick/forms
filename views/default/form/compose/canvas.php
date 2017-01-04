@@ -30,7 +30,7 @@ foreach ($pages as $page) {
 		
 		foreach (elgg_extract('fields', $section) as $field) {
 			
-			$field_body = elgg_format_element('span', [], elgg_extract('title', $field));
+			$field_body = elgg_format_element('span', [], elgg_extract('label', $field));
 			
 			$field_body .= elgg_view_icon('edit', [
 				'title' => elgg_echo('edit'),
@@ -66,7 +66,7 @@ foreach ($pages as $page) {
 	$sections_result .= elgg_format_element('li', [], elgg_view_field([
 		'#type' => 'button',
 		'class' => 'elgg-button-action forms-compose-add-section',
-		'value' => elgg_echo('add-section'),
+		'value' => elgg_echo('forms:compose:section:add'),
 	]));
 
 	$page_title = elgg_view('output/url', [
@@ -89,7 +89,7 @@ foreach ($pages as $page) {
 $pages_result .= elgg_format_element('li', [], elgg_view_field([
 	'#type' => 'button',
 	'class' => 'elgg-button-action forms-compose-add-page',
-	'value' => elgg_echo('add-page'),
+	'value' => elgg_echo('forms:compose:page:add'),
 ]));
 
 echo elgg_format_element('ul', ['class' => 'forms-compose-list'], $pages_result);

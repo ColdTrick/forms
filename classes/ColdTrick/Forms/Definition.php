@@ -5,21 +5,13 @@ namespace ColdTrick\Forms;
 class Definition {
 	
 	protected $config;
+
+	protected $form;
 	
 	public function __construct(\Form $form) {
-		$file_contents = '{}';
 		
-		$config = json_decode($file_contents, true);
-		
-		$this->config = [
-			'fields' => [
-				[
-					'#type' => 'text',
-					'#label' => 'Label of field',
-					'name' => 'field_1'
-				],
-			],
-		];
+		$this->form = $form;
+		$this->config = json_decode($form->definition, true);
 	}
 	
 	public function setConfig($config) {

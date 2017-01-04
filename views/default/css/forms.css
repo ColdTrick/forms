@@ -6,25 +6,45 @@
 
 .forms-compose-list-section {
 	padding: 10px;
-	background: #ccc;
-	margin-bottom: 10px;
+	background: #444;
+	margin: 10px;
 }
 
+.forms-compose-list-section > span {
+	color: #F0F0F0;
+}
 .forms-compose-list-section > ul {
 	padding: 10px;
 }
-
-.forms-compose-list-field {
-	background: red;
-	margin-bottom: 5px;
+.forms-compose-add-section {
+	margin-left: 10px;
 }
 
+.forms-compose-list-field {
+	background: #F0F0F0;
+	margin-bottom: 5px;
+	padding: 5px;
+}
 
-.forms-compose-fields {
-	padding: 20px;	
+.forms-compose-list-field > .elgg-icon {
+	visibility: hidden;
+}
+
+.forms-compose-list-section:hover .forms-compose-list-field > .elgg-icon {
+	visibility: visible;
 }
 
 .forms-compose-fields > li {
-	background: green;
+	background: #f0f0f0;
 	margin-bottom: 5px;	
+}
+
+.forms-compose-edit-field {
+	padding: 10px;
+	background: #FFF;
+}
+
+.forms-compose-edit-field > .elgg-field:last-child,
+.forms-compose-list-page > ul > li:last-child .elgg-field {
+	margin: 0;
 }
