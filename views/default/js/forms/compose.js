@@ -59,8 +59,20 @@ define(function(require) {
 			});
 		});
 		
+		// let drop down tell us which conditional fields to show
+		$form.find('[name="#type"]').change();
+		
 		// show form
 		$form.slideToggle();
+	};
+	
+	var toggleConditionalFields = function() {
+		
+		var type = $(this).val();
+		var $form = $(this).parents('.forms-compose-edit-field').eq(0);
+		
+		$form.find('.hidden').hide();
+		$form.find('.forms-field-for-' + type).show();		
 	};
 	
 	var saveField = function(elem) {
@@ -166,6 +178,7 @@ define(function(require) {
 		$(document).on('click', '.forms-compose-delete', deleteFormElement);
 		$(document).on('click', '.forms-compose-field-edit', editField);
 		$(document).on('click', '.forms-compose-field-save', saveField);
+		$(document).on('change', '.forms-compose-edit-field [name="#type"]', toggleConditionalFields);
 		
 	};
 	

@@ -33,6 +33,10 @@ return [
 	'forms:compose:field:edit:type' => "Type",
 	'forms:compose:field:edit:help' => "Help text",
 	'forms:compose:field:edit:required' => "Required",
+	'forms:compose:field:edit:options' => "Options",
+	'forms:compose:field:edit:options:help' => "Comma separate the options for this field",
+	
+	'forms:view:field:select:empty' => "Select a value...",
 	
 	'forms:edit:friendly_url' => "URL to the form",
 	

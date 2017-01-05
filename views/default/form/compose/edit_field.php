@@ -35,15 +35,13 @@ $fields = [
 	
 	// conditional fields here
 	
-// 	[
-// 		'#type' => 'number',
-// 		'#label' => elgg_echo('forms:compose:field:edit:longtext:rows'),
-// 		'name' => 'rows',
-// 		''
-// 	],
-	
-	
-	
+	[
+		'#type' => 'text',
+		'#label' => elgg_echo('forms:compose:field:edit:options'),
+		'#help' => elgg_echo('forms:compose:field:edit:options:help'),
+		'name' => 'options',
+		'show_for_types' => ['select', 'radio', 'checkboxes'],
+	],
 	
 	
 	
@@ -55,6 +53,22 @@ $fields = [
 		'value' => elgg_echo('save'),
 	],
 ];
+
+
+// set conditional view classes
+foreach ($fields as $key => $field) {
+	if (!isset($field['show_for_types'])) {
+		continue;
+	}
+	
+	$classes = ['hidden'];
+	foreach ($field['show_for_types'] as $type) {
+		$classes[] = "forms-field-for-$type";
+	}
+	
+	$fields[$key]['#class'] = $classes;
+}
+
 
 echo elgg_view('input/fieldset', [
 	'class' => 'hidden forms-compose-edit-field',

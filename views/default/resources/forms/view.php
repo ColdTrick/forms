@@ -12,10 +12,9 @@ $body = elgg_view('output/longtext', [
 ]);
 $body .= elgg_view_form('forms/submit', [], ['entity' => $entity]);
 
-$body = elgg_view_layout('content', [
+$body = elgg_view_layout('one_column', [
 	'title' => $title,
 	'content' => $body,
-	'filter' => false,
 ]);
 
 echo elgg_view_page($title, $body);
