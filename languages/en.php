@@ -24,6 +24,7 @@ return [
 	'forms:compose:field:type:plaintext' => "Plaintext",
 	'forms:compose:field:type:longtext' => "Longtext",
 	'forms:compose:field:type:radio' => "Radio",
+	'forms:compose:field:type:file' => "File",
 	'forms:compose:field:type:select' => "Select",
 	'forms:compose:field:type:checkbox' => "Checkbox",
 	'forms:compose:field:type:checkboxes' => "Checkboxes",

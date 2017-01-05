@@ -29,6 +29,10 @@ $types = [
 		'#type' => 'select',
 		'#label' => elgg_echo('forms:compose:field:type:select'),
 	],
+	[
+		'#type' => 'file',
+		'#label' => elgg_echo('forms:compose:field:type:file'),
+	],
 ];
 
 $list = '';

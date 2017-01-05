@@ -29,6 +29,7 @@ $fields = [
 			'checkboxes' => elgg_echo('forms:compose:field:type:checkboxes'),
 			'radio' => elgg_echo('forms:compose:field:type:radio'),
 			'select' => elgg_echo('forms:compose:field:type:select'),
+			'file' => elgg_echo('forms:compose:field:type:file'),
 		],
 	],
 	
