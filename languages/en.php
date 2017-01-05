@@ -21,6 +21,7 @@ return [
 	'forms:compose:fields:title' => "New Fields",
 
 	'forms:compose:field:type:text' => "Text",
+	'forms:compose:field:type:plaintext' => "Plaintext",
 	'forms:compose:field:type:longtext' => "Longtext",
 	'forms:compose:field:type:radio' => "Radio",
 	'forms:compose:field:type:select' => "Select",

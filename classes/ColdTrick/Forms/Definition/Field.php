@@ -20,6 +20,12 @@ class Field {
 		
 		
 		$result['options'] = $this->getOptions();
+		
+		switch ($this->getType()) {
+			case 'plaintext':
+				$result['rows'] = 2;
+				break;
+		}
 	
 		return $result;
 	}
