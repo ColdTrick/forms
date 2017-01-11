@@ -22,6 +22,14 @@ define(function(require) {
 		
 		initSortableFields();
 	};
+	
+	var addConditionalSection = function() {
+		var $field = $(this).parents('.forms-compose-list-field').eq(0);
+		$field.append($('#forms-compose-conditional-section').clone());
+		$field.find('.forms-compose-conditional-section').removeAttr('id').show();
+		
+		initSortableFields();
+	};
 
 	var deleteFormElement = function(elem) {	
 		// resolves to parent li (which could be Field, Section or Page)
@@ -113,9 +121,10 @@ define(function(require) {
 	};
 	
 	var initSortableFields = function() {
-		$('.forms-compose-list-section > ul').sortable({
-			axis: 'y',
-			connectWith: '.forms-compose-list-section > ul',
+		$('.forms-compose-conditional-section > ul, .forms-compose-list-section > ul').sortable({
+			items: '> *:not(.forms-field-unsortable)',
+			tolerance: 'pointer',
+			connectWith: '.forms-compose-conditional-section > ul, .forms-compose-list-section > ul',
 			receive: function (event, ui) {
 				// remove style added during drag
 				$(ui.helper).removeAttr('style');
@@ -169,11 +178,12 @@ define(function(require) {
 		$('.forms-compose-fields > li').draggable({
 			helper: 'clone',
 			stack: '.forms-compose-list-field',
-			connectToSortable: '.forms-compose-list-section > ul'
+			connectToSortable: '.forms-compose-list-section > ul, .forms-compose-conditional-section > ul'
 		});
 		
 		$(document).on('click', '.forms-compose-add-page', addPage);
 		$(document).on('click', '.forms-compose-add-section', addSection);
+		$(document).on('click', '.forms-compose-add-conditional-section', addConditionalSection);
 		$(document).on('click', '.forms-compose-save', saveDefinition);
 		$(document).on('click', '.forms-compose-delete', deleteFormElement);
 		$(document).on('click', '.forms-compose-field-edit', editField);

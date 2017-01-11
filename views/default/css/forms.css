@@ -30,7 +30,7 @@
 	visibility: hidden;
 }
 
-.forms-compose-list-section:hover .forms-compose-list-field > .elgg-icon {
+.forms-compose-list-field:hover > .elgg-icon {
 	visibility: visible;
 }
 
@@ -47,4 +47,26 @@
 .forms-compose-edit-field > .elgg-field:last-child,
 .forms-compose-list-page > ul > li:last-child .elgg-field {
 	margin: 0;
+}
+
+.forms-compose-conditional-section {
+	background: #e1e1e1;
+	margin-top: 5px;
+	padding: 10px;
+}
+
+.forms-compose-conditional-section .forms-compose-add-conditional-section {
+	display: none;
+}
+
+.forms-compose-conditional-section > .elgg-field > .elgg-field-label {
+	font-weight: normal;
+	font-size: 100%;
+}
+
+ul .forms-field-unsortable {
+	display: none;	
+}
+ul .forms-field-unsortable:last-child {
+	display: block;	
 }

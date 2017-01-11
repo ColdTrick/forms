@@ -53,6 +53,13 @@ foreach ($types as $type_params) {
 		'class' => 'link forms-compose-delete',
 	]);
 	
+	if (in_array(elgg_extract('#type', $type_params), ['select', 'radio'])) {
+		$type_body .= elgg_view_icon('indent', [
+			'title' => elgg_echo('forms:compose:field:conditional:title'),
+			'class' => 'link forms-compose-add-conditional-section',
+		]);
+	}
+	
 	$list .= elgg_format_element('li', [
 		'class' => 'forms-compose-list-field',
 		'data-params' => json_encode($type_params),

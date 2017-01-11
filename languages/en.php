@@ -17,9 +17,14 @@ return [
 	'forms:compose:section:add' => "Add section",
 	'forms:compose:page:new' => "New page",
 	'forms:compose:page:add' => "Add page",
+	
+	'forms:compose:conditional_section:value:label' => "The following fields should show when value matches",
+	'forms:compose:conditional_section:placeholder' => "Drop your conditional fields here",
 
 	'forms:compose:fields:title' => "New Fields",
 
+	'forms:compose:field:conditional:title' => "Add conditional section",
+	
 	'forms:compose:field:type:text' => "Text",
 	'forms:compose:field:type:plaintext' => "Plaintext",
 	'forms:compose:field:type:longtext' => "Longtext",
