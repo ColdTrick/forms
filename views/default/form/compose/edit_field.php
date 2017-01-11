@@ -30,6 +30,7 @@ $fields = [
 			'radio' => elgg_echo('forms:compose:field:type:radio'),
 			'select' => elgg_echo('forms:compose:field:type:select'),
 			'file' => elgg_echo('forms:compose:field:type:file'),
+			'date' => elgg_echo('forms:compose:field:type:date'),
 		],
 	],
 	

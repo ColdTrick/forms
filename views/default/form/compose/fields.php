@@ -33,6 +33,10 @@ $types = [
 		'#type' => 'file',
 		'#label' => elgg_echo('forms:compose:field:type:file'),
 	],
+	[
+		'#type' => 'date',
+		'#label' => elgg_echo('forms:compose:field:type:date'),
+	],
 ];
 
 $list = '';
