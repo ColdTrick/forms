@@ -5,10 +5,15 @@ namespace ColdTrick\Forms\Definition;
 class Field {
 	
 	protected $config;
+
+	protected $conditional_sections;
 	
 	public function __construct($config) {
 
 		$this->config = $config;
+		
+		$this->conditional_sections = elgg_extract('conditional_sections', $this->config, []);
+		unset($this->config['conditional_sections']);
 	}
 	
 	public function getType() {
@@ -40,6 +45,14 @@ class Field {
 		return $result;
 	}
 	
+	public function getConditionalSections() {
+		$result = [];
+		foreach ($this->conditional_sections as $section) {
+			$result[] = new ConditionalSection($section);
+		}
+		return $result;
+	}
+	
 	protected function getOptions() {
 		$options = elgg_extract('options', $this->config, '');
 		
@@ -57,4 +70,6 @@ class Field {
 		
 		return $result;
 	}
+	
+	
 }

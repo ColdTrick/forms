@@ -8,19 +8,33 @@ foreach ($pages as $page) {
 	$page_body = '';
 	foreach ($page->getSections() as $section) {
 		
-		$fields = [];
+		$section_body = '';
 		foreach ($section->getFields() as $field) {
-			$fields[] = $field->getInputVars();
+			$section_body .= elgg_view_field($field->getInputVars());
+			
+			$condition_sections = $field->getConditionalSections();
+			if ($condition_sections) {
+				$condition_sections_body = '';
+				foreach ($condition_sections as $conditional_section) {
+					
+					$fields = [];
+					foreach ($conditional_section->getFields() as $conditional_field) {
+						$fields[] = $conditional_field->getInputVars();
+					}
+					$condition_sections_body .= elgg_view('input/fieldset', [
+						'legend' => $conditional_section->getValue(),
+						'fields' => $fields,
+					]);
+				}
+				
+				$section_body .= $condition_sections_body;
+			}
 		}
 		
-		if (empty($fields)) {
+		if (empty($section_body)) {
 			continue;
 		}
-		
-		$section_body = elgg_view('input/fieldset', [
-			'fields' => $fields,
-		]);
-		
+						
 		$page_body .= elgg_view_module('info', $section->getTitle(), $section_body);
 	}
 	

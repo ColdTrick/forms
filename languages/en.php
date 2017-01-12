@@ -20,6 +20,7 @@ return [
 	
 	'forms:compose:conditional_section:value:label' => "The following fields should show when value matches",
 	'forms:compose:conditional_section:placeholder' => "Drop your conditional fields here",
+	'forms:compose:conditional_section:invalid_drop' => "You can't move this field here as it contains conditional sections.",
 
 	'forms:compose:fields:title' => "New Fields",
 

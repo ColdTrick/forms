@@ -32,8 +32,8 @@ define(function(require) {
 	};
 
 	var deleteFormElement = function(elem) {	
-		// resolves to parent li (which could be Field, Section or Page)
-		$(this).parents('li').eq(0).remove();
+		// resolves to parent li (which could be ConditionalSection, Field, Section or Page)
+		$(this).parents('.forms-compose-conditional-section, .forms-compose-list-field, .forms-compose-list-section, .forms-compose-list-page').eq(0).remove();
 	};
 	
 	var editField = function(elem) {
@@ -114,7 +114,7 @@ define(function(require) {
 		$('.forms-compose-list-page > ul').sortable({
 			axis: 'y',
 			items: '.forms-compose-list-section',
-			connectWith: '.forms-compose-list-page > ul'
+			connectWith: '.forms-compose-list-page > ul'			
 		});
 		
 		initSortableFields();
@@ -123,11 +123,27 @@ define(function(require) {
 	var initSortableFields = function() {
 		$('.forms-compose-conditional-section > ul, .forms-compose-list-section > ul').sortable({
 			items: '> *:not(.forms-field-unsortable)',
-			tolerance: 'pointer',
 			connectWith: '.forms-compose-conditional-section > ul, .forms-compose-list-section > ul',
 			receive: function (event, ui) {
 				// remove style added during drag
 				$(ui.helper).removeAttr('style');
+			},
+			stop: function(event, ui) {
+				if ($(ui.item).parents('.forms-compose-conditional-section').length === 0) {
+					// item is not dropped in a conditional section
+					return;
+				}
+				
+				if ($(ui.item).find('.forms-compose-conditional-section').length === 0) {
+					// dragged item doesn't contain a conditional section, so action is allowed
+					return;
+				}
+				
+				// revert sorting action
+				$(this).sortable('cancel');
+				
+				// notify user
+				elgg.register_error(elgg.echo('forms:compose:conditional_section:invalid_drop'));
 			}
 		});
 	};
@@ -143,15 +159,32 @@ define(function(require) {
 				'sections' : []
 			};
 			
-			$(this).find('.forms-compose-list-section').each(function(section_index, section_element) {
+			$(this).find('> ul > .forms-compose-list-section').each(function(section_index, section_element) {
 				var section = {
 					'title' : $(section_element).find(' > span').text(),
 					'fields' : []
 				};
 				
-				$(this).find('.forms-compose-list-field').each(function(field_index, field_element) {
+				$(this).find('> ul > .forms-compose-list-field').each(function(field_index, field_element) {
 					var field = $(field_element).data('params');
-				
+					field['conditional_sections'] = [];
+					
+					$(this).find('> .forms-compose-conditional-section').each(function(conditional_section_index, conditional_section_element) {
+						var conditional_value = $(conditional_section_element).find('[name="conditional_value"]').val(); 
+						var conditional_section = {
+							'value' : conditional_value,
+							'fields' : []
+						};
+						
+						$(this).find('> ul > .forms-compose-list-field').each(function(conditional_field_index, conditional_field_element) {
+							var conditional_field = $(conditional_field_element).data('params');
+							conditional_section['fields'].push(conditional_field);
+							console.log(conditional_field);
+						});
+												
+						field['conditional_sections'].push(conditional_section);
+					});
+					
 					section['fields'].push(field);
 				});
 				
@@ -160,7 +193,7 @@ define(function(require) {
 			
 			result['pages'].push(page);
 		});	
-		
+				
 		result = JSON.stringify(result);
 
 		$('.elgg-form-forms-compose input[name="definition"]').val(result);
