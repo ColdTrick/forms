@@ -69,4 +69,25 @@ class Form extends \ElggObject {
 		
 		return $this->definition;
 	}
+	
+	/**
+	 * Get the endpoint configuration
+	 *
+	 * @param string $endpoint (optional) the endpoint to get the config for
+	 *
+	 * @return array
+	 */
+	public function getEndpointConfig($endpoint = null) {
+		
+		if (empty($this->endpoint_config)) {
+			return [];
+		}
+		
+		$endpoint_config = json_decode($this->endpoint_config, true);
+		if (!isset($endpoint)) {
+			return $endpoint_config;
+		}
+		
+		return elgg_extract($endpoint, $endpoint_config, []);
+	}
 }

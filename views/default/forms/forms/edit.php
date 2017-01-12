@@ -49,6 +49,16 @@ echo elgg_view_field([
 	'entity_allows_comments' => false,
 ]);
 
+// endpoint config
+// @todo this needs to be extended with more options
+echo elgg_view_field([
+	'#type' => 'hidden',
+	'name' => 'endpoint',
+	'value' => 'email',
+]);
+
+echo elgg_view('form/edit/endpoint/email', $vars);
+
 // footer
 if (!empty($entity)) {
 	$footer .= elgg_view_field([

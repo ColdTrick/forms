@@ -10,6 +10,8 @@ $friendly_url = get_input('friendly_url', elgg_get_friendly_title($title));
 $friendly_url = elgg_get_friendly_title($friendly_url);
 $description = get_input('description');
 $access_id = (int) get_input('access_id');
+$endpoint = get_input('endpoint');
+$endpoint_config = (array) get_input('endpoint_config', []);
 
 $entity = false;
 if (!empty($guid)) {
@@ -50,6 +52,9 @@ $entity->title = $title;
 $entity->friendly_url = $friendly_url;
 $entity->description = $description;
 $entity->access_id = $access_id;
+
+$entity->endpoint = $endpoint;
+$entity->endpoint_config = json_encode($endpoint_config);
 
 if (!$entity->save()) {
 	return elgg_error_response(elgg_echo('save:fail'));

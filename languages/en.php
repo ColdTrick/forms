@@ -47,6 +47,11 @@ return [
 	
 	'forms:edit:friendly_url' => "URL to the form",
 	
+	'forms:endpoint:email' => "Email configuration",
+	'forms:endpoint:email:to' => "To",
+	'forms:endpoint:email:cc' => "CC",
+	'forms:endpoint:email:bcc' => "BCC",
+	
 	'forms:entity:clone:title' => "Copy of %s",
 	
 	'forms:sidebar:history:title' => "History",

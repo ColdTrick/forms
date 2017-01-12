@@ -21,12 +21,22 @@ function forms_prepare_form_vars($container_guid, $entity = null) {
 		'description' => '',
 		'access_id' => ACCESS_PRIVATE,
 		'container_guid' => (int) $container_guid,
+		'endpoint' => '',
+		'endpoint_config' => [],
 	];
 	
 	// from entity
 	if ($entity instanceof Form) {
 		foreach ($vars as $name => $value) {
-			$vars[$name] = $entity->$name;
+			
+			switch ($name) {
+				case 'endpoint_config':
+					$vars[$name] = $entity->getEndpointConfig();
+					break;
+				default:
+					$vars[$name] = $entity->$name;
+					break;
+			}
 		}
 		
 		$vars['entity'] = $entity;
