@@ -14,6 +14,7 @@ return [
 	'forms:all:title' => "All forms",
 	'forms:add:title' => "Create form",
 	'forms:edit:title' => "Edit form: %s",
+	'forms:compose:title' => "Compose form: %s",
 	
 	'forms:compose:section:new' => "New Section",
 	'forms:compose:section:add' => "Add section",
