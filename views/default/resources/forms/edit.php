@@ -30,8 +30,13 @@ elgg_push_breadcrumb(elgg_echo('forms:all:title'), 'forms/all');
 
 // build page elements
 if (!empty($entity)) {
+	elgg_push_breadcrumb($entity->getDisplayName(), $entity->getURL());
+	elgg_push_breadcrumb(elgg_echo('edit'));
+	
 	$title_text = elgg_echo('forms:edit:title', [$entity->getDisplayName()]);
 } else {
+	elgg_push_breadcrumb(elgg_echo('add'));
+	
 	$title_text = elgg_echo('forms:add:title');
 }
 
