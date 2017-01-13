@@ -30,4 +30,5 @@ function forms_init() {
 	elgg_register_action('forms/delete', dirname(__FILE__) . '/actions/forms/delete.php', 'admin');
 	elgg_register_action('forms/copy', dirname(__FILE__) . '/actions/forms/copy.php', 'admin');
 	elgg_register_action('forms/compose', dirname(__FILE__) . '/actions/forms/compose.php', 'admin');
+	elgg_register_action('forms/submit', dirname(__FILE__) . '/actions/forms/submit.php', 'public');
 }

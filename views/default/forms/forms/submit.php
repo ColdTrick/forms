@@ -1,22 +1,30 @@
 <?php
 
 $entity = elgg_extract('entity', $vars);
+if (!($entity instanceof \Form)) {
+	return;
+}
 
+// draw pages
 $pages = $entity->getDefinition()->getPages();
 foreach ($pages as $page) {
 	
+	// sections
 	$page_body = '';
 	foreach ($page->getSections() as $section) {
 		
+		// fields
 		$section_body = '';
 		foreach ($section->getFields() as $field) {
 			$section_body .= elgg_view_field($field->getInputVars());
 			
+			// conditional sections
 			$condition_sections = $field->getConditionalSections();
 			if ($condition_sections) {
 				$condition_sections_body = '';
 				foreach ($condition_sections as $conditional_section) {
 					
+					// fields of the conditional section
 					$fields = [];
 					foreach ($conditional_section->getFields() as $conditional_field) {
 						$fields[] = $conditional_field->getInputVars();
@@ -34,7 +42,7 @@ foreach ($pages as $page) {
 		if (empty($section_body)) {
 			continue;
 		}
-						
+		
 		$page_body .= elgg_view_module('info', $section->getTitle(), $section_body);
 	}
 	
@@ -46,9 +54,15 @@ foreach ($pages as $page) {
 	echo $page_body;
 }
 
+// build footer
 $footer = elgg_view_field([
 	'#type' => 'submit',
 	'value' => elgg_echo('submit'),
+]);
+$footer .= elgg_view_field([
+	'#type' => 'hidden',
+	'name' => 'form_guid',
+	'value' => $entity->getGUID(),
 ]);
 
 elgg_set_form_footer($footer);

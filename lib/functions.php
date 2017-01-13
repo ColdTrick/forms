@@ -123,3 +123,19 @@ function forms_generate_valid_friendly_url($friendly_url, $entity_guid = null) {
 	
 	return "{$friendly_url}-{$i}";
 }
+
+/**
+ * Get the available endpoints information
+ *
+ * @return array
+ */
+function forms_get_available_endpoints() {
+	
+	$result = [
+		'email' => [
+			'class' => '\ColdTrick\Forms\Endpoint\Email',
+		],
+	];
+	
+	return elgg_trigger_plugin_hook('endpoints', 'forms', $result, $result);
+}

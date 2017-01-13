@@ -1,5 +1,7 @@
 <?php
+
 use \ColdTrick\Forms\Definition;
+use \ColdTrick\Forms\Endpoint;
 
 class Form extends \ElggObject {
 	
@@ -88,6 +90,49 @@ class Form extends \ElggObject {
 			return $endpoint_config;
 		}
 		
-		return elgg_extract($endpoint, $endpoint_config, []);
+		return (array) elgg_extract($endpoint, $endpoint_config, []);
+	}
+	
+	/**
+	 * Get the form endpoint
+	 *
+	 * @return false|\ColdTrick\Forms\Endpoint
+	 */
+	public function getEndpoint() {
+		
+		if (empty($this->endpoint)) {
+			return false;
+		}
+		
+		$endpoints = forms_get_available_endpoints();
+		if (!is_array($endpoints)) {
+			return false;
+		}
+		
+		$endpoint_information = elgg_extract($this->endpoint, $endpoints);
+		if (empty($endpoint_information)) {
+			return false;
+		}
+		
+		$class = elgg_extract('class', $endpoint_information);
+		if (empty($class) || !class_exists($class)) {
+			return false;
+		}
+		
+		$endpoint_config = $this->getEndpointConfig($this->endpoint);
+		
+		try {
+			$endpoint = new $class($endpoint_config);
+		} catch (Exception $e) {
+			elgg_log("Form->getEndpoint() error: {$e->getMessage()}", 'ERROR');
+			return false;
+		}
+		
+		if (!($endpoint instanceof Endpoint)) {
+			elgg_log('Form endpoint is not an instanceof \ColdTrick\Forms\Endpoint', 'ERROR');
+			return false;
+		}
+		
+		return $endpoint;
 	}
 }

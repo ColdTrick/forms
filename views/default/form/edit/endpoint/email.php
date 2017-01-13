@@ -10,6 +10,7 @@ $email = elgg_view_field([
 	'#label' => elgg_echo('forms:endpoint:email:to'),
 	'name' => 'endpoint_config[email][to]',
 	'value' => elgg_extract('to', $config),
+	'required' => true,
 ]);
 $email .= elgg_view_field([
 	'#type' => 'text',

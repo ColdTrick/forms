@@ -48,6 +48,7 @@ return [
 	'forms:edit:friendly_url' => "URL to the form",
 	
 	'forms:endpoint:email' => "Email configuration",
+	'forms:endpoint:email:subject' => "A new reponse for form: %s",
 	'forms:endpoint:email:to' => "To",
 	'forms:endpoint:email:cc' => "CC",
 	'forms:endpoint:email:bcc' => "BCC",
