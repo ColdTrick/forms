@@ -4,7 +4,7 @@ use ColdTrick\Forms\Definition\ConditionalSection;
 
 $field = elgg_extract('field', $vars);
 
-$input_vars = $field->getInputVars();
+$input_vars = $field->getConfig();
 
 $part_of_conditional_section = elgg_extract('part_of_conditional_section', $vars, false);
 

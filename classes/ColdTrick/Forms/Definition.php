@@ -23,4 +23,19 @@ class Definition {
 		}
 		return $result;
 	}
+	
+	/**
+	 * Get all the applied validation rules for this definition
+	 *
+	 * @return array
+	 */
+	public function getValidationRules() {
+		$result = [];
+		
+		foreach ($this->getPages() as $page) {
+			$result = array_merge($result, $page->getValidationRules());
+		}
+		
+		return $result;
+	}
 }

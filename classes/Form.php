@@ -8,9 +8,9 @@ class Form extends \ElggObject {
 	const SUBTYPE = 'form';
 	
 	/**
-	 * @var Definition
+	 * @var \ColdTrick\Forms\Definition
 	 */
-	protected $definition;
+	protected $definition_object;
 	
 	/**
 	 * {@inheritDoc}
@@ -60,16 +60,56 @@ class Form extends \ElggObject {
 	}
 	
 	/**
+	 * Check if this form has a saved definition
+	 *
+	 * @return bool
+	 */
+	public function hasDefinition() {
+		return !empty($this->definition);
+	}
+	
+	/**
 	 * Get the form definition
 	 *
 	 * @return \ColdTrick\Forms\Definition
 	 */
 	public function getDefinition() {
-		if (!isset($this->definition)) {
-			$this->definition = new Definition($this);
+		if (!isset($this->definition_object)) {
+			$this->definition_object = new Definition($this);
 		}
 		
-		return $this->definition;
+		return $this->definition_object;
+	}
+	
+	/**
+	 * Export the form definition
+	 *
+	 * @return false|string
+	 */
+	public function exportDefinition() {
+		
+		if (!$this->hasDefinition()) {
+			return false;
+		}
+		
+		$definition = json_decode($this->definition, true);
+		$rules = $this->getDefinition()->getValidationRules();
+		
+		return json_encode([
+			'definition' => $definition,
+			'rules' => $rules,
+		], JSON_PRETTY_PRINT);
+	}
+	
+	/**
+	 * Import a form definition
+	 *
+	 * @param string $definition
+	 *
+	 * @return bool
+	 */
+	public function importDefinition($definition) {
+		
 	}
 	
 	/**

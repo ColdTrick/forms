@@ -48,6 +48,10 @@ class Field {
 		return $result;
 	}
 	
+	public function getConfig() {
+		return $this->config;
+	}
+	
 	public function getConditionalSections() {
 		$result = [];
 		foreach ($this->conditional_sections as $section) {
@@ -81,20 +85,56 @@ class Field {
 	 */
 	protected function getPattern() {
 		
-		if ($this->getType() !== 'text') {
-			return;
-		}
-		
-		$validation_rule = elgg_extract('validation_rule', $this->config);
-		if (empty($validation_rule)) {
-			return;
-		}
-		
-		$rule = forms_get_validation_rule($validation_rule);
+		$rule = $this->getValidationRule();
 		if (empty($rule)) {
 			return;
 		}
 		
+		if (!in_array($this->getType(), elgg_extract('input_types', $rule))) {
+			return;
+		}
+		
 		return elgg_extract('regex', $rule);
+	}
+	
+	/**
+	 * Get all the applied validation rules for this field
+	 *
+	 * @return array
+	 */
+	public function getValidationRules() {
+		
+		$result = [];
+		
+		$rule = $this->getValidationRule();
+		if (!empty($rule)) {
+			$result[elgg_extract('name', $rule)] = $rule;
+		}
+		
+		foreach ($this->getConditionalSections() as $conditional_section) {
+			$result = array_merge($result, $conditional_section->getValidationRules());
+		}
+		
+		return $result;
+	}
+	
+	/**
+	 * Get the validation rule for this field
+	 *
+	 * @return fasle|array
+	 */
+	protected function getValidationRule() {
+		
+		$validation_rule = elgg_extract('validation_rule', $this->config);
+		if (empty($validation_rule)) {
+			return false;
+		}
+		
+		$rule = forms_get_validation_rule($validation_rule);
+		if (empty($rule)) {
+			return false;
+		}
+		
+		return $rule;
 	}
 }

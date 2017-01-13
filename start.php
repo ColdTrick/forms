@@ -38,4 +38,7 @@ function forms_init() {
 	
 	elgg_register_action('forms/validation_rules/edit', dirname(__FILE__) . '/actions/forms/validation_rules/edit.php', 'admin');
 	elgg_register_action('forms/validation_rules/delete', dirname(__FILE__) . '/actions/forms/validation_rules/delete.php', 'admin');
+	
+	elgg_register_action('forms/definition/import', dirname(__FILE__) . '/actions/forms/definition/import.php', 'admin');
+	elgg_register_action('forms/definition/export', dirname(__FILE__) . '/actions/forms/definition/export.php', 'admin');
 }

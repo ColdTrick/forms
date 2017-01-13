@@ -24,4 +24,19 @@ class Page {
 		}
 		return $result;
 	}
+	
+	/**
+	 * Get all the applied validation rules for this page
+	 *
+	 * @return array
+	 */
+	public function getValidationRules() {
+		$result = [];
+		
+		foreach ($this->getSections() as $section) {
+			$result = array_merge($result, $section->getValidationRules());
+		}
+		
+		return $result;
+	}
 }

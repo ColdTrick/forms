@@ -24,4 +24,19 @@ class Section {
 		}
 		return $result;
 	}
+	
+	/**
+	 * Get all the applied validation rules for this section
+	 *
+	 * @return array
+	 */
+	public function getValidationRules() {
+		$result = [];
+		
+		foreach ($this->getFields() as $field) {
+			$result = array_merge($result, $field->getValidationRules());
+		}
+		
+		return $result;
+	}
 }
