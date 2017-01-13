@@ -44,6 +44,13 @@ $fields = [
 		'show_for_types' => ['select', 'radio', 'checkboxes'],
 	],
 	
+	[
+		'#type' => 'validation_rule',
+		'#label' => elgg_echo('forms:compose:field:edit:validation_rule'),
+		'name' => 'validation_rule',
+		'show_for_types' => ['text'],
+	],
+	
 	
 	
 	// end of conditional fields

@@ -1,8 +1,8 @@
 <?php
 
-namespace ColdTrick\Forms;
+namespace ColdTrick\Forms\Menus;
 
-class EntityMenu {
+class Entity {
 	
 	/**
 	 * Add menu items to the form entity menu

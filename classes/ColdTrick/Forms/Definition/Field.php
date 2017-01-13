@@ -40,6 +40,9 @@ class Field {
 			$result[$options_key] = $options;
 		}
 		
+		$result['pattern'] = $this->getPattern();
+		unset($result['validation_rule']);
+		
 		$result['required'] = (bool) elgg_extract('required', $result, false);
 		
 		return $result;
@@ -71,5 +74,27 @@ class Field {
 		return $result;
 	}
 	
-	
+	/**
+	 * Get a validation pattern to put on an input
+	 *
+	 * @return void|string
+	 */
+	protected function getPattern() {
+		
+		if ($this->getType() !== 'text') {
+			return;
+		}
+		
+		$validation_rule = elgg_extract('validation_rule', $this->config);
+		if (empty($validation_rule)) {
+			return;
+		}
+		
+		$rule = forms_get_validation_rule($validation_rule);
+		if (empty($rule)) {
+			return;
+		}
+		
+		return elgg_extract('regex', $rule);
+	}
 }

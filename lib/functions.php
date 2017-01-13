@@ -1,5 +1,7 @@
 <?php
 
+use Test\WideImage\Operation\GetChannelsTest;
+
 /**
  * All helper functions are bundled here
  */
@@ -138,4 +140,32 @@ function forms_get_available_endpoints() {
 	];
 	
 	return elgg_trigger_plugin_hook('endpoints', 'forms', $result, $result);
+}
+
+/**
+ * Get the vaidation rule definitions
+ *
+ * @return array
+ */
+function forms_get_validation_rules() {
+	
+	$rules = elgg_get_plugin_setting('validation_rules', 'forms');
+	if (empty($rules)) {
+		return [];
+	}
+	
+	return json_decode($rules, true);
+}
+
+/**
+ * Get a validation rule
+ *
+ * @param string $rule_name the name of the rule to get
+ *
+ * @return false|array
+ */
+function forms_get_validation_rule($rule_name) {
+	
+	$rules = forms_get_validation_rules();
+	return elgg_extract($rule_name, $rules, false);
 }
