@@ -32,6 +32,7 @@ return [
 	'forms:compose:field:conditional:title' => "Add conditional section",
 	
 	'forms:compose:field:type:text' => "Text",
+	'forms:compose:field:type:email' => "E-mail address",
 	'forms:compose:field:type:plaintext' => "Plaintext",
 	'forms:compose:field:type:longtext' => "Longtext",
 	'forms:compose:field:type:radio' => "Radio",
@@ -48,6 +49,12 @@ return [
 	'forms:compose:field:edit:options' => "Options",
 	'forms:compose:field:edit:options:help' => "Comma separate the options for this field",
 	'forms:compose:field:edit:validation_rule' => "Validation rule",
+	
+	'forms:compose:field:edit:email_recipient' => "Add e-mail address to:",
+	'forms:compose:field:edit:email_recipient:none' => "No recipient",
+	'forms:compose:field:edit:email_recipient:to' => "To",
+	'forms:compose:field:edit:email_recipient:cc' => "CC",
+	'forms:compose:field:edit:email_recipient:bcc' => "BCC",
 	
 	'forms:view:field:select:empty' => "Select a value...",
 	

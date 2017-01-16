@@ -23,6 +23,7 @@ $fields = [
 		'name' => '#type',
 		'options_values' => [
 			'text' => elgg_echo('forms:compose:field:type:text'),
+			'email' => elgg_echo('forms:compose:field:type:email'),
 			'plaintext' => elgg_echo('forms:compose:field:type:plaintext'),
 			'longtext' => elgg_echo('forms:compose:field:type:longtext'),
 			'checkbox' => elgg_echo('forms:compose:field:type:checkbox'),
@@ -49,6 +50,20 @@ $fields = [
 		'#label' => elgg_echo('forms:compose:field:edit:validation_rule'),
 		'name' => 'validation_rule',
 		'show_for_types' => ['text'],
+	],
+	
+	[
+		'#type' => 'radio',
+		'#label' => elgg_echo('forms:compose:field:edit:email_recipient'),
+		'name' => 'email_recipient',
+		'options' => [
+			elgg_echo('forms:compose:field:edit:email_recipient:none') => '',
+			elgg_echo('forms:compose:field:edit:email_recipient:to') => 'to',
+			elgg_echo('forms:compose:field:edit:email_recipient:cc') => 'cc',
+			elgg_echo('forms:compose:field:edit:email_recipient:bcc') => 'bcc',
+		],
+		'align' => 'horizontal',
+		'show_for_types' => ['email'],
 	],
 	
 	
