@@ -30,6 +30,11 @@ class Field {
 		
 		$this->conditional_sections = elgg_extract('conditional_sections', $this->config, []);
 		unset($this->config['conditional_sections']);
+		
+		// set new name if missing
+		if (!isset($this->config['name'])) {
+			$this->config['name'] = '__field_' . (microtime(true) * 1000);
+		}
 	}
 	
 	/**
