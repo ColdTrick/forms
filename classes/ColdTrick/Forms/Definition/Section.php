@@ -68,4 +68,16 @@ class Section {
 		
 		return $result;
 	}
+	
+	/**
+	 * Fill all the fields from their input submitted value
+	 *
+	 * @return void
+	 */
+	public function populateFromInput() {
+		
+		foreach ($this->getFields() as $field) {
+			$field->populateFromInput();
+		}
+	}
 }

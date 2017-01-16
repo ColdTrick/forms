@@ -68,4 +68,16 @@ class Page {
 		
 		return $result;
 	}
+	
+	/**
+	 * Fill all the fields from their input submitted value
+	 *
+	 * @return void
+	 */
+	public function populateFromInput() {
+		
+		foreach ($this->getSections() as $section) {
+			$section->populateFromInput();
+		}
+	}
 }

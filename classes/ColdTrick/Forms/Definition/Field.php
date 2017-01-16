@@ -15,6 +15,11 @@ class Field {
 	protected $conditional_sections;
 	
 	/**
+	 * @var \ColdTrick\Forms\Definition\ConditionalSection[] the confitional sections
+	 */
+	protected $conditional_sections_objects;
+	
+	/**
 	 * Create a new form field
 	 *
 	 * @param array $config the field configiration
@@ -89,11 +94,17 @@ class Field {
 	 * @return \ColdTrick\Forms\Definition\ConditionalSection[]
 	 */
 	public function getConditionalSections() {
-		$result = [];
-		foreach ($this->conditional_sections as $section) {
-			$result[] = new ConditionalSection($section);
+		
+		if (isset($this->conditional_sections_objects)) {
+			return $this->conditional_sections_objects;
 		}
-		return $result;
+		
+		$this->conditional_sections_objects = [];
+		foreach ($this->conditional_sections as $section) {
+			$this->conditional_sections_objects[] = new ConditionalSection($section);
+		}
+		
+		return $this->conditional_sections_objects;
 	}
 	
 	/**
@@ -177,5 +188,17 @@ class Field {
 		}
 		
 		return $rule;
+	}
+	
+	/**
+	 * Fill the field from its input submitted value
+	 *
+	 * @return void
+	 */
+	public function populateFromInput() {
+		
+		foreach ($this->getConditionalSections() as $conditional_section) {
+			$conditional_section->populateFromInput();
+		}
 	}
 }
