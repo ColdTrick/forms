@@ -59,6 +59,10 @@ define(function(require) {
 		$.each($field.data('params'), function(key, value) {
 			$form.find('[name="' + key + '"]').each(function() {
 				var $field = $(this);
+				if ($field.is('[type="hidden"]')) {
+					return;
+				}
+				
 				if ($field.is('[type="checkbox"]')) {
 					$field.prop('checked', value == $field.val());
 				} else {
@@ -91,6 +95,8 @@ define(function(require) {
 		var params = $field.data('params');
 		
 		$.each($form.find('[name]').serializeArray(), function(key, field) {
+			console.log(field.name);
+			console.log(field.value);
 			params[field.name] = field.value;
 		});
 		$field.data('params', params);
