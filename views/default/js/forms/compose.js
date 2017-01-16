@@ -147,6 +147,13 @@ define(function(require) {
 			receive: function (event, ui) {
 				// remove style added during drag
 				$(ui.helper).removeAttr('style');
+				
+				// if name is missing, probably because it is a new field, add a unique name
+				var $data = $(ui.helper).data();
+				if (typeof $data.params.name == 'undefined') {
+					$data.params.name = '__field_' + new Date().getTime();
+					$(ui.helper).data('params', $data.params);
+				}				
 			},
 			stop: function(event, ui) {
 				if ($(ui.item).parents('.forms-compose-conditional-section').length === 0) {
