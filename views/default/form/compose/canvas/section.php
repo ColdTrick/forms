@@ -5,7 +5,7 @@ use ColdTrick\Forms\Definition\Field;
 $section = elgg_extract('section', $vars);
 
 $fields_result = '';
-foreach (elgg_extract('fields', $section) as $field) {
+foreach (elgg_extract('fields', $section, []) as $field) {
 	$field = new Field($field);
 	$fields_result .= elgg_view('form/compose/canvas/field', ['field' => $field]);
 }
