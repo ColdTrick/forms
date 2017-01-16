@@ -56,6 +56,7 @@ return [
 	'forms:compose:field:edit:email_recipient:cc' => "CC",
 	'forms:compose:field:edit:email_recipient:bcc' => "BCC",
 	
+	'forms:compose:field:edit:select:multiple' => "Allow multiple values to be selected",
 	'forms:view:field:select:empty' => "Select a value...",
 	
 	'forms:edit:friendly_url' => "URL to the form",

@@ -66,6 +66,15 @@ $fields = [
 		'show_for_types' => ['email'],
 	],
 	
+	[
+		'#type' => 'checkbox',
+		'#label' => elgg_echo('forms:compose:field:edit:select:multiple'),
+		'name' => 'multiple',
+		'default' => '',
+		'value' => '1',
+		'show_for_types' => ['select'],
+	],
+	
 	
 	
 	// end of conditional fields
