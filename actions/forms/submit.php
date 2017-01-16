@@ -8,10 +8,13 @@ elgg_entity_gatekeeper($form_guid, 'object', \Form::SUBTYPE);
 /* @var $form \Form */
 $form = get_entity($form_guid);
 
-// validate input
-
 // create a result
 $result = new Result($form);
+
+// validate input
+if (!$result->validate()) {
+	return elgg_error_response();
+}
 
 // process the result
 $endpoint = $form->getEndpoint();

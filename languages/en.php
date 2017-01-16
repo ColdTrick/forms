@@ -6,6 +6,9 @@ return [
 	
 	'forms:file:upload_limit' => "Maximum allowed file size is %s",
 	
+	'forms:invalid_input_exception:required' => "Missing required field",
+	'forms:invalid_input_exception:pattern' => "Field input doesn't match pattern",
+	
 	'forms:entity_menu:compose' => "Compose",
 	'forms:entity_menu:copy' => "Copy",
 	'forms:entity_menu:copy:confirm' => "Are you sure you wish to copy this form?",

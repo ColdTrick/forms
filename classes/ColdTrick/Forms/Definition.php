@@ -16,6 +16,11 @@ class Definition {
 	protected $form;
 	
 	/**
+	 * @var \ColdTrick\Forms\Definition\Page[] the pages in this definition
+	 */
+	protected $pages;
+	
+	/**
 	 * Make a new definition
 	 *
 	 * @param \Form $form
@@ -41,13 +46,19 @@ class Definition {
 	 * @return \ColdTrick\Forms\Definition\Page[]
 	 */
 	public function getPages() {
-		$result = [];
+		
+		if (isset($this->pages)) {
+			return $this->pages;
+		}
+		
+		$this->pages = [];
 		
 		$pages = elgg_extract('pages', $this->config, []);
 		foreach ($pages as $page) {
-			$result[] = new Definition\Page($page);
+			$this->pages[] = new Definition\Page($page);
 		}
-		return $result;
+		
+		return $this->pages;
 	}
 	
 	/**

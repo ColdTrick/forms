@@ -2,6 +2,8 @@
 
 namespace ColdTrick\Forms\Definition;
 
+use ColdTrick\Forms\Exception\InvalidInputException;
+
 class Field {
 	
 	/**
@@ -18,6 +20,11 @@ class Field {
 	 * @var \ColdTrick\Forms\Definition\ConditionalSection[] the confitional sections
 	 */
 	protected $conditional_sections_objects;
+	
+	/**
+	 * @var mixed the submitted value of this field
+	 */
+	protected $value;
 	
 	/**
 	 * Create a new form field
@@ -44,6 +51,15 @@ class Field {
 	 */
 	public function getType() {
 		return elgg_extract('#type', $this->config, '');
+	}
+	
+	/**
+	 * Get the name of the field
+	 *
+	 * @return string
+	 */
+	public function getName() {
+		return elgg_extract('name', $this->config, '');
 	}
 	
 	/**
@@ -200,5 +216,80 @@ class Field {
 		foreach ($this->getConditionalSections() as $conditional_section) {
 			$conditional_section->populateFromInput();
 		}
+		
+		$this->setValue(get_input($this->getName()));
+	}
+	
+	/**
+	 * Set the value for this input field
+	 *
+	 * @param mixed $value the new value
+	 *
+	 * @return void
+	 */
+	public function setValue($value) {
+		$this->value = $value;
+	}
+	
+	/**
+	 * Get the value of this field
+	 *
+	 * @return mixed
+	 */
+	public function getValue() {
+		return $this->value;
+	}
+	
+	/**
+	 * Validate if the field value is valid according to the configuration
+	 *
+	 * @throws InvalidInputException
+	 * @return void
+	 */
+	public function validate() {
+		
+		$this->validateRequired();
+		
+		$this->validatePattern();
+	}
+	
+	/**
+	 * Validate if the field is required
+	 *
+	 * @throws InvalidInputException
+	 * @return void
+	 */
+	protected function validateRequired() {
+		
+		$required = (bool) elgg_extract('required', $this->config, false);
+		if (!$required) {
+			return;
+		}
+		
+		if (isset($this->value) && ($this->value !== '')) {
+			return;
+		}
+		
+		throw new InvalidInputException(elgg_echo('forms:invalid_input_exception:required'));
+	}
+	
+	/**
+	 * Validate the regex pattern on the field
+	 *
+	 * @throws InvalidInputException
+	 * @return void
+	 */
+	protected function validatePattern() {
+		
+		$pattern = $this->getPattern();
+		if (empty($pattern)) {
+			return;
+		}
+		
+		if (preg_match('/' . $pattern . '/', $this->value)) {
+			return;
+		}
+		
+		throw new InvalidInputException(elgg_echo('forms:invalid_input_exception:pattern'));
 	}
 }
