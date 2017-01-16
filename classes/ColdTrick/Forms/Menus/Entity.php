@@ -27,12 +27,14 @@ class Entity {
 			'href' => "forms/compose/{$entity->getGUID()}",
 		]);
 		
-		$return_value[] = \ElggMenuItem::factory([
-			'name' => 'export',
-			'text' => elgg_echo('export'),
-			'href' => "action/forms/export?guid={$entity->getGUID()}",
-			'is_action' => true,
-		]);
+		if ($entity->hasDefinition()) {
+			$return_value[] = \ElggMenuItem::factory([
+				'name' => 'export',
+				'text' => elgg_echo('export'),
+				'href' => "action/forms/export?guid={$entity->getGUID()}",
+				'is_action' => true,
+			]);
+		}
 		
 		$return_value[] = \ElggMenuItem::factory([
 			'name' => 'copy',
