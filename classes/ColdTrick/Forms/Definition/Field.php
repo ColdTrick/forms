@@ -28,7 +28,7 @@ class Field {
 		
 		// set new name if missing
 		if (!isset($this->config['name'])) {
-			$this->config['name'] = '__field_' . (microtime(true) * 1000);
+			$this->config['name'] = '__field_' . (microtime(true) * 10000);
 		}
 	}
 	
