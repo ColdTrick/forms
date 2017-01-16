@@ -30,7 +30,7 @@
 	visibility: hidden;
 }
 
-.forms-compose-list-field:hover > .elgg-icon {
+.elgg-form-forms-compose .forms-compose-list-field:hover > .elgg-icon {
 	visibility: visible;
 }
 
