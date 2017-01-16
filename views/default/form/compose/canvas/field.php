@@ -1,7 +1,5 @@
 <?php
 
-use ColdTrick\Forms\Definition\ConditionalSection;
-
 $field = elgg_extract('field', $vars);
 
 $input_vars = $field->getConfig();

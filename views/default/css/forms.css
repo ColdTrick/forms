@@ -10,7 +10,7 @@
 	margin: 10px;
 }
 
-.forms-compose-list-section > span {
+.forms-compose-list-section > .forms-compose-title-container {
 	color: #F0F0F0;
 }
 .forms-compose-list-section > ul {
@@ -22,8 +22,10 @@
 
 .forms-compose-edit-title {
 	display: none;
-	cursor: pointer;
-	margin-left: 5px;
+}
+
+.forms-compose-title-container:hover .forms-compose-edit-title {
+	display: inline-block;
 }
 
 .forms-compose-list-page:hover > .forms-compose-edit-title,

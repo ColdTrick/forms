@@ -5,20 +5,14 @@ define(function(require) {
 
 	var addPage = function() {
 		
-		var html = '<li class="forms-compose-list-page"><span>' + elgg.echo('forms:compose:page:new') + '</span>';
-		html += '<ul><li class="forms-compose-list-section"><span>' + elgg.echo('forms:compose:section:new') + '</span>';
-		html += '<ul></ul></li></ul></li>';
-		
-		$(this).parents('li').eq(0).before(html);
+		$(this).parents('li').eq(0).before($('#forms-compose-page-template .forms-compose-list-page').clone());
 		
 		initSortableSections();
 	};
 	
 	var addSection = function(page) {
-		var html = '<li class="forms-compose-list-section"><span>' + elgg.echo('forms:compose:section:new') + '</span>';
-		html += '<ul></ul></li>';
-		
-		$(this).parents('li').eq(0).before(html);
+
+		$(this).parents('li').eq(0).before($('#forms-compose-page-template .forms-compose-list-section').clone());
 		
 		initSortableFields();
 	};
@@ -111,14 +105,6 @@ define(function(require) {
 		$form.slideToggle(function() { $(this).remove(); });
 	};
 	
-	var addEditTitleLink = function(elem) {
-		if ($(this).next().is('.forms-compose-edit-title')) {
-			return;
-		}
-		
-		$(this).after('<span class="forms-compose-edit-title">' + elgg.echo('forms:compose:edit:title') + '</span>');
-	};
-	
 	var editTitle = function(elem) {
 		var $title = $(this).prev(); 
 		
@@ -128,6 +114,11 @@ define(function(require) {
 		}
 		
 		$title.text(result);
+	};
+	
+	var toggleElement = function() {
+		$(this).parent().parent().find(' > .ui-sortable').slideToggle();
+		$(this).toggleClass('elgg-icon-minus-square-o, fa-minus-square-o, elgg-icon-plus-square-o, fa-plus-square-o');
 	};
 	
 	var initSortablePages = function() {
@@ -182,15 +173,15 @@ define(function(require) {
 			'pages': []
 		};
 		
-		$('.forms-compose-list-page').each(function(page_index, page_element) {
+		$('.forms-compose-list .forms-compose-list-page').each(function(page_index, page_element) {
 			var page = {
-				'title' :  $(page_element).find(' > span').eq(0).text(),
+				'title' :  $(page_element).find(' > .forms-compose-title-container .forms-compose-title').eq(0).text(),
 				'sections' : []
 			};
 			
 			$(this).find('> ul > .forms-compose-list-section').each(function(section_index, section_element) {
 				var section = {
-					'title' : $(section_element).find(' > span').eq(0).text(),
+					'title' : $(section_element).find(' > .forms-compose-title-container .forms-compose-title').eq(0).text(),
 					'fields' : []
 				};
 				
@@ -252,8 +243,7 @@ define(function(require) {
 		$(document).on('click', '.forms-compose-field-save', saveField);
 		$(document).on('change', '.forms-compose-edit-field [name="#type"]', toggleConditionalFields);
 		$(document).on('click', '.forms-compose-edit-title', editTitle);
-		$(document).on('mouseenter', '.forms-compose-list-page > span:first-child, .forms-compose-list-section > span:first-child', addEditTitleLink);
-		
+		$(document).on('click', '.forms-compose-toggle-element', toggleElement);
 	};
 	
 	elgg.register_hook_handler('init', 'system', init);
