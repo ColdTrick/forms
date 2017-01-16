@@ -20,6 +20,17 @@
 	margin-left: 10px;
 }
 
+.forms-compose-edit-title {
+	display: none;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+.forms-compose-list-page:hover > .forms-compose-edit-title,
+.forms-compose-list-section:hover > .forms-compose-edit-title {
+	display: inline-block;
+} 
+
 .forms-compose-list-field {
 	background: #F0F0F0;
 	margin-bottom: 5px;

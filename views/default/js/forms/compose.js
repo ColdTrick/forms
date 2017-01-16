@@ -101,6 +101,25 @@ define(function(require) {
 		$form.slideToggle(function() { $(this).remove(); });
 	};
 	
+	var addEditTitleLink = function(elem) {
+		if ($(this).next().is('.forms-compose-edit-title')) {
+			return;
+		}
+		
+		$(this).after('<span class="forms-compose-edit-title">' + elgg.echo('forms:compose:edit:title') + '</span>');
+	};
+	
+	var editTitle = function(elem) {
+		var $title = $(this).prev(); 
+		
+		var result = prompt(elgg.echo('forms:compose:edit:title'), $title.text());
+		if (result === null) {
+			return;
+		}
+		
+		$title.text(result);
+	};
+	
 	var initSortablePages = function() {
 		$('.forms-compose-list').sortable({
 			axis: 'y',
@@ -155,13 +174,13 @@ define(function(require) {
 		
 		$('.forms-compose-list-page').each(function(page_index, page_element) {
 			var page = {
-				'title' :  $(page_element).find(' > span').text(),
+				'title' :  $(page_element).find(' > span').eq(0).text(),
 				'sections' : []
 			};
 			
 			$(this).find('> ul > .forms-compose-list-section').each(function(section_index, section_element) {
 				var section = {
-					'title' : $(section_element).find(' > span').text(),
+					'title' : $(section_element).find(' > span').eq(0).text(),
 					'fields' : []
 				};
 				
@@ -222,6 +241,8 @@ define(function(require) {
 		$(document).on('click', '.forms-compose-field-edit', editField);
 		$(document).on('click', '.forms-compose-field-save', saveField);
 		$(document).on('change', '.forms-compose-edit-field [name="#type"]', toggleConditionalFields);
+		$(document).on('click', '.forms-compose-edit-title', editTitle);
+		$(document).on('mouseenter', '.forms-compose-list-page > span:first-child, .forms-compose-list-section > span:first-child', addEditTitleLink);
 		
 	};
 	

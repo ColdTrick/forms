@@ -22,6 +22,8 @@ return [
 	'forms:compose:section:add' => "Add section",
 	'forms:compose:page:new' => "New page",
 	'forms:compose:page:add' => "Add page",
+
+	'forms:compose:edit:title' => "Edit title",
 	
 	'forms:compose:conditional_section:value:label' => "The following fields should show when value matches",
 	'forms:compose:conditional_section:placeholder' => "Drop your conditional fields here",
