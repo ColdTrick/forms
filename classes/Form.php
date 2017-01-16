@@ -104,12 +104,42 @@ class Form extends \ElggObject {
 	/**
 	 * Import a form definition
 	 *
-	 * @param string $definition
+	 * @param string $json_string
 	 *
 	 * @return bool
 	 */
-	public function importDefinition($definition) {
+	public function importDefinition($json_string) {
 		
+		$data = @json_decode($json_string, true);
+		if (empty($data)) {
+			return false;
+		}
+		
+		$definition = elgg_extract('definition', $data);
+		if (empty($definition)) {
+			return false;
+		}
+		
+		$this->definition = json_encode($definition);
+		
+		$validation_rules = elgg_extract('rules', $data);
+		if (!empty($validation_rules)) {
+			// proccess validation rules
+			$current_validation_rules = forms_get_validation_rules();
+			
+			foreach ($validation_rules as $name => $rule) {
+				if (array_key_exists($name, $current_validation_rules)) {
+					// don't override already existing validation rules
+					continue;
+				}
+				
+				$current_validation_rules[$name] = $rule;
+			}
+			
+			forms_save_validation_rules($current_validation_rules);
+		}
+		
+		return true;
 	}
 	
 	/**

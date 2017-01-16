@@ -26,7 +26,7 @@ $max_upload = $upload_max_filesize > $post_max_size ? $post_max_size : $upload_m
 echo elgg_view_field([
 	'#type' => 'file',
 	'#label' => elgg_echo('forms:import:json_file'),
-	'#help' => elgg_echo('forms:import:json_file:upload_limit', [elgg_format_bytes($max_upload)]),
+	'#help' => elgg_echo('forms:file:upload_limit', [elgg_format_bytes($max_upload)]),
 	'name' => 'json_file',
 ]);
 

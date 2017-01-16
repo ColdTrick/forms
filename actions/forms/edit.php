@@ -12,6 +12,7 @@ $description = get_input('description');
 $access_id = (int) get_input('access_id');
 $endpoint = get_input('endpoint');
 $endpoint_config = (array) get_input('endpoint_config', []);
+$definition = get_uploaded_file('definition');
 
 $entity = false;
 if (!empty($guid)) {
@@ -45,6 +46,11 @@ if (empty($entity)) {
 	
 	if (!$entity->save()) {
 		return elgg_error_response(elgg_echo('save:fail'));
+	}
+	
+	// check for uploaded definition
+	if (!empty($definition)) {
+		$entity->importDefinition($definition);
 	}
 }
 

@@ -4,6 +4,8 @@ return [
 	
 	'item:object:form' => "Form",
 	
+	'forms:file:upload_limit' => "Maximum allowed file size is %s",
+	
 	'forms:entity_menu:compose' => "Compose",
 	'forms:entity_menu:copy' => "Copy",
 	'forms:entity_menu:copy:confirm' => "Are you sure you wish to copy this form?",
@@ -50,6 +52,7 @@ return [
 	'forms:view:field:select:empty' => "Select a value...",
 	
 	'forms:edit:friendly_url' => "URL to the form",
+	'forms:edit:definition' => "Definition file (from export)",
 	
 	'forms:endpoint:email' => "Email configuration",
 	'forms:endpoint:email:subject' => "A new reponse for form: %s",
@@ -80,13 +83,12 @@ return [
 	'forms:import:json_text' => "JSON text (from export file)",
 	'forms:import:json_text:help' => "You can paste the contents of an export file here",
 	'forms:import:json_file' => "JSON file (the export file)",
-	'forms:import:json_file:upload_limit' => "Maximum allowed file size is %s",
 	
 	'forms:action:edit:error:friendly_url' => "The friendly URL is not valid or already in use, please change it",
 	
 	'forms:action:validation_rules:edit:error:regex' => "The regex you provided doesn't seem to be valid",
 	
 	'forms:action:definition:import:error:json_format' => "The format of the import is incorrect",
-	'forms:action:definition:import:error:json_definition' => "No form definition found",
+	'forms:action:definition:import:error:json_definition' => "An error occured while importing the definition",
 	'forms:action:definition:import:success' => "Definition successfully imported",
 ];

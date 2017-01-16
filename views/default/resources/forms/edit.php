@@ -40,9 +40,13 @@ if (!empty($entity)) {
 	$title_text = elgg_echo('forms:add:title');
 }
 
+$form_vars = [];
+if (empty($entity)) {
+	$form_vars['enctype'] = 'multipart/form-data';
+}
 $body_vars = forms_prepare_form_vars($container_guid, $entity);
 
-$content = elgg_view_form('forms/edit', [], $body_vars);
+$content = elgg_view_form('forms/edit', $form_vars, $body_vars);
 
 $sidebar = elgg_view('form/sidebar/history', ['entity' => $entity]);
 
