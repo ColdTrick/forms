@@ -4,25 +4,54 @@ namespace ColdTrick\Forms\Definition;
 
 class Page {
 	
+	/**
+	 * @var array the page configuration
+	 */
 	protected $config;
 	
+	/**
+	 * @var \ColdTrick\Forms\Definition\Section[] all the sections on this page
+	 */
+	protected $sections;
+	
+	/**
+	 * Create a page based on a config
+	 *
+	 * @param array $config
+	 */
 	public function __construct($config) {
 
 		$this->config = $config;
 	}
 	
+	/**
+	 * Get the page title
+	 *
+	 * @return string
+	 */
 	public function getTitle() {
 		return elgg_extract('title', $this->config, '');
 	}
-		
+	
+	/**
+	 * Get the sections on this page
+	 *
+	 * @return \ColdTrick\Forms\Definition\Section[]
+	 */
 	public function getSections() {
-		$result = [];
+		
+		if (isset($this->sections)) {
+			return $this->sections;
+		}
+		
+		$this->sections = [];
 		
 		$sections = elgg_extract('sections', $this->config, []);
 		foreach ($sections as $section) {
-			$result[] = new Section($section);
+			$this->sections[] = new Section($section);
 		}
-		return $result;
+		
+		return $this->sections;
 	}
 	
 	/**
