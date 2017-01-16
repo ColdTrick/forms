@@ -158,6 +158,21 @@ function forms_get_validation_rules() {
 }
 
 /**
+ * Get the vaidation rule definitions
+ *
+ * @access private
+ * @return bool
+ */
+function forms_save_validation_rules($rules = []) {
+	
+	if (empty($rules)) {
+		return elgg_unset_plugin_setting('validation_rules', 'forms');
+	}
+	
+	return elgg_set_plugin_setting('validation_rules', json_encode($rules), 'forms');
+}
+
+/**
  * Get a validation rule
  *
  * @param string $rule_name the name of the rule to get

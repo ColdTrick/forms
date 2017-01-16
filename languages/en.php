@@ -74,7 +74,19 @@ return [
 	'forms:validation_rule:regex:output' => "Regex: %s",
 	'forms:validation_rule:input:none' => "No validation",
 	
+	'forms:import:title' => "Import a form definition",
+	'forms:import:or' => "or",
+	'forms:import:warning:definition' => "This form already has a defninition. If you import a new definition that will overrule the current definition.",
+	'forms:import:json_text' => "JSON text (from export file)",
+	'forms:import:json_text:help' => "You can paste the contents of an export file here",
+	'forms:import:json_file' => "JSON file (the export file)",
+	'forms:import:json_file:upload_limit' => "Maximum allowed file size is %s",
+	
 	'forms:action:edit:error:friendly_url' => "The friendly URL is not valid or already in use, please change it",
 	
 	'forms:action:validation_rules:edit:error:regex' => "The regex you provided doesn't seem to be valid",
+	
+	'forms:action:definition:import:error:json_format' => "The format of the import is incorrect",
+	'forms:action:definition:import:error:json_definition' => "No form definition found",
+	'forms:action:definition:import:success' => "Definition successfully imported",
 ];

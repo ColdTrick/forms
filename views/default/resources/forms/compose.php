@@ -15,9 +15,12 @@ elgg_push_breadcrumb($entity->getDisplayName(), $entity->getURL());
 elgg_register_menu_item('title', [
 	'name' => 'import',
 	'text' => elgg_echo('import'),
-	'href' => "ajax/form/forms/import?guid={$entity->getGUID()}",
+	'href' => "ajax/form/forms/definition/import?guid={$entity->getGUID()}",
 	'link_class' => 'elgg-button elgg-button-action elgg-lightbox',
 	'deps' => 'elgg/lightbox',
+	'data-colorbox-opts' => json_encode([
+		'maxWidth' => '600px;',
+	]),
 ]);
 if ($entity->hasDefinition()) {
 	elgg_register_menu_item('title', [

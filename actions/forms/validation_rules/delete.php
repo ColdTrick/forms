@@ -14,7 +14,7 @@ $label = elgg_extract('label', $rules[$name]);
 
 unset($rules[$name]);
 
-if (elgg_set_plugin_setting('validation_rules', json_encode($rules), 'forms')) {
+if (forms_save_validation_rules($rules)) {
 	return elgg_ok_response('', elgg_echo('entity:delete:success', [$label]), REFERER);
 }
 

@@ -38,7 +38,7 @@ $rule['input_types'] = $input_types;
 $rules = forms_get_validation_rules();
 $rules[$name] = $rule;
 
-if (elgg_set_plugin_setting('validation_rules', json_encode($rules), 'forms')) {
+if (forms_save_validation_rules($rules)) {
 	return elgg_ok_response('', elgg_echo('save:success'), REFERER);
 }
 
