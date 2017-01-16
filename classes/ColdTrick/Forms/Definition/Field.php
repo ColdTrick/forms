@@ -4,10 +4,21 @@ namespace ColdTrick\Forms\Definition;
 
 class Field {
 	
+	/**
+	 * @var array the field configiration
+	 */
 	protected $config;
 
+	/**
+	 * @var array the conditional section configuration
+	 */
 	protected $conditional_sections;
 	
+	/**
+	 * Create a new form field
+	 *
+	 * @param array $config the field configiration
+	 */
 	public function __construct($config) {
 
 		$this->config = $config;
@@ -21,10 +32,20 @@ class Field {
 		}
 	}
 	
+	/**
+	 * Get the field type
+	 *
+	 * @return string
+	 */
 	public function getType() {
 		return elgg_extract('#type', $this->config, '');
 	}
 	
+	/**
+	 * Get the input variables
+	 *
+	 * @return array
+	 */
 	public function getInputVars() {
 		$result = $this->config;
 		
@@ -53,10 +74,20 @@ class Field {
 		return $result;
 	}
 	
+	/**
+	 * Get the field configuration
+	 *
+	 * @return array
+	 */
 	public function getConfig() {
 		return $this->config;
 	}
 	
+	/**
+	 * Get all the conditional sections for this field
+	 *
+	 * @return \ColdTrick\Forms\Definition\ConditionalSection[]
+	 */
 	public function getConditionalSections() {
 		$result = [];
 		foreach ($this->conditional_sections as $section) {
@@ -65,6 +96,11 @@ class Field {
 		return $result;
 	}
 	
+	/**
+	 * Create the options for use in the inputVars
+	 *
+	 * @return array
+	 */
 	protected function getOptions() {
 		$options = elgg_extract('options', $this->config, '');
 		
