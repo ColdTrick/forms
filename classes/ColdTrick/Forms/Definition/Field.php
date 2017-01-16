@@ -71,7 +71,7 @@ class Field {
 		// values = keys
 		$result = array_combine($result, $result);
 		
-		if ($this->getType() == 'select') {
+		if ($this->getType() == 'select' && !elgg_extract('multiple', $this->config, false)) {
 			$result = array_merge(['' => elgg_echo('forms:view:field:select:empty')], $result);
 		}
 		
