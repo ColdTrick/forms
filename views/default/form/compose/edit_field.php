@@ -62,6 +62,7 @@ $fields = [
 			elgg_echo('forms:compose:field:edit:email_recipient:cc') => 'cc',
 			elgg_echo('forms:compose:field:edit:email_recipient:bcc') => 'bcc',
 		],
+		'value' => '',
 		'align' => 'horizontal',
 		'show_for_types' => ['email'],
 	],

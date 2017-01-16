@@ -58,15 +58,19 @@ define(function(require) {
 		// load form data
 		$.each($field.data('params'), function(key, value) {
 			$form.find('[name="' + key + '"]').each(function() {
-				var $field = $(this);
-				if ($field.is('[type="hidden"]')) {
-					return;
-				}
 				
-				if ($field.is('[type="checkbox"]')) {
-					$field.prop('checked', value == $field.val());
-				} else {
-					$field.val(value);
+				
+				var $field = $(this);
+				
+				switch ($field.prop('type')) {
+					case 'hidden':
+						return;
+					case 'checkbox':
+					case 'radio':
+						$field.prop('checked', value == $field.val());
+						break;
+					default:
+						$field.val(value);
 				}
 			});
 		});
