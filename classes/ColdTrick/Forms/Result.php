@@ -5,29 +5,28 @@ namespace ColdTrick\Forms;
 /**
  * This class contains the values of a completed form
  */
-class Result {
+class Result extends Definition {
 	
 	/**
-	 * @var \Form the form belonging to this result
-	 */
-	protected $form;
-	
-	/**
-	 * Create a new result
+	 * Create a form result
 	 *
-	 * @param \Form $form the form related to this result
+	 * @param Form $form the form for this result
 	 */
 	public function __construct(\Form $form) {
+		parent::__construct($form);
 		
-		$this->form = $form;
+		$this->populateFromInput();
 	}
 	
 	/**
-	 * Get the form for this result
+	 * Fill all the fields from their input submitted value
 	 *
-	 * @return \Form
+	 * @return void
 	 */
-	public function getForm() {
-		return $this->form;
+	protected function populateFromInput() {
+		
+		foreach ($this->getPages() as $page) {
+			$page->populateFromInput();
+		}
 	}
 }
