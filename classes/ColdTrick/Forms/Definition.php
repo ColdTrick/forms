@@ -4,16 +4,42 @@ namespace ColdTrick\Forms;
 
 class Definition {
 	
+	/**
+	 *
+	 * @var array the definition configuration
+	 */
 	protected $config;
 
+	/**
+	 * @var Form The form for this definition
+	 */
 	protected $form;
 	
+	/**
+	 * Make a new definition
+	 *
+	 * @param \Form $form
+	 */
 	public function __construct(\Form $form) {
 		
 		$this->form = $form;
 		$this->config = json_decode($form->definition, true);
 	}
-		
+	
+	/**
+	 * Get the form for this result
+	 *
+	 * @return \Form
+	 */
+	public function getForm() {
+		return $this->form;
+	}
+	
+	/**
+	 * Get the definition pages
+	 *
+	 * @return \ColdTrick\Forms\Definition\Page[]
+	 */
 	public function getPages() {
 		$result = [];
 		
