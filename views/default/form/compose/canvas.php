@@ -7,12 +7,14 @@ $definition = json_decode($entity->definition, true);
 $pages = elgg_extract('pages', $definition);
 if (empty($pages)) {
 	$pages = [
-		'sections' => [
-			[
-				'title' => 'Section A',
+		[
+			'sections' => [
+				[
+					'title' => 'Section A',
+				],
 			],
-		],
-		'title' => 'Page 1',
+			'title' => 'Page 1',
+		]
 	];
 }
 
