@@ -65,11 +65,11 @@ class Field {
 	/**
 	 * Get the input variables
 	 *
-	 * @param mixed $sticky_value value from previous form submit
+	 * @param array $additional_vars additional input vars
 	 *
 	 * @return array
 	 */
-	public function getInputVars($sticky_value = null) {
+	public function getInputVars(array $additional_vars = []) {
 		$result = $this->config;
 		
 		$options_key = 'options_values';
@@ -95,6 +95,8 @@ class Field {
 		$result['required'] = (bool) elgg_extract('required', $result, false);
 		
 		// set sticky form value
+		$sticky_value = elgg_extract('sticky_value', $additional_vars);
+		unset($additional_vars['sticky_value']);
 		if (isset($sticky_value)) {
 			switch ($this->getType()) {
 				case 'checkbox':
@@ -106,7 +108,7 @@ class Field {
 			}
 		}
 		
-		return $result;
+		return array_merge($result, $additional_vars);
 	}
 	
 	/**
