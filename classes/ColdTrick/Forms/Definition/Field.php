@@ -63,6 +63,15 @@ class Field {
 	}
 	
 	/**
+	 * Get the label of the field
+	 *
+	 * @return string
+	 */
+	public function getLabel() {
+		return elgg_extract('#label', $this->config, '');
+	}
+	
+	/**
 	 * Get the input variables
 	 *
 	 * @param array $additional_vars additional input vars
@@ -123,9 +132,30 @@ class Field {
 	/**
 	 * Get all the conditional sections for this field
 	 *
+	 * @param bool $apply_section_filter appy the conditional section filter
+	 *
 	 * @return \ColdTrick\Forms\Definition\ConditionalSection[]
 	 */
-	public function getConditionalSections() {
+	public function getConditionalSections($apply_section_filter = false) {
+		
+		$apply_section_filter = (bool) $apply_section_filter;
+		if ($apply_section_filter && !isset($this->conditional_sections_objects)) {
+			// load sections
+			$this->getConditionalSections();
+		}
+		
+		if ($apply_section_filter) {
+			$sections = [];
+			foreach ($this->conditional_sections_objects as $section) {
+				if ($this->value !== $section->getValue()) {
+					continue;
+				}
+				
+				$sections[] = $section;
+			}
+			
+			return $sections;
+		}
 		
 		if (isset($this->conditional_sections_objects)) {
 			return $this->conditional_sections_objects;
