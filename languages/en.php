@@ -8,6 +8,7 @@ return [
 	
 	'forms:invalid_input_exception:required' => "Missing required field",
 	'forms:invalid_input_exception:pattern' => "Field input doesn't match pattern",
+	'forms:invalid_input_exception:value:email' => "Please provide a valid e-mail address",
 	
 	'forms:entity_menu:compose' => "Compose",
 	'forms:entity_menu:copy' => "Copy",

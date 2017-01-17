@@ -262,9 +262,32 @@ class Field {
 	 */
 	public function validate() {
 		
+		$this->validateValue();
+		
 		$this->validateRequired();
 		
 		$this->validatePattern();
+	}
+	
+	/**
+	 * Validate if the value matches the input type
+	 *
+	 * @throws InvalidInputException
+	 * @return void
+	 */
+	protected function validateValue() {
+		
+		if (!isset($this->value) || $this->value === '') {
+			return;
+		}
+		
+		switch ($this->getType()) {
+			case 'email':
+				if (!is_email_address($this->value)) {
+					throw new InvalidInputException(elgg_echo('forms:invalid_input_exception:value:email'));
+				}
+				break;
+		}
 	}
 	
 	/**
