@@ -5,6 +5,8 @@ if (!($entity instanceof \Form)) {
 	return;
 }
 
+$sticky_values = (array) elgg_extract('sticky_values', $vars, []);
+
 // draw pages
 $pages = $entity->getDefinition()->getPages();
 foreach ($pages as $page) {
@@ -16,7 +18,9 @@ foreach ($pages as $page) {
 		// fields
 		$section_body = '';
 		foreach ($section->getFields() as $field) {
-			$section_body .= elgg_view_field($field->getInputVars());
+			$sticky_value = elgg_extract($field->getName(), $sticky_values);
+			
+			$section_body .= elgg_view_field($field->getInputVars($sticky_value));
 			
 			// conditional sections
 			$condition_sections = $field->getConditionalSections();
@@ -27,7 +31,9 @@ foreach ($pages as $page) {
 					// fields of the conditional section
 					$fields = [];
 					foreach ($conditional_section->getFields() as $conditional_field) {
-						$fields[] = $conditional_field->getInputVars();
+						$sticky_value = elgg_extract($conditional_field->getName(), $sticky_values);
+						
+						$fields[] = $conditional_field->getInputVars($sticky_value);
 					}
 					$condition_sections_body .= elgg_view('input/fieldset', [
 						'legend' => $conditional_section->getValue(),

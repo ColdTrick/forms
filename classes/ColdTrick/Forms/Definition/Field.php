@@ -65,9 +65,11 @@ class Field {
 	/**
 	 * Get the input variables
 	 *
+	 * @param mixed $sticky_value value from previous form submit
+	 *
 	 * @return array
 	 */
-	public function getInputVars() {
+	public function getInputVars($sticky_value = null) {
 		$result = $this->config;
 		
 		$options_key = 'options_values';
@@ -91,6 +93,18 @@ class Field {
 		unset($result['validation_rule']);
 		
 		$result['required'] = (bool) elgg_extract('required', $result, false);
+		
+		// set sticky form value
+		if (isset($sticky_value)) {
+			switch ($this->getType()) {
+				case 'checkbox':
+					// @todo how does this work
+					break;
+				default:
+					$result['value'] = $sticky_value;
+					break;
+			}
+		}
 		
 		return $result;
 	}
