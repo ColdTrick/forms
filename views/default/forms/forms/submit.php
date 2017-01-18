@@ -5,6 +5,8 @@ if (!($entity instanceof \Form)) {
 	return;
 }
 
+elgg_require_js('forms/submit');
+
 $sticky_values = (array) elgg_extract('sticky_values', $vars, []);
 
 // draw pages
@@ -22,13 +24,24 @@ foreach ($pages as $page) {
 				'sticky_value' => elgg_extract($field->getName(), $sticky_values),
 			];
 			
+			$condition_sections = $field->getConditionalSections();
+			if ($condition_sections) {
+				$additional_vars['class'] = 'forms-submit-conditional';
+			}
+			
 			$section_body .= elgg_view_field($field->getInputVars($additional_vars));
 			
 			// conditional sections
-			$condition_sections = $field->getConditionalSections();
+			
 			if ($condition_sections) {
 				$condition_sections_body = '';
 				foreach ($condition_sections as $conditional_section) {
+					
+					$conditional_section_value = $conditional_section->getValue();
+					if ($conditional_section_value === null) {
+						// only show conditional section with a value to check
+						continue;
+					}
 					
 					// fields of the conditional section
 					$fields = [];
@@ -39,9 +52,18 @@ foreach ($pages as $page) {
 						
 						$fields[] = $conditional_field->getInputVars($additional_vars);
 					}
+					
+					if (empty($fields)) {
+						// no conditional section if no fields
+						continue;
+					}
+					
 					$condition_sections_body .= elgg_view('input/fieldset', [
 						'legend' => $conditional_section->getValue(),
 						'fields' => $fields,
+						'class' => 'hidden',
+						'data-conditional-field' => $field->getName(),
+						'data-conditional-value' => $conditional_section_value,
 					]);
 				}
 				
