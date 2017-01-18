@@ -22,6 +22,7 @@ return [
 	'forms:add:title' => "Create form",
 	'forms:edit:title' => "Edit form: %s",
 	'forms:compose:title' => "Compose form: %s",
+	'forms:thankyou:title' => "Thank you for completing: %s",
 	
 	'forms:compose:section:new' => "New Section",
 	'forms:compose:section:add' => "Add section",
@@ -68,6 +69,8 @@ return [
 	
 	'forms:edit:friendly_url' => "URL to the form",
 	'forms:edit:definition' => "Definition file (from export)",
+	'forms:edit:thankyou' => "Thank you message",
+	'forms:edit:thankyou:help' => "When a user completes the form they will be send to a thank you page, you can add custom text to that page.",
 	
 	'forms:endpoint:email' => "Email configuration",
 	'forms:endpoint:email:subject' => "A new reponse for form: %s",
@@ -98,6 +101,9 @@ return [
 	'forms:import:json_text' => "JSON text (from export file)",
 	'forms:import:json_text:help' => "You can paste the contents of an export file here",
 	'forms:import:json_file' => "JSON file (the export file)",
+	
+	'forms:thankyou:generic' => "You've successfully completed %s. Thank you.",
+	'forms:thankyou:again' => "Start the form again",
 	
 	'forms:action:edit:error:friendly_url' => "The friendly URL is not valid or already in use, please change it",
 	

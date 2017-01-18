@@ -27,3 +27,5 @@ if (!empty($endpoint)) {
 
 // on success: forward to thank you page
 elgg_clear_sticky_form("forms_{$form_guid}");
+
+forward("forms/thankyou/{$form->getGUID()}");

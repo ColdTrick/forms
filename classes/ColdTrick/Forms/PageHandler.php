@@ -11,6 +11,7 @@ class PageHandler {
 		'view',
 		'compose',
 		'validation_rules',
+		'thankyou',
 	];
 	
 	/**
@@ -50,6 +51,11 @@ class PageHandler {
 				return true;
 			case 'validation_rules':
 				echo elgg_view_resource('forms/validation_rules');
+				return true;
+			case 'thankyou':
+				echo elgg_view_resource('forms/thankyou', [
+					'guid' => (int) elgg_extract(1, $page),
+				]);
 				return true;
 		}
 		
