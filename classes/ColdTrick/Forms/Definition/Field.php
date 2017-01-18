@@ -3,6 +3,7 @@
 namespace ColdTrick\Forms\Definition;
 
 use ColdTrick\Forms\Exception\InvalidInputException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class Field {
 	
@@ -25,6 +26,11 @@ class Field {
 	 * @var mixed the submitted value of this field
 	 */
 	protected $value;
+	
+	/**
+	 * @var UploadedFile[] information about an uploaded file (if type is 'file')
+	 */
+	protected $file_info;
 	
 	/**
 	 * Create a new form field
@@ -263,7 +269,38 @@ class Field {
 			$conditional_section->populateFromInput();
 		}
 		
-		$this->setValue(get_input($this->getName()));
+		switch ($this->getType()) {
+			case 'file':
+				$uploaded_files = elgg_get_uploaded_files($this->getName());
+				if (empty($uploaded_files)) {
+					break;
+				}
+				
+				$this->file_info = $uploaded_files;
+				$paths = [];
+				foreach ($uploaded_files as $file) {
+					if (!$file->isValid()) {
+						continue;
+					}
+					
+					$paths[] = $file->getPathname();
+				}
+				
+				if (empty($paths)) {
+					// all errors
+					break;
+				}
+				
+				if (count($paths) === 1) {
+					$paths = $paths[0];
+				}
+				
+				$this->setValue($paths);
+				break;
+			default:
+				$this->setValue(get_input($this->getName()));
+				break;
+		}
 	}
 	
 	/**
@@ -284,6 +321,35 @@ class Field {
 	 */
 	public function getValue() {
 		return $this->value;
+	}
+	
+	/**
+	 * Get the uploaded files
+	 *
+	 * @param bool $only_valid_files only return valid files
+	 *
+	 * @return false|\Symfony\Component\HttpFoundation\File\UploadedFile[]
+	 */
+	public function getUploadedFiles($only_valid_files = false) {
+		
+		if ($this->getType() !== 'file' || empty($this->file_info)) {
+			return false;
+		}
+		
+		if (!$only_valid_files) {
+			return $this->file_info;
+		}
+		
+		$result = [];
+		foreach ($this->file_info as $uploaded_file) {
+			if (!$uploaded_file->isValid()) {
+				continue;
+			}
+			
+			$result[] = $uploaded_file;
+		}
+		
+		return $result;
 	}
 	
 	/**

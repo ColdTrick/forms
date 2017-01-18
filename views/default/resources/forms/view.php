@@ -12,10 +12,15 @@ $title = $entity->getDisplayName();
 $body = elgg_view('output/longtext', [
 	'value' => $entity->description,
 ]);
-$body .= elgg_view_form('forms/submit', [], [
+
+$form_vars = [
+	'enctype' => 'multipart/form-data',
+];
+$body_vars = [
 	'entity' => $entity,
 	'sticky_values' => $sticky_values,
-]);
+];
+$body .= elgg_view_form('forms/submit', $form_vars, $body_vars);
 
 // clear sticky values
 elgg_clear_sticky_form("forms_{$guid}");

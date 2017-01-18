@@ -15,6 +15,11 @@ class Email extends Endpoint {
 	protected $result;
 	
 	/**
+	 * @var array uploaded files need to be added as attachment in the email
+	 */
+	protected $attachments;
+	
+	/**
 	 * {@inheritDoc}
 	 * @see \ColdTrick\Forms\Endpoint::process()
 	 */
@@ -91,12 +96,29 @@ class Email extends Endpoint {
 	 *
 	 * @param Field $field
 	 *
-	 * @return string
+	 * @return void|string
 	 */
 	protected function getBodyField(Field $field) {
 		
 		$row = elgg_format_element('td', [], $field->getLabel() . ': ');
-		$row .= elgg_format_element('td', [], $field->getValue());
+		
+		$value = $field->getValue();
+		if ($field->getType() === 'file') {
+			$this->addAttachment($field);
+			
+			$value = [];
+			$uploaded_files = $field->getUploadedFiles(true);
+			if (!empty($uploaded_files)) {
+				foreach ($uploaded_files as $uploaded_file) {
+					$value[] = $uploaded_file->getClientOriginalName();
+				}
+			}
+		}
+		
+		if (is_array($value)) {
+			$value = implode(', ', $value);
+		}
+		$row .= elgg_format_element('td', [], $value);
 		$row .= PHP_EOL;
 		
 		return elgg_format_element('tr', [], $row);
@@ -126,10 +148,48 @@ class Email extends Endpoint {
 	 * @return array
 	 */
 	protected function getParams() {
-		
-		return [
+		$result = [
 			'cc' => $this->getConfig('cc'),
 			'bcc' => $this->getConfig('bcc'),
 		];
+		
+		if (!empty($this->attachments)) {
+			$result['attachments'] = $this->attachments;
+		}
+		
+		return $result;
+	}
+	
+	/**
+	 * Add a file field as an attachment
+	 *
+	 * @param Field $field the file field
+	 *
+	 * @return void
+	 */
+	protected function addAttachment(Field $field) {
+		
+		if ($field->getType() !== 'file') {
+			return;
+		}
+		
+		if (!isset($this->attachments)) {
+			$this->attachments = [];
+		}
+		
+		$uploaded_files = $field->getUploadedFiles(true);
+		if (empty($uploaded_files)) {
+			return;
+		}
+		
+		foreach ($uploaded_files as $uploaded_file) {
+			$attachment = [
+				'filename' => $uploaded_file->getClientOriginalName(),
+				'mimetype' => $uploaded_file->getMimeType(),
+				'filepath' => $uploaded_file->getPathname(),
+			];
+			
+			$this->attachments[] = $attachment;
+		}
 	}
 }
