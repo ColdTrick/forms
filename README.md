@@ -6,3 +6,10 @@
 [![License](https://poser.pugx.org/coldtrick/forms/license.svg)](https://packagist.org/packages/coldtrick/forms)
 
 A form builder for Elgg
+
+## Note about the e-mail endpoint
+
+Some of the functionality of the e-mail endpoint will only work if the plugin [HTML_email_handler](https://packagist.org/packages/coldtrick/html_email_handler) is installed.
+
+- CC and BCC field configuration
+- Uploaded files as attachment
