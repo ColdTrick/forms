@@ -21,5 +21,11 @@
 		<version>5.5</version>
 	</requires>
 	
+	<suggests>
+		<type>plugin</type>
+		<name>html_email_handler</name>
+		<version>4.0</version>
+	</suggests>
+	
 	<category>ColdTrick</category>
 </plugin_manifest>
