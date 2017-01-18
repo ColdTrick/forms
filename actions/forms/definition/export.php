@@ -6,7 +6,7 @@ if (empty($guid)) {
 }
 
 $entity = get_entity($guid);
-if (!($entity instanceof Form)) {
+if (!($entity instanceof Form) || !$entity->canEdit()) {
 	return elgg_error_response(elgg_echo('noaccess'));
 }
 
