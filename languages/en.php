@@ -14,6 +14,7 @@ return [
 	'forms:entity_menu:copy' => "Copy",
 	'forms:entity_menu:copy:confirm' => "Are you sure you wish to copy this form?",
 	
+	'forms:page_menu:all' => "All forms",
 	'forms:page_menu:validation_rules' => "Manage validation rules",
 	
 	'forms:add' => "Create form",
