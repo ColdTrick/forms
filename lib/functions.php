@@ -21,6 +21,7 @@ function forms_prepare_form_vars($container_guid, $entity = null) {
 		'title' => '',
 		'friendly_url' => '',
 		'description' => '',
+		'thankyou' => '',
 		'access_id' => ACCESS_PRIVATE,
 		'container_guid' => (int) $container_guid,
 		'endpoint' => '',

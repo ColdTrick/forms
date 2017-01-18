@@ -37,6 +37,14 @@ echo elgg_view_field([
 	'value' => elgg_extract('description', $vars),
 ]);
 
+echo elgg_view_field([
+	'#type' => 'longtext',
+	'#label' => elgg_echo('forms:edit:thankyou'),
+	'#help' => elgg_echo('forms:edit:thankyou:help'),
+	'name' => 'thankyou',
+	'value' => elgg_extract('thankyou', $vars),
+]);
+
 if (empty($entity)) {
 	// Get post_max_size and upload_max_filesize
 	$post_max_size = elgg_get_ini_setting_in_bytes('post_max_size');

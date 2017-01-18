@@ -13,6 +13,7 @@ $access_id = (int) get_input('access_id');
 $endpoint = get_input('endpoint');
 $endpoint_config = (array) get_input('endpoint_config', []);
 $definition = get_uploaded_file('definition');
+$thankyou = get_input('thankyou');
 
 $entity = false;
 if (!empty($guid)) {
@@ -61,6 +62,11 @@ $entity->access_id = $access_id;
 
 $entity->endpoint = $endpoint;
 $entity->endpoint_config = json_encode($endpoint_config);
+
+if (elgg_strip_tags($thankyou) === '') {
+	$thankyou = null;
+}
+$entity->thankyou = $thankyou;
 
 if (!$entity->save()) {
 	return elgg_error_response(elgg_echo('save:fail'));
