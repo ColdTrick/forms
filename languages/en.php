@@ -77,6 +77,7 @@ return [
 	'forms:endpoint:email:to' => "To",
 	'forms:endpoint:email:cc' => "CC",
 	'forms:endpoint:email:bcc' => "BCC",
+	'forms:endpoint:email:body:attachment' => "(see attachment)",
 	
 	'forms:entity:clone:title' => "Copy of %s",
 	

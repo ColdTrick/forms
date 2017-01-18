@@ -112,6 +112,8 @@ class Email extends Endpoint {
 				foreach ($uploaded_files as $uploaded_file) {
 					$value[] = $uploaded_file->getClientOriginalName();
 				}
+				
+				$value[] = elgg_echo('forms:endpoint:email:body:attachment');
 			}
 		}
 		
