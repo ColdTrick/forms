@@ -106,6 +106,7 @@ class Field {
 		
 		$result['pattern'] = $this->getPattern();
 		unset($result['validation_rule']);
+		$result['data-custom-error-message'] = $this->getCustomErrorMessage();
 		
 		$result['required'] = (bool) elgg_extract('required', $result, false);
 		
@@ -215,6 +216,25 @@ class Field {
 		}
 		
 		return elgg_extract('regex', $rule);
+	}
+	
+	/**
+	 * Get the custom error message related to the validation rule
+	 *
+	 * @return void|string
+	 */
+	protected function getCustomErrorMessage() {
+		
+		$rule = $this->getValidationRule();
+		if (empty($rule)) {
+			return;
+		}
+		
+		if (!in_array($this->getType(), elgg_extract('input_types', $rule))) {
+			return;
+		}
+		
+		return elgg_extract('error_message', $rule);
 	}
 	
 	/**

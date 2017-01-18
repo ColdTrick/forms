@@ -28,6 +28,14 @@ echo elgg_view_field([
 	'required' => true,
 ]);
 
+echo elgg_view_field([
+	'#type' => 'text',
+	'#label' => elgg_echo('forms:validation_rule:error_message'),
+	'#help' => elgg_echo('forms:validation_rule:error_message:help'),
+	'name' => 'error_message',
+	'value' => elgg_extract('error_message', $rule),
+]);
+
 // @todo make this selectable for the user
 echo elgg_view_field([
 	'#type' => 'hidden',

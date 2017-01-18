@@ -91,6 +91,8 @@ return [
 	
 	'forms:validation_rule:label' => "Label",
 	'forms:validation_rule:label:help' => "This is to easily select the validation rule",
+	'forms:validation_rule:error_message' => "Custom error message",
+	'forms:validation_rule:error_message:help' => "When the field doesn't match the pattern show this error message instead of the default browser message",
 	'forms:validation_rule:regex' => "Regex",
 	'forms:validation_rule:regex:help' => "A validation rule consists of a regex to match to the input (using the HTML5 pattern structure)",
 	'forms:validation_rule:regex:output' => "Regex: %s",

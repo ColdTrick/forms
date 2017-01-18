@@ -2,6 +2,7 @@
 
 $name = get_input('name');
 $label = get_input('label');
+$error_message = get_input('error_message');
 $regex = get_input('regex');
 $input_types = (array) get_input('input_types', []);
 
@@ -32,6 +33,7 @@ if (!empty($name)) {
 
 $rule['name'] = $name;
 $rule['label'] = $label;
+$rule['error_message'] = ($error_message !== '') ? $error_message : null;
 $rule['regex'] = $regex;
 $rule['input_types'] = $input_types;
 
