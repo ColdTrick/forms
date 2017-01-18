@@ -1,11 +1,18 @@
 <?php
 
+elgg_admin_gatekeeper();
+
 // validate input
 $guid = elgg_extract('guid', $vars);
 elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE);
 
 /* @var $entity \Form */
 $entity = get_entity($guid);
+
+if (!$entity->canEdit()) {
+	register_error(elgg_echo('noaccess'));
+	forward(REFERER);
+}
 
 // breadcrumb
 elgg_push_breadcrumb(elgg_echo('forms:all:title'), 'forms/all');

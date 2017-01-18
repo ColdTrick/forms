@@ -3,6 +3,8 @@
  * Add/edit a form
  */
 
+elgg_admin_gatekeeper();
+
 $guid = (int) elgg_extract('guid', $vars);
 $container_guid = (int) elgg_extract('container_guid', $vars);
 
@@ -12,6 +14,11 @@ if (!empty($guid)) {
 	elgg_entity_gatekeeper($guid, 'object', Form::SUBTYPE);
 	
 	$entity = get_entity($guid);
+	if (!$entity->canEdit()) {
+		register_error(elgg_echo('noaccess'));
+		forward(REFERER);
+	}
+	
 	$container_guid = $entity->getContainerGUID();
 }
 
