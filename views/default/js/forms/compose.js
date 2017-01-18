@@ -1,8 +1,8 @@
 define(function(require) {
 	
 	var $ = require('jquery');
+	var elgg = require('elgg');
 	
-
 	var addPage = function() {
 		
 		$(this).parents('li').eq(0).before($('#forms-compose-page-template .forms-compose-list-page').clone());
@@ -227,8 +227,6 @@ define(function(require) {
 		$('.elgg-form-forms-compose').submit();
 	};
 	
-	
-	
 	// sortable
 	var init = function() {
 		
@@ -254,6 +252,5 @@ define(function(require) {
 	};
 	
 	elgg.register_hook_handler('init', 'system', init);
-	
 	
 });
