@@ -13,3 +13,4 @@ Some of the functionality of the e-mail endpoint will only work if the plugin [H
 
 - CC and BCC field configuration
 - Uploaded files as attachment
+- E-mail fields set as an additional To, CC or BCC

@@ -20,6 +20,28 @@ class Email extends Endpoint {
 	protected $attachments;
 	
 	/**
+	 * @var array the e-mail recipients
+	 */
+	protected $recipients = [
+		'to' => [],
+		'cc' => [],
+		'bcc' => [],
+	];
+	
+	/**
+	 * {@inheritDoc}
+	 * @see \ColdTrick\Forms\Endpoint::__construct()
+	 */
+	public function __construct(array $configuration) {
+		
+		parent::__construct($configuration);
+		
+		$this->addRecipient('to', elgg_extract('to', $configuration));
+		$this->addRecipient('cc', elgg_extract('cc', $configuration));
+		$this->addRecipient('bcc', elgg_extract('bcc', $configuration));
+	}
+	
+	/**
 	 * {@inheritDoc}
 	 * @see \ColdTrick\Forms\Endpoint::process()
 	 */
@@ -28,13 +50,14 @@ class Email extends Endpoint {
 		
 		$form = $this->result->getForm();
 		
-		$to = $this->getConfig('to');
-		$from = $this->getFrom();
-		
-		
 		$subject = elgg_echo('forms:endpoint:email:subject', [$form->getDisplayName()]);
 		$body = $this->getBody();
 		
+		// set recipients after body processing because some can be added
+		$to = $this->getRecipients('to');
+		$from = $this->getFrom();
+		
+		// get additional e-mail params
 		$params = $this->getParams();
 		
 		return elgg_send_email($from, $to, $subject, $body, $params);
@@ -56,6 +79,7 @@ class Email extends Endpoint {
 				
 				foreach ($section->getFields() as $field) {
 					
+					$this->addRecipientFromField($field);
 					$field_content[] = $this->getBodyField($field);
 					
 					// add the conditional sections based on the value of the field
@@ -63,6 +87,7 @@ class Email extends Endpoint {
 						
 						foreach ($conditional_section->getFields() as $conditional_field) {
 							
+							$this->addRecipientFromField($conditional_field);
 							$field_content[] = $this->getBodyField($conditional_field);
 						}
 					}
@@ -151,8 +176,8 @@ class Email extends Endpoint {
 	 */
 	protected function getParams() {
 		$result = [
-			'cc' => $this->getConfig('cc'),
-			'bcc' => $this->getConfig('bcc'),
+			'cc' => $this->getRecipients('cc'),
+			'bcc' => $this->getRecipients('bcc'),
 		];
 		
 		if (!empty($this->attachments)) {
@@ -193,5 +218,81 @@ class Email extends Endpoint {
 			
 			$this->attachments[] = $attachment;
 		}
+	}
+	
+	/**
+	 * Add a recipient to the e-mail
+	 *
+	 * @param string $type    to, cc or bcc
+	 * @param string $address the e-mail address
+	 *
+	 * @return void
+	 */
+	protected function addRecipient($type, $address) {
+		
+		if (!in_array($type, ['to', 'cc', 'bcc'])) {
+			return;
+		}
+		
+		if (!is_email_address($address)) {
+			return;
+		}
+		
+		if ($type === 'to' && (count($this->recipients['to']) >= 1)) {
+			// multiple to can currently only be handled by html_email_handler
+			if (!elgg_is_active_plugin('html_email_handler') || (elgg_get_plugin_setting('notifications', 'html_email_handler') !== 'yes')) {
+				return;
+			}
+		}
+		
+		$this->recipients[$type][] = $address;
+	}
+	
+	/**
+	 * Add an email field to the configured recipient
+	 *
+	 * @param Field $field the field to check
+	 *
+	 * @return void
+	 */
+	protected function addRecipientFromField(Field $field) {
+		
+		if ($field->getType() !== 'email' || !$field->getValue()) {
+			return;
+		}
+		
+		$field_config = $field->getConfig();
+		$type = elgg_extract('email_recipient', $field_config);
+		if (empty($type)) {
+			// not configured as additional recipient
+			return;
+		}
+		
+		$this->addRecipient($type, $field->getValue());
+	}
+	
+	/**
+	 * Get the recipients for a type
+	 *
+	 * @param string $type to, cc or bcc
+	 *
+	 * @return string|string[]
+	 */
+	protected function getRecipients($type) {
+		
+		if (!in_array($type, ['to', 'cc', 'bcc'])) {
+			return '';
+		}
+		
+		$recipients = elgg_extract($type, $this->recipients, []);
+		if (empty($recipients)) {
+			return '';
+		}
+		
+		if (count($recipients) === 1) {
+			return $recipients[0];
+		}
+		
+		return $recipients;
 	}
 }
