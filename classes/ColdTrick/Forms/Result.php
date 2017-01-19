@@ -69,7 +69,7 @@ class Result extends Definition {
 		try {
 			$field->validate();
 		} catch (InvalidInputException $e) {
-			register_error($e->getMessage());
+			register_error($e->getMessage() . ': ' . $field->getLabel());
 			return false;
 		}
 		
