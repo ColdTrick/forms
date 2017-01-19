@@ -11,7 +11,8 @@ $sticky_values = (array) elgg_extract('sticky_values', $vars, []);
 
 // draw pages
 $pages = $entity->getDefinition()->getPages();
-foreach ($pages as $page) {
+$tabs = [];
+foreach ($pages as $page_index => $page) {
 	
 	// sections
 	$page_body = '';
@@ -82,8 +83,18 @@ foreach ($pages as $page) {
 		continue;
 	}
 	
-	echo elgg_format_element('h3', [], $page->getTitle());
-	echo $page_body;
+	$tabs[] = [
+		'text' => $page->getTitle(),
+		'content' => $page_body,
+		'selected' => $page_index === 0,
+	];
+}
+
+if (count($tabs) === 1) {
+	echo elgg_format_element('h3', [], $tabs[0]['text']);
+	echo $tabs[0]['content'];
+} else {
+	echo elgg_view('page/components/tabs', ['tabs' => $tabs]);
 }
 
 // build footer
