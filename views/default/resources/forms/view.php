@@ -11,6 +11,7 @@ $title = $entity->getDisplayName();
 
 $body = elgg_view('output/longtext', [
 	'value' => $entity->description,
+	'class' => 'mbm',
 ]);
 
 $form_vars = [
