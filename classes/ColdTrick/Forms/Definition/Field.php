@@ -436,6 +436,11 @@ class Field {
 	 */
 	protected function validatePattern() {
 		
+		// pattern only applies to non-empty fields (eg same as HTML5)
+		if (!isset($this->value) || $this->value === '') {
+			return;
+		}
+		
 		$pattern = $this->getPattern();
 		if (empty($pattern)) {
 			return;
@@ -445,6 +450,11 @@ class Field {
 			return;
 		}
 		
-		throw new InvalidInputException(elgg_echo('forms:invalid_input_exception:pattern'));
+		$error_message = $this->getCustomErrorMessage();
+		if (empty($error_message)) {
+			$error_message = elgg_echo('forms:invalid_input_exception:pattern');
+		}
+		
+		throw new InvalidInputException($error_message);
 	}
 }

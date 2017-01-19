@@ -108,6 +108,8 @@ return [
 	'forms:thankyou:generic' => "You've successfully completed %s. Thank you.",
 	'forms:thankyou:again' => "Start the form again",
 	
+	'forms:result:validate:error' => "%s: %s",
+	
 	'forms:action:edit:error:friendly_url' => "The friendly URL is not valid or already in use, please change it",
 	
 	'forms:action:validation_rules:edit:error:regex' => "The regex you provided doesn't seem to be valid",
