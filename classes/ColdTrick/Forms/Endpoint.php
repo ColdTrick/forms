@@ -9,6 +9,11 @@ abstract class Endpoint {
 	 */
 	protected $config;
 	
+	/**
+	 * Create a new endpoint
+	 *
+	 * @param array $configuration the endpoint configuration
+	 */
 	public function __construct(array $configuration) {
 		
 		$this->config = $configuration;
