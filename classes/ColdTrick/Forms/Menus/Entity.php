@@ -31,7 +31,7 @@ class Entity {
 			$return_value[] = \ElggMenuItem::factory([
 				'name' => 'export',
 				'text' => elgg_echo('export'),
-				'href' => "action/forms/export?guid={$entity->getGUID()}",
+				'href' => "action/forms/definition/export?guid={$entity->getGUID()}",
 				'is_action' => true,
 			]);
 		}
