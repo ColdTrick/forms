@@ -94,7 +94,6 @@ foreach ($pages as $page_index => $page) {
 }
 
 if (count($tabs) === 1) {
-	echo elgg_format_element('h3', [], $tabs[0]['text']);
 	echo $tabs[0]['content'];
 } else {
 	echo elgg_view('page/components/tabs', ['tabs' => $tabs]);
