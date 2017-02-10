@@ -12,6 +12,7 @@ $sticky_values = (array) elgg_extract('sticky_values', $vars, []);
 // draw pages
 $pages = $entity->getDefinition()->getPages();
 $tabs = [];
+$page_count = 1;
 foreach ($pages as $page_index => $page) {
 	
 	// sections
@@ -84,10 +85,12 @@ foreach ($pages as $page_index => $page) {
 	}
 	
 	$tabs[] = [
-		'text' => $page->getTitle(),
+		'text' => elgg_echo('forms:submit:tab:text', [$page_count]),
+		'title' => $page->getTitle(),
 		'content' => $page_body,
 		'selected' => $page_index === 0,
 	];
+	$page_count++;
 }
 
 if (count($tabs) === 1) {

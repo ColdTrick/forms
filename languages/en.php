@@ -25,6 +25,8 @@ return [
 	'forms:compose:title' => "Compose form: %s",
 	'forms:thankyou:title' => "Thank you for completing: %s",
 	
+	'forms:submit:tab:text' => "Page %d",
+	
 	'forms:compose:section:new' => "New Section",
 	'forms:compose:section:add' => "Add section",
 	'forms:compose:page:new' => "New page",
