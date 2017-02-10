@@ -9,6 +9,7 @@ return [
 	'forms:invalid_input_exception:required' => "Missing required field",
 	'forms:invalid_input_exception:pattern' => "Field input doesn't match pattern",
 	'forms:invalid_input_exception:value:email' => "Please provide a valid e-mail address",
+	'forms:invalid_input_exception:value:number' => "Please provide a valid number",
 	
 	'forms:entity_menu:compose' => "Compose",
 	'forms:entity_menu:copy' => "Copy",
@@ -41,6 +42,7 @@ return [
 	
 	'forms:compose:field:type:text' => "Text",
 	'forms:compose:field:type:email' => "E-mail address",
+	'forms:compose:field:type:number' => "Number",
 	'forms:compose:field:type:plaintext' => "Plaintext",
 	'forms:compose:field:type:longtext' => "Longtext",
 	'forms:compose:field:type:radio' => "Radio",

@@ -24,6 +24,7 @@ $fields = [
 		'options_values' => [
 			'text' => elgg_echo('forms:compose:field:type:text'),
 			'email' => elgg_echo('forms:compose:field:type:email'),
+			'number' => elgg_echo('forms:compose:field:type:number'),
 			'plaintext' => elgg_echo('forms:compose:field:type:plaintext'),
 			'longtext' => elgg_echo('forms:compose:field:type:longtext'),
 			'checkbox' => elgg_echo('forms:compose:field:type:checkbox'),

@@ -10,6 +10,10 @@ $types = [
 		'#label' => elgg_echo('forms:compose:field:type:email'),
 	],
 	[
+		'#type' => 'number',
+		'#label' => elgg_echo('forms:compose:field:type:number'),
+	],
+	[
 		'#type' => 'plaintext',
 		'#label' => elgg_echo('forms:compose:field:type:plaintext'),
 	],

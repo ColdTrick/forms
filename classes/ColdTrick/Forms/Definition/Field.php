@@ -405,6 +405,11 @@ class Field {
 					throw new InvalidInputException(elgg_echo('forms:invalid_input_exception:value:email'));
 				}
 				break;
+			case 'number':
+				if (!is_numeric($this->value)) {
+					throw new InvalidInputException(elgg_echo('forms:invalid_input_exception:value:number'));
+				}
+				break;
 		}
 	}
 	
