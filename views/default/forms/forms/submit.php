@@ -93,17 +93,68 @@ foreach ($pages as $page_index => $page) {
 	$page_count++;
 }
 
+$footer = '';
 if (count($tabs) === 1) {
 	echo $tabs[0]['content'];
+	
+	$footer .= elgg_view_field([
+		'#type' => 'submit',
+		'value' => elgg_echo('submit'),
+	]);
 } else {
+	
+	foreach ($tabs as $index => $tab) {
+		$buttons = [];
+		
+		// next button
+		if (($index + 1) < count($tabs)) {
+			$buttons[] = [
+				'#type' => 'button',
+				'#class' => [
+					'float-alt',
+				],
+				'class' => [
+					'elgg-button-submit',
+					'forms-submit-buttons-next',
+				],
+				'value' => elgg_echo('next'),
+			];
+		}
+		
+		// submit button
+		if (($index + 1) === count($tabs)) {
+			$buttons[] = [
+				'#type' => 'submit',
+				'#class' => [
+					'float-alt',
+				],
+				'value' => elgg_echo('submit'),
+			];
+		}
+		
+		// prev button
+		if ($index > 0) {
+			$buttons[] = [
+				'#type' => 'button',
+				'class' => [
+					'elgg-button-action',
+					'forms-submit-buttons-prev',
+				],
+				'value' => elgg_echo('previous'),
+			];
+		}
+		
+		$tabs[$index]['content'] .= elgg_view('input/fieldset', [
+			'class' => 'forms-submit-buttons',
+			'fields' => $buttons,
+			'align' => 'horizontal',
+		]);
+	}
+	
 	echo elgg_view('page/components/tabs', ['tabs' => $tabs]);
 }
 
 // build footer
-$footer = elgg_view_field([
-	'#type' => 'submit',
-	'value' => elgg_echo('submit'),
-]);
 $footer .= elgg_view_field([
 	'#type' => 'hidden',
 	'name' => 'form_guid',
