@@ -39,6 +39,14 @@
 	padding: 5px;
 }
 
+.forms-compose-list-field > .elgg-required-indicator {
+	display: none;
+}
+
+.forms-compose-list-field.forms-compose-list-field-required > .elgg-required-indicator {
+	display: inline-block;
+}
+
 .forms-compose-list-field > .elgg-icon {
 	visibility: hidden;
 }

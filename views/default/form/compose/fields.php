@@ -51,7 +51,14 @@ $list = '';
 foreach ($types as $type_params) {
 	
 	$type_body = elgg_format_element('span', [], elgg_extract('#label', $type_params));
-			
+	
+	$type_body .= elgg_format_element([
+		'#tag_name' => 'span',
+		'title' => elgg_echo('field:required'),
+		'class' => 'elgg-required-indicator',
+		'#text' => "&ast;",
+	]);
+	
 	$type_body .= elgg_view_icon('edit', [
 		'title' => elgg_echo('edit'),
 		'class' => 'link forms-compose-field-edit',

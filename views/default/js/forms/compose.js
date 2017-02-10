@@ -93,13 +93,16 @@ define(function(require) {
 		var params = $field.data('params');
 		
 		$.each($form.find('[name]').serializeArray(), function(key, field) {
-			console.log(field.name);
-			console.log(field.value);
 			params[field.name] = field.value;
 		});
 		$field.data('params', params);
 
 		$field.find('span:first').html($field.data('params')['#label']);
+		// add required indicator
+		$field.removeClass('forms-compose-list-field-required');
+		if ($field.data('params')['required'] == 1) {
+			$field.addClass('forms-compose-list-field-required');
+		}
 		
 		// hide form
 		$form.slideToggle(function() { $(this).remove(); });
@@ -206,7 +209,6 @@ define(function(require) {
 						$(this).find('> ul > .forms-compose-list-field').each(function(conditional_field_index, conditional_field_element) {
 							var conditional_field = $(conditional_field_element).data('params');
 							conditional_section['fields'].push(conditional_field);
-							console.log(conditional_field);
 						});
 												
 						field['conditional_sections'].push(conditional_section);
