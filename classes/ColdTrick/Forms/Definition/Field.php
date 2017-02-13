@@ -93,6 +93,7 @@ class Field {
 		
 		switch ($this->getType()) {
 			case 'checkboxes':
+			case 'radio':
 				$options_key = 'options';
 				break;
 			case 'plaintext':
