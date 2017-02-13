@@ -61,7 +61,6 @@ foreach ($pages as $page_index => $page) {
 					}
 					
 					$condition_sections_body .= elgg_view('input/fieldset', [
-						'legend' => $conditional_section->getValue(),
 						'fields' => $fields,
 						'class' => 'hidden',
 						'data-conditional-field' => $field->getName(),
