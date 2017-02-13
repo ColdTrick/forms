@@ -33,9 +33,19 @@ define(function(require) {
 	
 	var tabNavClick = function(event) {
 		
-		if ($(this).parent().hasClass('elgg-state-selected')) {
+		var $tab = $(this).parent();
+		if ($tab.hasClass('elgg-state-selected')) {
 			// clicking on current selected tab
 			return;
+		}
+		
+		if ($tab.hasClass('elgg-state-disabled')) {
+			// not going to next page
+			event.preventDefault();
+			event.stopPropagation();
+			event.stopImmediatePropagation();
+			
+			return false;
 		}
 		
 		// validate form
@@ -76,6 +86,8 @@ define(function(require) {
 			
 			return false;
 		}
+		
+		$tab.next().removeClass('elgg-state-disabled');
 	};
 	
 	var navButtonClick = function() {

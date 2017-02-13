@@ -93,7 +93,8 @@ foreach ($pages as $page_index => $page) {
 		'text' => elgg_echo('forms:submit:tab:text', [$page_count]),
 		'title' => $page->getTitle(),
 		'content' => $page_body,
-		'selected' => $page_index === 0,
+		'selected' => $page_count === 1,
+		'class' => ($page_count > 2 && empty($sticky_values)) ? 'elgg-state-disabled' : '',
 	];
 	$page_count++;
 }
