@@ -41,12 +41,17 @@ class Result extends Definition {
 	public function validate() {
 		$result = true;
 		
+		// pages
 		foreach ($this->getPages() as $page) {
+			// sections
 			foreach ($page->getSections() as $section) {
+				// fields
 				foreach ($section->getFields() as $field) {
 					$result &= $this->validateField($field);
 					
-					foreach ($field->getConditionalSections() as $conditional_section) {
+					// only validate applied conditional sections
+					foreach ($field->getConditionalSections(true) as $conditional_section) {
+						// fields in conditional sections
 						foreach ($conditional_section->getFields() as $conditional_field) {
 							$result &= $this->validateField($conditional_field);
 						}
