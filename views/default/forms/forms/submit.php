@@ -22,20 +22,19 @@ foreach ($pages as $page_index => $page) {
 		// fields
 		$section_body = '';
 		foreach ($section->getFields() as $field) {
-			$additional_vars = [
+			$field_vars = [
 				'sticky_value' => elgg_extract($field->getName(), $sticky_values),
 			];
 			
 			$condition_sections = $field->getConditionalSections();
-			if ($condition_sections) {
-				$additional_vars['class'] = 'forms-submit-conditional';
+			if (!empty($condition_sections)) {
+				$field_vars['class'] = 'forms-submit-conditional';
 			}
 			
-			$section_body .= elgg_view_field($field->getInputVars($additional_vars));
+			$section_body .= elgg_view_field($field->getInputVars($field_vars));
 			
 			// conditional sections
-			
-			if ($condition_sections) {
+			if (!empty($condition_sections)) {
 				$condition_sections_body = '';
 				foreach ($condition_sections as $conditional_section) {
 					
@@ -45,14 +44,21 @@ foreach ($pages as $page_index => $page) {
 						continue;
 					}
 					
+					// should this section be hidden, from sticky form value
+					$hide_section = true;
+					if ($field_vars['sticky_value'] === $conditional_section_value) {
+						$hide_section = false;
+					}
+					
 					// fields of the conditional section
 					$fields = [];
 					foreach ($conditional_section->getFields() as $conditional_field) {
-						$additional_vars = [
+						$conditional_field_vars = [
 							'sticky_value' => elgg_extract($conditional_field->getName(), $sticky_values),
+							'disabled' => $hide_section,
 						];
 						
-						$fields[] = $conditional_field->getInputVars($additional_vars);
+						$fields[] = $conditional_field->getInputVars($conditional_field_vars);
 					}
 					
 					if (empty($fields)) {
@@ -62,7 +68,7 @@ foreach ($pages as $page_index => $page) {
 					
 					$condition_sections_body .= elgg_view('input/fieldset', [
 						'fields' => $fields,
-						'class' => 'hidden',
+						'class' => $hide_section ? 'hidden' : '',
 						'data-conditional-field' => $field->getName(),
 						'data-conditional-value' => $conditional_section_value,
 					]);

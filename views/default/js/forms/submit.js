@@ -7,8 +7,15 @@ define(function(require) {
 		var name = $(this).attr('name');
 		var value = $(this).val();
 		
-		$('[data-conditional-field="' + name + '"]').hide();
-		$('[data-conditional-field="' + name + '"][data-conditional-value="' + value + '"]').show();
+		var $conditionals = $('[data-conditional-field="' + name + '"]');
+		
+		// hide all sections
+		$conditionals.hide();
+		$conditionals.find('input, select, textarea').prop('disabled', true);
+		
+		// show correct section
+		$conditionals.filter('[data-conditional-value="' + value + '"]').show();
+		$conditionals.filter('[data-conditional-value="' + value + '"]').find('input, select, textarea').prop('disabled', false);
 	};
 	
 	var clearCustomErrorMessage = function () {
