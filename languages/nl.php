@@ -1,10 +1,12 @@
 <?php
 /**
  * This file was created by Translation Editor v5.2
- * On 2017-02-13 12:18
+ * On 2017-02-13 13:52
  */
 
 return array (
+  'forms:compose:field:type:hidden' => 'Verborgen',
+  'forms:compose:field:edit:value' => 'Waarde',
   'forms:invalid_input_exception:value:number' => 'Geef een geldig nummer op',
   'forms:submit:tab:text' => 'Pagina %d',
   'forms:compose:field:type:number' => 'Nummer',

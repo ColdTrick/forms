@@ -59,7 +59,7 @@ class Email extends Endpoint {
 		
 		// get additional e-mail params
 		$params = $this->getParams();
-		
+				
 		return elgg_send_email($from, $to, $subject, $body, $params);
 	}
 	
@@ -257,8 +257,18 @@ class Email extends Endpoint {
 	 */
 	protected function addRecipientFromField(Field $field) {
 		
-		if ($field->getType() !== 'email' || !$field->getValue()) {
+		if (!$field->getValue()) {
 			return;
+		}
+		
+		switch ($field->getType()) {
+			case 'email':
+			case 'hidden':
+				// these fields support e-mail address options
+				break;
+			default:
+				return;
+				break;
 		}
 		
 		$field_config = $field->getConfig();

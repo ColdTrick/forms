@@ -33,6 +33,7 @@ $fields = [
 			'select' => elgg_echo('forms:compose:field:type:select'),
 			'file' => elgg_echo('forms:compose:field:type:file'),
 			'date' => elgg_echo('forms:compose:field:type:date'),
+			'hidden' => elgg_echo('forms:compose:field:type:hidden'),
 		],
 	],
 	
@@ -54,6 +55,13 @@ $fields = [
 	],
 	
 	[
+		'#type' => 'text',
+		'#label' => elgg_echo('forms:compose:field:edit:value'),
+		'name' => 'value',
+		'show_for_types' => ['hidden'],
+	],
+	
+	[
 		'#type' => 'radio',
 		'#label' => elgg_echo('forms:compose:field:edit:email_recipient'),
 		'name' => 'email_recipient',
@@ -65,7 +73,7 @@ $fields = [
 		],
 		'value' => '',
 		'align' => 'horizontal',
-		'show_for_types' => ['email'],
+		'show_for_types' => ['email', 'hidden'],
 	],
 	
 	[

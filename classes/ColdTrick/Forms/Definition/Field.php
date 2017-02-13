@@ -99,6 +99,12 @@ class Field {
 			case 'plaintext':
 				$result['rows'] = 2;
 				break;
+			case 'hidden':
+				unset($result['required']);
+				unset($result['#help']);
+				unset($result['#label']);
+				unset($result['multiple']);
+				break;
 		}
 		
 		if (!empty($options)) {
@@ -118,6 +124,9 @@ class Field {
 			switch ($this->getType()) {
 				case 'checkbox':
 					// @todo how does this work
+					break;
+				case 'hidden':
+					// value is pre-programmed
 					break;
 				default:
 					$result['value'] = $sticky_value;
@@ -318,6 +327,10 @@ class Field {
 				
 				$this->setValue($paths);
 				break;
+			case 'hidden':
+				// hidden values are pre-programmed
+				$this->setValue(elgg_extract('value', $this->config));
+				break;
 			default:
 				$this->setValue(get_input($this->getName()));
 				break;
@@ -421,6 +434,11 @@ class Field {
 	 * @return void
 	 */
 	protected function validateRequired() {
+		
+		if ($this->getType() === 'hidden') {
+			// hidden fields can't be required
+			return;
+		}
 		
 		$required = (bool) elgg_extract('required', $this->config, false);
 		if (!$required) {

@@ -53,6 +53,7 @@ return [
 	'forms:compose:field:type:select' => "Select",
 	'forms:compose:field:type:checkbox' => "Checkbox",
 	'forms:compose:field:type:checkboxes' => "Checkboxes",
+	'forms:compose:field:type:hidden' => "Hidden",
 	
 	'forms:compose:field:edit:label' => "Label",
 	'forms:compose:field:edit:type' => "Type",
@@ -61,6 +62,7 @@ return [
 	'forms:compose:field:edit:options' => "Options",
 	'forms:compose:field:edit:options:help' => "Comma separate the options for this field",
 	'forms:compose:field:edit:validation_rule' => "Validation rule",
+	'forms:compose:field:edit:value' => "Value",
 	
 	'forms:compose:field:edit:email_recipient' => "Add e-mail address to:",
 	'forms:compose:field:edit:email_recipient:none' => "No recipient",

@@ -45,6 +45,10 @@ $types = [
 		'#type' => 'date',
 		'#label' => elgg_echo('forms:compose:field:type:date'),
 	],
+	[
+		'#type' => 'hidden',
+		'#label' => elgg_echo('forms:compose:field:type:hidden'),
+	],
 ];
 
 $list = '';
