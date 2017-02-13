@@ -1,10 +1,13 @@
 <?php
 /**
  * This file was created by Translation Editor v5.2
- * On 2017-01-31 11:15
+ * On 2017-02-13 12:18
  */
 
 return array (
+  'forms:invalid_input_exception:value:number' => 'Geef een geldig nummer op',
+  'forms:submit:tab:text' => 'Pagina %d',
+  'forms:compose:field:type:number' => 'Nummer',
   'item:object:form' => 'Formulier',
   'forms:file:upload_limit' => 'Maximaal toegestane bestandsgrootte is %s',
   'forms:invalid_input_exception:required' => 'Verplicht veld ontbreekt',
