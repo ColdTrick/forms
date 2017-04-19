@@ -1,5 +1,7 @@
 <?php
 
+use \Symfony\Component\HttpFoundation\File\UploadedFile;
+
 $guid = (int) get_input('guid');
 if (empty($guid)) {
 	return elgg_error_response(elgg_echo('error:missing_data'));
@@ -11,16 +13,16 @@ if (!($entity instanceof Form) || !$entity->canEdit()) {
 }
 
 $text = get_input('json_text');
-$file = get_uploaded_file('json_file');
-
+$files = elgg_get_uploaded_files('json_file');
+$file = elgg_extract(0, $files);
 if (empty($text) && empty($file)) {
 	return elgg_error_response(elgg_echo('error:missing_data'));
 }
 
 $json = $text;
-if (!empty($file)) {
+if (($file instanceof UploadedFile) && $file->isValid()) {
 	// file import wins over raw text
-	$json = $file;
+	$json = file_get_contents($file->getPathname());
 }
 
 $data = @json_decode($json, true);
