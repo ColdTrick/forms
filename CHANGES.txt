@@ -1,6 +1,10 @@
 Version history
 ===============
 
+1.0 (2017-05-30):
+
+- removed: use of deprecated function
+
 1.0-beta.1 (2017-02-27):
 
 - first release

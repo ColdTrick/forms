@@ -3,7 +3,7 @@
 	<name>Forms</name>
 	<id>forms</id>
 	<author>ColdTrick IT Solutions</author>
-	<version>1.0-beta.1</version>
+	<version>1.0</version>
 	<description>A form builder for Elgg</description>
 	<website>http://www.coldtrick.com/</website>
 	<repository>https://github.com/ColdTrick/forms</repository>
