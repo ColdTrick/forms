@@ -126,7 +126,7 @@ class Email extends Endpoint {
 	 */
 	protected function getBodyField(Field $field) {
 		
-		$row = elgg_format_element('td', [], $field->getLabel() . ': ');
+		$row = elgg_format_element('td', ['style' => 'vertical-align: top; width: 200px;'], $field->getLabel() . ': ');
 		
 		$value = $field->getValue();
 		if ($field->getType() === 'file') {
@@ -146,7 +146,7 @@ class Email extends Endpoint {
 		if (is_array($value)) {
 			$value = implode(', ', $value);
 		}
-		$row .= elgg_format_element('td', [], $value);
+		$row .= elgg_format_element('td', ['style' => 'vertical-align: top'], $value);
 		$row .= PHP_EOL;
 		
 		return elgg_format_element('tr', [], $row);
