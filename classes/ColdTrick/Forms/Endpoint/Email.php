@@ -107,9 +107,10 @@ class Email extends Endpoint {
 				// no sections on this page
 				continue;
 			}
-			
-			$body .= elgg_format_element('h3', [], $page->getTitle());
-			$body .= PHP_EOL;
+			if (!empty($body)) {
+				$body .= elgg_format_element('h3', [], '<hr />');
+				$body .= PHP_EOL;
+			}
 			$body .= implode(PHP_EOL, $section_content);
 		}
 		
