@@ -1,6 +1,11 @@
 Version history
 ===============
 
+1.0.1 (2017-07-31):
+
+- changed: replaced page title with an hr in an email
+- fixed: cell alignment in email incorrect
+
 1.0 (2017-05-30):
 
 - removed: use of deprecated function
