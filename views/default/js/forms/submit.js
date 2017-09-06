@@ -4,18 +4,39 @@ define(function(require) {
 	var elgg = require('elgg');
 	
 	var checkConditional = function() {
+		
 		var name = $(this).attr('name');
-		var value = $(this).val();
+		var input_values = $(this).val();
 		
+		if ($(this).hasClass('elgg-input-radios')) {
+			name = $(this).find('.elgg-input-radio').eq(0).attr('name');
+			input_values = $(this).find('.elgg-input-radio:checked').val();
+		}
+
+		if (name.length < 1) {
+			return;
+		}
+		
+		// strip [] from multiselects
+		name = name.replace('[]', '');
+				
 		var $conditionals = $('[data-conditional-field="' + name + '"]');
-		
+
 		// hide all sections
 		$conditionals.hide();
 		$conditionals.find('input, select, textarea').prop('disabled', true);
 		
-		// show correct section
-		$conditionals.filter('[data-conditional-value="' + value + '"]').show();
-		$conditionals.filter('[data-conditional-value="' + value + '"]').find('input, select, textarea').prop('disabled', false);
+		// values could be an array in case of a multiselect, so always make it an array
+		var values = [].concat(input_values);
+		values.forEach(function(value) {
+			if (value.length < 1) {
+				return;
+			}
+			
+			// show correct section
+			$conditionals.filter('[data-conditional-value="' + value + '"]').show();
+			$conditionals.filter('[data-conditional-value="' + value + '"]').find('input, select, textarea').prop('disabled', false);
+		});
 	};
 	
 	var clearCustomErrorMessage = function () {
