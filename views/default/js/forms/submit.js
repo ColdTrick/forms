@@ -41,6 +41,13 @@ define(function(require) {
 	
 	var clearCustomErrorMessage = function () {
 		this.setCustomValidity('');
+		
+		if ($(this).attr('type') === 'radio') {
+			var $form = $(this).closest('.elgg-form-forms-submit');
+			$form.find('input[type="radio"][name="' + $(this).attr('name')  +'"]').each(function(index, elem) {
+				elem.setCustomValidity('');
+			})
+		}
 	};
 	
 	var setCustomErrorMessage = function(event) {
@@ -92,7 +99,7 @@ define(function(require) {
 					// select first invalid element
 					$(elem).focus();
 				}
-				
+
 				if (!elem.validity.customError) {
 					elem.setCustomValidity(elem.validationMessage);
 				}
@@ -150,7 +157,7 @@ define(function(require) {
 		$(document).on('change', '.forms-submit-conditional', checkConditional);
 		
 		$(document).on('input', '.elgg-form-forms-submit input, .elgg-form-forms-submit textarea', clearCustomErrorMessage);
-		$(document).on('change', '.elgg-form-forms-submit select', clearCustomErrorMessage);
+		$(document).on('change', '.elgg-form-forms-submit select, .elgg-form-forms-submit input[type="radio"]', clearCustomErrorMessage);
 		$(document).on('input', '.elgg-form-forms-submit [data-custom-error-message]', setCustomErrorMessage);
 		
 		$(document).on('click', '.elgg-form-forms-submit .forms-submit-buttons-prev, .elgg-form-forms-submit .forms-submit-buttons-next', navButtonClick);
