@@ -87,6 +87,14 @@ class Field {
 	public function getInputVars(array $additional_vars = []) {
 		$result = $this->config;
 		
+		// remove unneeded vars
+		if ($result['value'] === '') {
+			unset($result['value']);
+		}
+		if ($result['multiple'] === '') {
+			unset($result['multiple']);
+		}
+		
 		$options_key = 'options_values';
 		$options = $this->getOptions();
 		unset($result['options']);
