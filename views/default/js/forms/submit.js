@@ -151,7 +151,21 @@ define(function(require) {
 		return false;
 	};
 	
-	// sortable
+	var checkRequiredCheckboxes = function(event) {
+		$checkboxes_container = $(this).parents('.elgg-input-checkboxes');
+		$checkboxes = $checkboxes_container.find('input[type="checkbox"]');
+		if (!$checkboxes.filter('[required]').length) {
+			return;
+		}
+
+		if ($checkboxes.filter(':checked').length) {
+			$checkboxes.filter(':not(:checked)').prop('required', false);
+			$checkboxes.filter(':checked').prop('required', true);
+		} else {
+			$checkboxes.prop('required', true);
+		}
+	};
+	
 	var init = function() {
 		
 		$(document).on('change', '.forms-submit-conditional', checkConditional);
@@ -159,6 +173,8 @@ define(function(require) {
 		$(document).on('input', '.elgg-form-forms-submit input, .elgg-form-forms-submit textarea', clearCustomErrorMessage);
 		$(document).on('change', '.elgg-form-forms-submit select, .elgg-form-forms-submit input[type="radio"]', clearCustomErrorMessage);
 		$(document).on('input', '.elgg-form-forms-submit [data-custom-error-message]', setCustomErrorMessage);
+
+		$(document).on('change', '.elgg-form-forms-submit .elgg-input-checkboxes input[type="checkbox"]', checkRequiredCheckboxes);
 		
 		$(document).on('click', '.elgg-form-forms-submit .forms-submit-buttons-prev, .elgg-form-forms-submit .forms-submit-buttons-next', navButtonClick);
 		$(document).on('click', '.elgg-form-forms-submit .elgg-tabs a', tabNavClick);
