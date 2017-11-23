@@ -2,6 +2,7 @@ define(function(require) {
 	
 	var $ = require('jquery');
 	var elgg = require('elgg');
+	require('page/components/tabs');
 	
 	var checkConditional = function() {
 		
@@ -177,7 +178,7 @@ define(function(require) {
 		$(document).on('change', '.elgg-form-forms-submit .elgg-input-checkboxes input[type="checkbox"]', checkRequiredCheckboxes);
 		
 		$(document).on('click', '.elgg-form-forms-submit .forms-submit-buttons-prev, .elgg-form-forms-submit .forms-submit-buttons-next', navButtonClick);
-		$(document).on('click', '.elgg-form-forms-submit .elgg-tabs a', tabNavClick);
+		$('body').on('click', '.elgg-form-forms-submit .elgg-tabs a', tabNavClick); // register on body to be before tab switch in page/components/tabs.js
 		$(document).on('keydown', '.elgg-form-forms-submit', preventEnter);
 	};
 	
