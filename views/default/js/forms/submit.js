@@ -43,9 +43,9 @@ define(function(require) {
 	var clearCustomErrorMessage = function () {
 		this.setCustomValidity('');
 		
-		if ($(this).attr('type') === 'radio') {
+		if ($(this).attr('type') === 'radio' || $(this).attr('type') === 'checkbox') {
 			var $form = $(this).closest('.elgg-form-forms-submit');
-			$form.find('input[type="radio"][name="' + $(this).attr('name')  +'"]').each(function(index, elem) {
+			$form.find('input[type="' + $(this).attr('type') + '"][name="' + $(this).attr('name')  +'"]').each(function(index, elem) {
 				elem.setCustomValidity('');
 			})
 		}
@@ -172,7 +172,7 @@ define(function(require) {
 		$(document).on('change', '.forms-submit-conditional', checkConditional);
 		
 		$(document).on('input', '.elgg-form-forms-submit input, .elgg-form-forms-submit textarea', clearCustomErrorMessage);
-		$(document).on('change', '.elgg-form-forms-submit select, .elgg-form-forms-submit input[type="radio"]', clearCustomErrorMessage);
+		$(document).on('change', '.elgg-form-forms-submit select, .elgg-form-forms-submit input[type="radio"], .elgg-form-forms-submit input[type="checkbox"]', clearCustomErrorMessage);
 		$(document).on('input', '.elgg-form-forms-submit [data-custom-error-message]', setCustomErrorMessage);
 
 		$(document).on('change', '.elgg-form-forms-submit .elgg-input-checkboxes input[type="checkbox"]', checkRequiredCheckboxes);
