@@ -1,6 +1,14 @@
 Version history
 ===============
 
+1.1 (2017-11-29):
+
+- changed: required input/checkboxes now expect at least one checked
+- fix: clear custom error messages correctly for input/radios
+- fix: correctly reset customErrorMessages for checkboxes
+- fix: forced correct order of tab clicking to prevent order issues
+- fix: unwanted element attributes are leaking to html
+
 1.0.2 (2017-09-21):
 
 - fixed: conditional sections now working for radio and multiselect
