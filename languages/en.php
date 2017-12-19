@@ -82,6 +82,7 @@ return [
 	'forms:endpoint:email:subject' => "A new reponse for form: %s",
 	'forms:endpoint:email:to' => "To",
 	'forms:endpoint:email:cc' => "CC",
+	'forms:endpoint:email:cc:user' => "Automatically send a copy to the user filling in this form",
 	'forms:endpoint:email:bcc' => "BCC",
 	'forms:endpoint:email:body:attachment' => "(see attachment)",
 	

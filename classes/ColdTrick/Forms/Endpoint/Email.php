@@ -39,6 +39,11 @@ class Email extends Endpoint {
 		$this->addRecipient('to', elgg_extract('to', $configuration));
 		$this->addRecipient('cc', elgg_extract('cc', $configuration));
 		$this->addRecipient('bcc', elgg_extract('bcc', $configuration));
+		
+		$user = elgg_get_logged_in_user_entity();
+		if (elgg_extract('cc_user', $configuration) && ($user instanceof \ElggUser)) {
+			$this->addRecipient('cc', $user->email);
+		}
 	}
 	
 	/**

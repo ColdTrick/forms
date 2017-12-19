@@ -1,10 +1,11 @@
 <?php
 /**
- * This file was created by Translation Editor v5.2
- * On 2017-02-13 13:52
+ * This file was created by Translation Editor v6.0
+ * On 2017-12-19 12:57
  */
 
 return array (
+  'forms:endpoint:email:cc:user' => 'Stuur automatisch een kopie naar de gebruiker die het formulier invult',
   'forms:compose:field:type:hidden' => 'Verborgen',
   'forms:compose:field:edit:value' => 'Waarde',
   'forms:invalid_input_exception:value:number' => 'Geef een geldig nummer op',

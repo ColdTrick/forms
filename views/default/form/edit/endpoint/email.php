@@ -19,6 +19,12 @@ $email .= elgg_view_field([
 	'value' => elgg_extract('cc', $config),
 ]);
 $email .= elgg_view_field([
+	'#type' => 'checkbox',
+	'#label' => elgg_echo('forms:endpoint:email:cc:user'),
+	'name' => 'endpoint_config[email][cc_user]',
+	'checked' => (bool) elgg_extract('cc_user', $config),
+]);
+$email .= elgg_view_field([
 	'#type' => 'text',
 	'#label' => elgg_echo('forms:endpoint:email:bcc'),
 	'name' => 'endpoint_config[email][bcc]',
