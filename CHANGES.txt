@@ -1,6 +1,10 @@
 Version history
 ===============
 
+1.2 (2018-01-11):
+
+- added: option to automatically send a email copy to user filling in form
+
 1.1 (2017-11-29):
 
 - changed: required input/checkboxes now expect at least one checked
