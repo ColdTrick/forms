@@ -91,3 +91,7 @@ ul .forms-field-unsortable {
 ul .forms-field-unsortable:last-child {
 	display: block;	
 }
+
+.forms-submissions:hover {
+	cursor: help;
+}

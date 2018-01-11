@@ -3,13 +3,17 @@
 use ColdTrick\Forms\Result;
 
 $form_guid = (int) get_input('form_guid');
-elgg_entity_gatekeeper($form_guid, 'object', \Form::SUBTYPE);
+if (empty($form_guid)) {
+	return elgg_error_response(elgg_echo('error:missing_data'));
+}
+
+$form = get_entity($form_guid);
+if (!$form instanceof \Form) {
+	return elgg_error_response(elgg_echo('save:fail'));
+}
 
 // make sticky form
 elgg_make_sticky_form("forms_{$form_guid}");
-
-/* @var $form \Form */
-$form = get_entity($form_guid);
 
 // create a result
 $result = new Result($form);
@@ -25,7 +29,10 @@ if (!empty($endpoint)) {
 	$endpoint->process($result);
 }
 
+// log submission
+$form->logSubmission();
+
 // on success: forward to thank you page
 elgg_clear_sticky_form("forms_{$form_guid}");
 
-forward("forms/thankyou/{$form->getGUID()}");
+return elgg_ok_response('', '', "forms/thankyou/{$form->getGUID()}");

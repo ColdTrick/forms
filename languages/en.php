@@ -24,6 +24,7 @@ return [
 	'forms:edit:title' => "Edit form: %s",
 	'forms:compose:title' => "Compose form: %s",
 	'forms:thankyou:title' => "Thank you for completing: %s",
+	'forms:by_line:submissions' => "Number of form submissions",
 	
 	'forms:submit:tab:text' => "Page %d",
 	

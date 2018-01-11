@@ -3,6 +3,9 @@
 use \ColdTrick\Forms\Definition;
 use \ColdTrick\Forms\Endpoint;
 
+/**
+ * @property int submitted_count the number of submitted forms
+ */
 class Form extends \ElggObject {
 	
 	const SUBTYPE = 'form';
@@ -204,5 +207,20 @@ class Form extends \ElggObject {
 		}
 		
 		return $endpoint;
+	}
+	
+	/**
+	 * Log the submission of this form
+	 *
+	 * @return void
+	 */
+	public function logSubmission() {
+		
+		$count = 0;
+		if (isset($this->submitted_count)) {
+			$count = (int) $this->submitted_count;
+		}
+		$count++;
+		$this->submitted_count = $count;
 	}
 }
