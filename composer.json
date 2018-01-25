@@ -3,7 +3,7 @@
 	"description": "A form builder for Elgg",
 	"type": "elgg-plugin",
 	"keywords": ["elgg", "plugin"],
-	"license": "GPL-2.0",
+	"license": "GPL-2.0-only",
 	"support": {
 		"source": "https://github.com/ColdTrick/forms",
 		"issues": "https://github.com/ColdTrick/forms/issues"
