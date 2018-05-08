@@ -117,6 +117,7 @@ define(function(require) {
 		}
 		
 		$tab.next().removeClass('elgg-state-disabled');
+		window.scrollTo(0, 0);
 	};
 	
 	var navButtonClick = function() {
