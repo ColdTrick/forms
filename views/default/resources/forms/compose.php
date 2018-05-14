@@ -48,6 +48,7 @@ $content = elgg_view_form('forms/compose', [], ['entity' => $entity]);
 $body = elgg_view_layout('forms_compose', [
 	'title' => $title,
 	'content' => $content,
+	'entity' => $entity,
 ]);
 
 // draw page
