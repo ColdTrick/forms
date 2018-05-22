@@ -92,7 +92,7 @@ return array (
   'forms:import:json_text' => 'JSON tekst (uit een export bestand)',
   'forms:import:json_text:help' => 'Je kunt de inhoud van een export bestand hier plakken',
   'forms:import:json_file' => 'JSON bestand (het export bestand)',
-  'forms:thankyou:generic' => 'Bedankt voor het invullen van %s',
+  'forms:thankyou:generic' => 'Het invullen van %s is succesvol afgerond. Bedankt!',
   'forms:thankyou:again' => 'Het formulier nogmaals invullen',
   'forms:result:validate:error' => '%s: %s',
   'forms:action:edit:error:friendly_url' => 'De formulier URL is niet geldig of al in gebruik, pas het aub aan',

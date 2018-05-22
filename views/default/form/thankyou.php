@@ -5,14 +5,14 @@ if (!($entity instanceof Form)) {
 	return;
 }
 
-echo elgg_view('output/longtext', [
-	'value' => elgg_echo('forms:thankyou:generic', [$entity->getDisplayName()]),
-	'class' => 'mbl',
-]);
-
 if (!empty($entity->thankyou)) {
 	echo elgg_view('output/longtext', [
 		'value' => $entity->thankyou,
+		'class' => 'mbl',
+	]);
+} else {
+	echo elgg_view('output/longtext', [
+		'value' => elgg_echo('forms:thankyou:generic', [$entity->getDisplayName()]),
 		'class' => 'mbl',
 	]);
 }
