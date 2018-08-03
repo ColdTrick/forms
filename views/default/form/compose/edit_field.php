@@ -1,5 +1,23 @@
 <?php
 
+$default_options = [
+	'' => elgg_echo('forms:compose:field:edit:default_value:none'),
+	'name' => elgg_echo('name'),
+	'username' => elgg_echo('username'),
+	'email' => elgg_echo('email'),
+];
+
+$profile_fields = elgg_get_config('profile_fields');
+if (!empty($profile_fields)) {
+	foreach ($profile_fields as $metadata_name => $type) {
+		$label = $metadata_name;
+		if (elgg_language_key_exists("profile:{$metadata_name}")) {
+			$label = elgg_echo("profile:{$metadata_name}") . " ({$metadata_name})";
+		}
+		$default_options[$metadata_name] = $label;
+	}
+}
+
 $fields = [
 	[
 		'#type' => 'text',
@@ -85,7 +103,14 @@ $fields = [
 		'show_for_types' => ['select'],
 	],
 	
-	
+	[
+		'#type' => 'select',
+		'#label' => elgg_echo('forms:compose:field:edit:default_value'),
+		'#help' => elgg_echo('forms:compose:field:edit:default_value:help'),
+		'name' => 'default_value',
+		'options_values' => $default_options,
+		'show_for_types' => ['text', 'email', 'number', 'plaintext', 'longtext', 'select'],
+	],
 	
 	// end of conditional fields
 	

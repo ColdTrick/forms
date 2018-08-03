@@ -88,13 +88,24 @@ class Field {
 		$result = $this->config;
 		
 		// remove unneeded vars
-		if ($result['value'] === '') {
-			unset($result['value']);
-		}
 		if ($result['multiple'] === '') {
 			unset($result['multiple']);
 		}
+		// value (with support for default value)
+		if ($result['value'] === '') {
+			unset($result['value']);
+		}
+		$supports_default = ['text', 'email', 'number', 'plaintext', 'longtext', 'select'];
+		if (!isset($result['value']) && in_array($this->getType(), $supports_default) && !empty($result['default_value'])) {
+			$profile_field = $result['default_value'];
+			$user = elgg_get_logged_in_user_entity();
+			if (!empty($user)) {
+				$result['value'] = $user->$profile_field;
+			}
+		}
+		unset($result['default_value']);
 		
+		// futher cleanup
 		$options_key = 'options_values';
 		$options = $this->getOptions();
 		unset($result['options']);
@@ -112,6 +123,9 @@ class Field {
 				unset($result['#help']);
 				unset($result['#label']);
 				unset($result['multiple']);
+				break;
+			case 'file':
+				unset($result['value']);
 				break;
 		}
 		
@@ -132,9 +146,10 @@ class Field {
 			switch ($this->getType()) {
 				case 'checkbox':
 					// @todo how does this work
-					break;
 				case 'hidden':
 					// value is pre-programmed
+				case 'file':
+					// doesn't work
 					break;
 				default:
 					$result['value'] = $sticky_value;

@@ -64,6 +64,9 @@ return [
 	'forms:compose:field:edit:options:help' => "Comma separate the options for this field",
 	'forms:compose:field:edit:validation_rule' => "Validation rule",
 	'forms:compose:field:edit:value' => "Value",
+	'forms:compose:field:edit:default_value' => "Default value",
+	'forms:compose:field:edit:default_value:help' => "You can select a user attribute to be prefilled in the field",
+	'forms:compose:field:edit:default_value:none' => "No default value",
 	
 	'forms:compose:field:edit:email_recipient' => "Add e-mail address to:",
 	'forms:compose:field:edit:email_recipient:none' => "No recipient",

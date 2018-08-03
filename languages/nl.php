@@ -1,10 +1,14 @@
 <?php
 /**
- * This file was created by Translation Editor v6.0
- * On 2017-12-19 12:57
+ * This file was created by Translation Editor v6.1
+ * On 2018-08-03 14:51
  */
 
 return array (
+  'forms:by_line:submissions' => 'Aantal ingevulde formulieren',
+  'forms:compose:field:edit:default_value' => 'Standaard waarde',
+  'forms:compose:field:edit:default_value:help' => 'Je kunt een gebruikers attribuut selecteren om het veld standaard mee in te vullen',
+  'forms:compose:field:edit:default_value:none' => 'Geen standaard waarde',
   'forms:endpoint:email:cc:user' => 'Stuur automatisch een kopie naar de gebruiker die het formulier invult',
   'forms:compose:field:type:hidden' => 'Verborgen',
   'forms:compose:field:edit:value' => 'Waarde',
