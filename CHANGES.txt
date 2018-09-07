@@ -1,6 +1,10 @@
 Version history
 ===============
 
+1.4 (2018-09-07):
+
+- added: option to prefill a field with a user attibute/profile field
+
 1.3.2 (2018-05-31):
 
 - fixed: only show generic thankyou text if there is no custom text
