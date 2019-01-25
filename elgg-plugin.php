@@ -1,6 +1,7 @@
 <?php
 
 use ColdTrick\Forms\Bootstrap;
+use Elgg\Router\Middleware\AdminGatekeeper;
 
 require_once(dirname(__FILE__) . '/lib/functions.php');
 
@@ -14,6 +15,47 @@ return [
 		],
 	],
 	'routes' => [
+		'add:object:form' => [
+			'path' => '/forms/add/{guid}',
+			'resource' => 'forms/add',
+			'middleware' => [
+				AdminGatekeeper::class,
+			],
+		],
+		'edit:object:form' => [
+			'path' => '/forms/edit/{guid}',
+			'resource' => 'forms/edit',
+			'middleware' => [
+				AdminGatekeeper::class,
+			],
+		],
+		'compose:object:form' => [
+			'path' => '/forms/compose/{guid}',
+			'resource' => 'forms/compose',
+			'middleware' => [
+				AdminGatekeeper::class,
+			],
+		],
+		'view:object:form' => [
+			'path' => '/forms/view/{guid}',
+			'resource' => 'forms/view',
+		],
+		'thankyou:object:form' => [
+			'path' => '/forms/thankyou/{guid}',
+			'resource' => 'forms/thankyou',
+		],
+		'collection:object:form' => [
+			'path' => '/forms/all',
+			'resource' => 'forms/all',
+		],
+		'collection:validation_rules' => [
+			'path' => '/forms/validation_rules',
+			'resource' => 'forms/validation_rules',
+		],
+		'default:object:form' => [
+			'path' => '/forms',
+			'resource' => 'forms/all',
+		],
 	],
 	'actions' => [
 		'forms/compose' => ['access' => 'admin'],

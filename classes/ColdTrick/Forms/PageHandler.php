@@ -3,65 +3,6 @@
 namespace ColdTrick\Forms;
 
 class PageHandler {
-	
-	const HANDLERS = [
-		'all',
-		'add',
-		'edit',
-		'view',
-		'compose',
-		'validation_rules',
-		'thankyou',
-	];
-	
-	/**
-	 * Handler /forms pages
-	 *
-	 * @param string[] $page the url segments
-	 *
-	 * @return bool
-	 */
-	public static function forms($page) {
-		
-		$resource = elgg_extract(0, $page, 'all');
-		
-		switch ($resource) {
-			case 'all':
-				echo elgg_view_resource('forms/all');
-				return true;
-			case 'view':
-				echo elgg_view_resource('forms/view', [
-					'guid' => (int) elgg_extract(1, $page),
-				]);
-				return true;
-			case 'compose':
-				echo elgg_view_resource('forms/compose', [
-					'guid' => (int) elgg_extract(1, $page),
-				]);
-				return true;
-			case 'add':
-				echo elgg_view_resource('forms/edit', [
-					'container_guid' => (int) elgg_extract(1, $page),
-				]);
-				return true;
-			case 'edit':
-				echo elgg_view_resource('forms/edit', [
-					'guid' => (int) elgg_extract(1, $page),
-				]);
-				return true;
-			case 'validation_rules':
-				echo elgg_view_resource('forms/validation_rules');
-				return true;
-			case 'thankyou':
-				echo elgg_view_resource('forms/thankyou', [
-					'guid' => (int) elgg_extract(1, $page),
-				]);
-				return true;
-		}
-		
-		return false;
-	}
-	
 	/**
 	 * Rewrite /forms/form-name to a workable page handler
 	 *
@@ -84,7 +25,15 @@ class PageHandler {
 			return;
 		}
 		
-		if (in_array($friendly_url, self::HANDLERS)) {
+		if (in_array($friendly_url, [
+			'all',
+			'add',
+			'edit',
+			'view',
+			'compose',
+			'validation_rules',
+			'thankyou',
+		])) {
 			return;
 		}
 		

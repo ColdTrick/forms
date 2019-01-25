@@ -10,9 +10,6 @@ class Bootstrap extends DefaultPluginBootstrap {
 	 * {@inheritdoc}
 	 */
 	public function init() {
-		
-		elgg_register_page_handler('forms', '\ColdTrick\Forms\PageHandler::forms');
-		
 		$this->initViews();
 		$this->initRegisterHooks();
 	}

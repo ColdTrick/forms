@@ -1,7 +1,5 @@
 <?php
 
-elgg_admin_gatekeeper();
-
 // validate input
 $guid = elgg_extract('guid', $vars);
 elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE);
