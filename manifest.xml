@@ -13,14 +13,9 @@
 	
 	<requires>
 		<type>elgg_release</type>
-		<version>2.3</version>
+		<version>3.0</version>
 	</requires>
-	
-	<requires>
-		<type>php_version</type>
-		<version>5.5</version>
-	</requires>
-	
+		
 	<suggests>
 		<type>plugin</type>
 		<name>html_email_handler</name>
