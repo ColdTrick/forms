@@ -26,7 +26,7 @@ return array (
   'forms:page_menu:all' => 'Alle formulieren',
   'forms:page_menu:validation_rules' => 'Beheer validatieregels',
   'forms:add' => 'Nieuw formulier',
-  'forms:all:title' => 'Alle formulieren',
+  'collection:object:form' => 'Formulieren',
   'forms:add:title' => 'Nieuw formulier',
   'forms:edit:title' => 'Bewerkt formulier: %s',
   'forms:compose:title' => 'Samenstellen formulier: %s',

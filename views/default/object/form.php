@@ -12,26 +12,28 @@ $full_view = (bool) elgg_extract('full_view', $vars);
 
 $icon = '';
 
-$entity_menu = '';
-if (!elgg_in_context('widgets')) {
-	$entity_menu = elgg_view_menu('entity', [
-		'entity' => $entity,
-		'handler' => 'forms',
-		'sort_by' => 'priority',
-		'class' => 'elgg-menu-hz',
-	]);
-}
-
 if ($full_view) {
 	// @TODO make this
 	echo $entity->title;
 } else {
 	
+	$imprint = [];
+	if ($entity->canEdit()) {
+		$imprint[] = [
+			'icon_name' => 'check-square-o',
+			'content' => elgg_format_element('span', [
+				'title' => elgg_echo('forms:by_line:submissions'),
+				'class' => 'forms-submissions',
+			], (int) $entity->submitted_count),
+		];
+	}
+	
 	$params = [
 		'entity' => $entity,
-		'metadata' => $entity_menu,
-		'subtitle' => elgg_view('object/form/by_line', $vars),
 		'content' => elgg_get_excerpt($entity->description),
+		'imprint' => $imprint,
+		'access' => false,
+		'byline_owner_entity' => false,
 	];
 	
 	$content = elgg_view('object/elements/summary', $params);

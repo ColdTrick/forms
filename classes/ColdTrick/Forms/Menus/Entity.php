@@ -23,6 +23,7 @@ class Entity {
 		
 		$return_value[] = \ElggMenuItem::factory([
 			'name' => 'compose',
+			'icon' => 'list',
 			'text' => elgg_echo('forms:entity_menu:compose'),
 			'href' => "forms/compose/{$entity->getGUID()}",
 		]);
@@ -30,6 +31,7 @@ class Entity {
 		if ($entity->hasDefinition()) {
 			$return_value[] = \ElggMenuItem::factory([
 				'name' => 'export',
+				'icon' => 'download',
 				'text' => elgg_echo('export'),
 				'href' => "action/forms/definition/export?guid={$entity->getGUID()}",
 				'is_action' => true,
@@ -38,6 +40,7 @@ class Entity {
 		
 		$return_value[] = \ElggMenuItem::factory([
 			'name' => 'copy',
+			'icon' => 'copy',
 			'text' => elgg_echo('forms:entity_menu:copy'),
 			'href' => "action/forms/copy?guid={$entity->getGUID()}",
 			'confirm' => elgg_echo('forms:entity_menu:copy:confirm'),

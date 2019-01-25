@@ -1,20 +1,18 @@
 <?php
 
-elgg_admin_gatekeeper();
-
-elgg_push_breadcrumb(elgg_echo('forms:all:title'), 'forms/all');
+elgg_push_collection_breadcrumbs('object', 'form');
 
 // create add button
 elgg_register_menu_item('title', [
 	'name' => 'add',
 	'text' => elgg_echo('add'),
+	'icon' => 'plus',
 	'href' => 'ajax/form/forms/validation_rules/edit',
 	'link_class' => [
 		'elgg-button',
 		'elgg-button-action',
 		'elgg-lightbox',
 	],
-	'deps' => 'elgg/lightbox',
 ]);
 
 // build page elements
@@ -25,7 +23,7 @@ $body = elgg_view('form/validation_rules/list', [
 ]);
 
 // build page
-$page_data = elgg_view_layout('content', [
+$page_data = elgg_view_layout('default', [
 	'title' => $title,
 	'content' => $body,
 	'filter' => false,

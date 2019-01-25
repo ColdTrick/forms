@@ -9,6 +9,8 @@
 /* @var $entity \Form */
 $entity = elgg_extract('entity', $vars);
 
+elgg_require_js('forms/edit');
+
 $footer = '';
 
 // form elements

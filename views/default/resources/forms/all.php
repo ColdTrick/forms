@@ -3,25 +3,24 @@
  * List all the forms in the system
  */
 
-elgg_admin_gatekeeper();
+elgg_register_title_button('forms', 'add', 'object', 'form');
 
-// add title buttons
-elgg_register_title_button();
+elgg_push_collection_breadcrumbs('object', 'form');
 
 // build page elements
-$title_text = elgg_echo('forms:all:title');
+$title_text = elgg_echo('collection:object:form');
 
 $content = elgg_list_entities([
 	'type' => 'object',
 	'subtype' => Form::SUBTYPE,
-	'no_results' => elgg_echo('notfound'),
+	'no_results' => true,
 ]);
 
 // build page
-$page_data = elgg_view_layout('content', [
+$page_data = elgg_view_layout('default', [
 	'title' => $title_text,
 	'content' => $content,
-	'filter' => '',
+	'filter' => false,
 ]);
 
 // draw page

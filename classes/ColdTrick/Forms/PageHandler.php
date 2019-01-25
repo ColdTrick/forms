@@ -3,6 +3,17 @@
 namespace ColdTrick\Forms;
 
 class PageHandler {
+	
+	const HANDLERS = [
+		'all',
+		'add',
+		'edit',
+		'view',
+		'compose',
+		'validation_rules',
+		'thankyou',
+	];
+		
 	/**
 	 * Rewrite /forms/form-name to a workable page handler
 	 *
@@ -25,15 +36,7 @@ class PageHandler {
 			return;
 		}
 		
-		if (in_array($friendly_url, [
-			'all',
-			'add',
-			'edit',
-			'view',
-			'compose',
-			'validation_rules',
-			'thankyou',
-		])) {
+		if (in_array($friendly_url, self::HANDLERS)) {
 			return;
 		}
 		

@@ -44,7 +44,7 @@ return [
 			'path' => '/forms/thankyou/{guid}',
 			'resource' => 'forms/thankyou',
 		],
-		'collection:object:form' => [
+		'collection:object:form:all' => [
 			'path' => '/forms/all',
 			'resource' => 'forms/all',
 		],

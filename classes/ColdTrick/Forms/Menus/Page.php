@@ -16,7 +16,7 @@ class Page {
 	 */
 	public static function registerValidationRules($hook, $type, $return_value, $params) {
 		
-		if (!elgg_in_context('forms') || !elgg_is_logged_in()) {
+		if (!elgg_in_context('forms') || !elgg_is_logged_in() || elgg_in_context('compose')) {
 			return;
 		}
 		

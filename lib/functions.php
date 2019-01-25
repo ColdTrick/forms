@@ -1,7 +1,5 @@
 <?php
 
-use Test\WideImage\Operation\GetChannelsTest;
-
 /**
  * All helper functions are bundled here
  */
@@ -74,29 +72,22 @@ function forms_is_valid_friendly_url($friendly_url, $entity_guid = null) {
 		return false;
 	}
 	
-	// ignore access and include hidden (disabled) entities
-	$ia = elgg_set_ignore_access(true);
-	$hidden = access_show_hidden_entities(true);
-	
-	$options = [
-		'type' => 'object',
-		'subtype' => Form::SUBTYPE,
-		'count' => true,
-		'metadata_name_value_pairs' => [
-			'friendly_url' => $friendly_url,
-		],
-	];
-	
-	if (!empty($entity_guid)) {
-		$entity_guid = (int) $entity_guid;
-		$options['wheres'] = "e.guid != {$entity_guid}";
-	}
-	
-	$count = elgg_get_entities_from_metadata($options);
-	
-	// restore access/hidden
-	elgg_set_ignore_access($ia);
-	access_show_hidden_entities($hidden);
+	$count = elgg_call(ELGG_IGNORE_ACCESS|ELGG_SHOW_DISABLED_ENTITIES, function() use ($entity_guid, $friendly_url) {
+		$options = [
+			'type' => 'object',
+			'subtype' => Form::SUBTYPE,
+			'count' => true,
+			'metadata_name_value_pairs' => [
+				'friendly_url' => $friendly_url,
+			],
+		];
+		
+		if (!empty($entity_guid)) {
+			$entity_guid = (int) $entity_guid;
+			$options['wheres'] = "e.guid != {$entity_guid}";
+		}
+		return elgg_get_entities($options);
+	});
 	
 	return empty($count);
 }

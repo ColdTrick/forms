@@ -3,6 +3,7 @@
 return [
 	
 	'item:object:form' => "Form",
+	'collection:object:form' => "Forms",
 	
 	'forms:file:upload_limit' => "Maximum allowed file size is %s",
 	
@@ -19,7 +20,7 @@ return [
 	'forms:page_menu:validation_rules' => "Manage validation rules",
 	
 	'forms:add' => "Create form",
-	'forms:all:title' => "All forms",
+	
 	'forms:add:title' => "Create form",
 	'forms:edit:title' => "Edit form: %s",
 	'forms:compose:title' => "Compose form: %s",
