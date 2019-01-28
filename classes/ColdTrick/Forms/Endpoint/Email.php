@@ -68,7 +68,7 @@ class Email extends Endpoint {
 			'body' => $body,
 			'params' => $this->getParams(),
 		]);
-				
+						
 		return elgg_send_email($email);
 	}
 	
@@ -222,7 +222,7 @@ class Email extends Endpoint {
 		foreach ($uploaded_files as $uploaded_file) {
 			$attachment = [
 				'filename' => $uploaded_file->getClientOriginalName(),
-				'mimetype' => $uploaded_file->getMimeType(),
+				'type' => $uploaded_file->getMimeType(),
 				'filepath' => $uploaded_file->getPathname(),
 			];
 			
