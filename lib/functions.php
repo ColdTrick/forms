@@ -68,7 +68,7 @@ function forms_is_valid_friendly_url($friendly_url, $entity_guid = null) {
 		return false;
 	}
 	
-	if (in_array($friendly_url, \ColdTrick\Forms\PageHandler::HANDLERS)) {
+	if (in_array($friendly_url, \ColdTrick\Forms\Bootstrap::HANDLERS)) {
 		return false;
 	}
 	

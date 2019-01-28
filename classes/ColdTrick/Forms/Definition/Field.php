@@ -88,11 +88,11 @@ class Field {
 		$result = $this->config;
 		
 		// remove unneeded vars
-		if ($result['multiple'] === '') {
+		if (isset($result['multiple']) && $result['multiple'] === '') {
 			unset($result['multiple']);
 		}
 		// value (with support for default value)
-		if ($result['value'] === '') {
+		if (isset($result['value']) && $result['value'] === '') {
 			unset($result['value']);
 		}
 		$supports_default = ['text', 'email', 'number', 'plaintext', 'longtext', 'select'];

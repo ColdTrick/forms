@@ -56,6 +56,10 @@ return [
 			'path' => '/forms',
 			'resource' => 'forms/all',
 		],
+		'view:form:friendly' => [
+			'path' => '/forms/{title}',
+			'controller' => \ColdTrick\Forms\Controllers\FriendlyForm::class,
+		],
 	],
 	'actions' => [
 		'forms/compose' => ['access' => 'admin'],

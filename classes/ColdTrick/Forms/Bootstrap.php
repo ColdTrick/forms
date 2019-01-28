@@ -6,6 +6,16 @@ use Elgg\DefaultPluginBootstrap;
 
 class Bootstrap extends DefaultPluginBootstrap {
 	
+	const HANDLERS = [
+		'all',
+		'add',
+		'edit',
+		'view',
+		'compose',
+		'validation_rules',
+		'thankyou',
+	];
+	
 	/**
 	 * {@inheritdoc}
 	 */
@@ -40,6 +50,5 @@ class Bootstrap extends DefaultPluginBootstrap {
 		$hooks->registerHandler('register', 'menu:entity', '\ColdTrick\Forms\Menus\Entity::registerForm');
 		$hooks->registerHandler('register', 'menu:page', '\ColdTrick\Forms\Menus\Page::registerValidationRules');
 		$hooks->registerHandler('register', 'menu:validation_rule', '\ColdTrick\Forms\Menus\ValidationRule::registerEdit');
-		$hooks->registerHandler('route:rewrite', 'forms', '\ColdTrick\Forms\PageHandler::routeRewrite');
 	}
 }
