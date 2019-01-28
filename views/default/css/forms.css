@@ -104,6 +104,8 @@
 	margin-right: 4px;
 }
 
+.forms-compose-field-edit,
+.forms-compose-delete,
 .forms-compose-edit-title {
 	cursor: pointer;
 	margin-left: 4px;

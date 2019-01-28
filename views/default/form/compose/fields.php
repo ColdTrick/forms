@@ -65,11 +65,11 @@ foreach ($types as $type_params) {
 	
 	$type_body .= elgg_view_icon('edit', [
 		'title' => elgg_echo('edit'),
-		'class' => 'link forms-compose-field-edit',
+		'class' => 'forms-compose-field-edit',
 	]);
 	$type_body .= elgg_view_icon('delete', [
 		'title' => elgg_echo('delete'),
-		'class' => 'link forms-compose-delete',
+		'class' => 'forms-compose-delete',
 	]);
 	
 	if (in_array(elgg_extract('#type', $type_params), ['select', 'radio'])) {

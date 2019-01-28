@@ -18,11 +18,11 @@ $field_body .= elgg_format_element([
 
 $field_body .= elgg_view_icon('edit', [
 	'title' => elgg_echo('edit'),
-	'class' => 'link forms-compose-field-edit',
+	'class' => 'forms-compose-field-edit',
 ]);
 $field_body .= elgg_view_icon('delete', [
 	'title' => elgg_echo('delete'),
-	'class' => 'link forms-compose-delete',
+	'class' => 'forms-compose-delete',
 ]);
 
 if (in_array($field->getType(), ['select', 'radio'])) {
