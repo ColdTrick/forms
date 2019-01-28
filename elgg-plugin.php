@@ -62,7 +62,6 @@ return [
 		'forms/copy' => ['access' => 'admin'],
 		'forms/definition/export' => ['access' => 'admin'],
 		'forms/definition/import' => ['access' => 'admin'],
-		'forms/delete' => ['access' => 'admin'],
 		'forms/edit' => ['access' => 'admin'],
 		'forms/submit' => ['access' => 'public'],
 		'forms/validation_rules/delete' => ['access' => 'admin'],
