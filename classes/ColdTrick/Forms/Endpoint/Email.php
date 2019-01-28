@@ -55,17 +55,21 @@ class Email extends Endpoint {
 		
 		$form = $this->result->getForm();
 		
-		$subject = elgg_echo('forms:endpoint:email:subject', [$form->getDisplayName()]);
 		$body = $this->getBody();
 		
 		// set recipients after body processing because some can be added
 		$to = $this->getRecipients('to');
 		$from = $this->getFrom();
-		
-		// get additional e-mail params
-		$params = $this->getParams();
 				
-		return elgg_send_email($from, $to, $subject, $body, $params);
+		$email = \Elgg\Email::factory([
+			'from' => $from,
+			'to' => $to,
+			'subject' => elgg_echo('forms:endpoint:email:subject', [$form->getDisplayName()]),
+			'body' => $body,
+			'params' => $this->getParams(),
+		]);
+				
+		return elgg_send_email($email);
 	}
 	
 	/**
