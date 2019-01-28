@@ -74,4 +74,4 @@ if (!$entity->save()) {
 
 elgg_clear_sticky_form('forms/edit');
 
-return elgg_ok_response('', elgg_echo('save:success'), 'forms/all');
+return elgg_ok_response('', elgg_echo('save:success'), elgg_generate_url('collection:object:form:all'));

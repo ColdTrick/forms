@@ -35,4 +35,4 @@ $form->logSubmission();
 // on success: forward to thank you page
 elgg_clear_sticky_form("forms_{$form_guid}");
 
-return elgg_ok_response('', '', "forms/thankyou/{$form->getGUID()}");
+return elgg_ok_response('', '', elgg_generate_entity_url($form, 'thankyou'));

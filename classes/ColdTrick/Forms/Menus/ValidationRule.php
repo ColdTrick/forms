@@ -40,7 +40,7 @@ class ValidationRule {
 			'name' => 'delete',
 			'text' => elgg_view_icon('delete'),
 			'title' => elgg_echo('edit'),
-			'href' => "action/forms/validation_rules/delete?name={$name}",
+			'href' => elgg_generate_action_url('forms/validation_rules/delete', ['name' => $name]),
 			'confirm' => elgg_echo('deleteconfirm'),
 			'priority' => 300,
 		]);

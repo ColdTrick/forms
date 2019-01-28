@@ -15,4 +15,4 @@ if (!$new_entity->save()) {
 	return elgg_error_response(elgg_echo('save:fail'));
 }
 
-return elgg_ok_response('', elgg_echo('save:success'), "forms/edit/{$new_entity->getGUID()}");
+return elgg_ok_response('', elgg_echo('save:success'), elgg_generate_entity_url($new_entity, 'edit'));

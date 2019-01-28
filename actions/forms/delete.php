@@ -19,4 +19,4 @@ if (!$entity->delete()) {
 	return elgg_error_response(elgg_echo('entity:delete:fail', [$title]));
 }
 
-return elgg_ok_response('', elgg_echo('entity:delete:success', [$title]), 'forms/all');
+return elgg_ok_response('', elgg_echo('entity:delete:success', [$title]), elgg_generate_url('collection:object:form:all'));

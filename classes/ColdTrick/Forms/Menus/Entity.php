@@ -25,7 +25,7 @@ class Entity {
 			'name' => 'compose',
 			'icon' => 'list',
 			'text' => elgg_echo('forms:entity_menu:compose'),
-			'href' => "forms/compose/{$entity->getGUID()}",
+			'href' => elgg_generate_entity_url($entity, 'compose'),
 		]);
 		
 		if ($entity->hasDefinition()) {
@@ -33,7 +33,7 @@ class Entity {
 				'name' => 'export',
 				'icon' => 'download',
 				'text' => elgg_echo('export'),
-				'href' => "action/forms/definition/export?guid={$entity->getGUID()}",
+				'href' => elgg_generate_action_url('forms/definition/export', ['guid' => $entity->guid]),
 				'is_action' => true,
 			]);
 		}
@@ -42,7 +42,7 @@ class Entity {
 			'name' => 'copy',
 			'icon' => 'copy',
 			'text' => elgg_echo('forms:entity_menu:copy'),
-			'href' => "action/forms/copy?guid={$entity->getGUID()}",
+			'href' => elgg_generate_action_url('forms/copy', ['guid' => $entity->guid]),
 			'confirm' => elgg_echo('forms:entity_menu:copy:confirm'),
 		]);
 		

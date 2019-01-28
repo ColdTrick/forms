@@ -23,12 +23,12 @@ class Page {
 		$return_value[] = \ElggMenuItem::factory([
 			'name' => 'forms',
 			'text' => elgg_echo('forms:page_menu:all'),
-			'href' => 'forms/all',
+			'href' => elgg_generate_url('collection:object:form:all'),
 		]);
 		$return_value[] = \ElggMenuItem::factory([
 			'name' => 'validation_rules',
 			'text' => elgg_echo('forms:page_menu:validation_rules'),
-			'href' => 'forms/validation_rules',
+			'href' => elgg_generate_url('collection:validation_rules'),
 		]);
 		
 		return $return_value;

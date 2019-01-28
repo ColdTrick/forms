@@ -39,7 +39,7 @@ class Form extends \ElggObject {
 			return "forms/{$this->friendly_url}";
 		}
 		
-		return "forms/view/{$this->getGUID()}";
+		return elgg_generate_entity_url($this);
 	}
 	
 	/**
