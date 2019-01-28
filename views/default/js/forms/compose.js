@@ -121,7 +121,7 @@ define(function(require) {
 	
 	var toggleElement = function() {
 		$(this).parent().parent().find(' > .ui-sortable').slideToggle();
-		$(this).toggleClass('elgg-icon-minus-square-o, fa-minus-square-o, elgg-icon-plus-square-o, fa-plus-square-o');
+		$(this).toggleClass('elgg-icon-minus-square-o fa-minus-square elgg-icon-plus-square-o fa-plus-square');
 	};
 	
 	var initSortablePages = function() {

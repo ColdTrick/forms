@@ -14,7 +14,7 @@ $sections_result .= elgg_format_element('li', [], elgg_view_field([
 ]));
 
 $page_title = elgg_view_icon('minus-square-o', [
-	'class' => 'link forms-compose-toggle-element',
+	'class' => 'forms-compose-toggle-element',
 ]);
 
 $page_title .= elgg_view('output/url', [
@@ -29,7 +29,7 @@ $page_title .= elgg_format_element('span', [
 ], elgg_extract('title', $page));
 
 $page_title .= elgg_view_icon('edit', [
-	'class' => 'forms-compose-edit-title link',
+	'class' => 'forms-compose-edit-title',
 ]);
 
 $page_body = elgg_format_element('div', ['class' => 'forms-compose-title-container'], $page_title);

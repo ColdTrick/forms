@@ -11,7 +11,7 @@ foreach (elgg_extract('fields', $section, []) as $field) {
 }
 
 $section_title = elgg_view_icon('minus-square-o', [
-	'class' => 'link forms-compose-toggle-element',
+	'class' => 'forms-compose-toggle-element',
 ]);
 
 $section_title .= elgg_view('output/url', [
@@ -26,7 +26,7 @@ $section_title .= elgg_format_element('span', [
 ], elgg_extract('title', $section));
 
 $section_title .= elgg_view_icon('edit', [
-	'class' => 'forms-compose-edit-title link',
+	'class' => 'forms-compose-edit-title',
 ]);
 
 $section_body = elgg_format_element('div', ['class' => 'forms-compose-title-container'], $section_title);

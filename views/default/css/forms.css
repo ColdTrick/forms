@@ -2,20 +2,40 @@
 	padding: 10px;
 	background: #F0F0F0;
 	margin-bottom: 10px;
+	
+	&:hover > .forms-compose-edit-title {
+		display: inline-block;
+	}
+	
+	> ul > li:last-child .elgg-field {
+		margin: 0;
+	}
+	
+	.ui-sortable-placeholder {
+		border: 2px dotted #F0F0F0;
+		background: transparent;
+		visibility: visible !important;
+	}
 }
 
 .forms-compose-list-section {
 	padding: 10px;
 	background: #444;
 	margin: 10px;
+
+	> .forms-compose-title-container {
+		color: #F0F0F0;
+	}
+	
+	> ul {
+		padding: 10px;
+	}
+	
+	&:hover > .forms-compose-edit-title {
+		display: inline-block;
+	} 
 }
 
-.forms-compose-list-section > .forms-compose-title-container {
-	color: #F0F0F0;
-}
-.forms-compose-list-section > ul {
-	padding: 10px;
-}
 .forms-compose-add-section {
 	margin-left: 10px;
 }
@@ -28,27 +48,22 @@
 	display: inline-block;
 }
 
-.forms-compose-list-page:hover > .forms-compose-edit-title,
-.forms-compose-list-section:hover > .forms-compose-edit-title {
-	display: inline-block;
-} 
-
 .forms-compose-list-field {
 	background: #F0F0F0;
 	margin-bottom: 5px;
 	padding: 5px;
-}
-
-.forms-compose-list-field > .elgg-required-indicator {
-	display: none;
-}
-
-.forms-compose-list-field.forms-compose-list-field-required > .elgg-required-indicator {
-	display: inline-block;
-}
-
-.forms-compose-list-field > .elgg-icon {
-	visibility: hidden;
+	
+	> .elgg-required-indicator {
+		display: none;
+	}
+	
+	&.forms-compose-list-field-required > .elgg-required-indicator {
+		display: inline-block;
+	}
+	
+	> .elgg-icon {
+		visibility: hidden;
+	}
 }
 
 .elgg-form-forms-compose .forms-compose-list-field:hover > .elgg-icon {
@@ -63,26 +78,35 @@
 .forms-compose-edit-field {
 	padding: 10px;
 	background: #FFF;
-}
-
-.forms-compose-edit-field > .elgg-field:last-child,
-.forms-compose-list-page > ul > li:last-child .elgg-field {
-	margin: 0;
+	
+	> .elgg-field:last-child {
+		margin: 0;
+	}
 }
 
 .forms-compose-conditional-section {
 	background: #e1e1e1;
 	margin-top: 5px;
 	padding: 10px;
+	
+	.forms-compose-add-conditional-section {
+		display: none;
+	}
+	
+	> .elgg-field > .elgg-field-label {
+		font-weight: normal;
+		font-size: 100%;
+	}
 }
 
-.forms-compose-conditional-section .forms-compose-add-conditional-section {
-	display: none;
+.forms-compose-toggle-element {
+	cursor: pointer;
+	margin-right: 4px;
 }
 
-.forms-compose-conditional-section > .elgg-field > .elgg-field-label {
-	font-weight: normal;
-	font-size: 100%;
+.forms-compose-edit-title {
+	cursor: pointer;
+	margin-left: 4px;
 }
 
 ul .forms-field-unsortable {
