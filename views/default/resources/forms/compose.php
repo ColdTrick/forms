@@ -11,7 +11,7 @@ if (!$entity->canEdit()) {
 }
 
 // breadcrumb
-elgg_push_breadcrumb($entity->getDisplayName(), $entity->getURL());
+elgg_push_entity_breadcrumbs($entity);
 
 // import/export
 elgg_register_menu_item('title', [

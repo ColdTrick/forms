@@ -11,8 +11,7 @@ if (!$entity->canEdit()) {
 	throw new \Elgg\EntityPermissionsException();
 }
 
-elgg_push_breadcrumb($entity->getDisplayName(), $entity->getURL());
-elgg_push_breadcrumb(elgg_echo('edit'));
+elgg_push_entity_breadcrumbs($entity);
 
 $body_vars = forms_prepare_form_vars( $entity->getContainerGUID(), $entity);
 
