@@ -10,8 +10,6 @@
 $entity = elgg_extract('entity', $vars);
 $full_view = (bool) elgg_extract('full_view', $vars);
 
-$icon = '';
-
 if ($full_view) {
 	// @TODO make this
 	echo $entity->title;
@@ -36,7 +34,5 @@ if ($full_view) {
 		'byline_owner_entity' => false,
 	];
 	
-	$content = elgg_view('object/elements/summary', $params);
-	
-	echo elgg_view_image_block($icon, $content);
+	echo elgg_view('object/elements/summary', $params);
 }
