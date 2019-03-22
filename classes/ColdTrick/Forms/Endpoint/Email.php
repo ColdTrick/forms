@@ -4,8 +4,8 @@ namespace ColdTrick\Forms\Endpoint;
 
 use ColdTrick\Forms\Endpoint;
 use ColdTrick\Forms\Result;
-use Zend\Mail\Address;
 use ColdTrick\Forms\Definition\Field;
+use Elgg\Email\Address;
 
 class Email extends Endpoint {
 	
@@ -58,12 +58,9 @@ class Email extends Endpoint {
 		$body = $this->getBody();
 		
 		// set recipients after body processing because some can be added
-		$to = $this->getRecipients('to');
-		$from = $this->getFrom();
-				
 		$email = \Elgg\Email::factory([
-			'from' => $from,
-			'to' => $to,
+			'from' => $this->getFrom(),
+			'to' => $this->getRecipients('to'),
 			'subject' => elgg_echo('forms:endpoint:email:subject', [$form->getDisplayName()]),
 			'body' => $body,
 			'params' => $this->getParams(),
@@ -164,19 +161,12 @@ class Email extends Endpoint {
 	/**
 	 * Get the from email address
 	 *
-	 * @return string
+	 * @return \Elgg\Email\Address
 	 */
 	protected function getFrom() {
-		
 		$site = elgg_get_site_entity();
-		$email = $site->email;
-		if (empty($email)) {
-			$email = "noreply@{$site->getDomain()}";
-		}
 		
-		$address = new Address($email, $site->getDisplayName());
-		
-		return $address->toString();
+		return new Address($site->getEmailAddress(), $site->getDisplayName());
 	}
 	
 	/**
@@ -249,13 +239,11 @@ class Email extends Endpoint {
 		}
 		
 		if ($type === 'to' && (count($this->recipients['to']) >= 1)) {
-			// multiple to can currently only be handled by html_email_handler
-			if (!elgg_is_active_plugin('html_email_handler') || (elgg_get_plugin_setting('notifications', 'html_email_handler') !== 'yes')) {
-				return;
-			}
+			// multiple to can currently not supported
+			return;
 		}
 		
-		$this->recipients[$type][] = $address;
+		$this->recipients[$type][] = new Address($address);
 	}
 	
 	/**
@@ -296,7 +284,7 @@ class Email extends Endpoint {
 	 *
 	 * @param string $type to, cc or bcc
 	 *
-	 * @return string|string[]
+	 * @return string|Address|Address[]
 	 */
 	protected function getRecipients($type) {
 		
