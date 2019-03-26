@@ -11,34 +11,26 @@ $title = elgg_echo('forms:import:title');
 $content = '';
 
 if ($entity->hasDefinition()) {
-	$content .= elgg_format_element('div', ['class' => 'elgg-message elgg-state-error'], elgg_echo('forms:import:warning:definition'));
+	$content .= elgg_view_message('warning', elgg_echo('forms:import:warning:definition'));
 }
 
-echo elgg_view_module('info', $title, $content);
-
-// Get post_max_size and upload_max_filesize
-$post_max_size = elgg_get_ini_setting_in_bytes('post_max_size');
-$upload_max_filesize = elgg_get_ini_setting_in_bytes('upload_max_filesize');
-
-// Determine the correct value
-$max_upload = $upload_max_filesize > $post_max_size ? $post_max_size : $upload_max_filesize;
-
-echo elgg_view_field([
+$content .= elgg_view_field([
 	'#type' => 'file',
 	'#label' => elgg_echo('forms:import:json_file'),
-	'#help' => elgg_echo('forms:file:upload_limit', [elgg_format_bytes($max_upload)]),
 	'name' => 'json_file',
 ]);
 
-echo elgg_format_element('div', [], elgg_echo('forms:import:or'));
+$content .= elgg_format_element('div', [], elgg_echo('forms:import:or'));
 
-echo elgg_view_field([
+$content .= elgg_view_field([
 	'#type' => 'plaintext',
 	'#label' => elgg_echo('forms:import:json_text'),
 	'#help' => elgg_echo('forms:import:json_text:help'),
 	'name' => 'json_text',
 	'rows' => '3',
 ]);
+
+echo elgg_view_module('info', $title, $content);
 
 $footer = elgg_view_field([
 	'#type' => 'submit',
