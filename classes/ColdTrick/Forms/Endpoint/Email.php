@@ -60,7 +60,7 @@ class Email extends Endpoint {
 		// set recipients after body processing because some can be added
 		$email = \Elgg\Email::factory([
 			'from' => $this->getFrom(),
-			'to' => $this->getRecipients('to'),
+			'to' => $this->getRecipients('to', 1),
 			'subject' => elgg_echo('forms:endpoint:email:subject', [$form->getDisplayName()]),
 			'body' => $body,
 			'params' => $this->getParams(),
@@ -175,7 +175,13 @@ class Email extends Endpoint {
 	 * @return array
 	 */
 	protected function getParams() {
+		
+		// to is special, 1st gets added to the Email, rest needs to be handled by other means
+		$to = $this->getRecipients('to');
+		array_shift($to);
+		
 		$result = [
+			'to' => $to,
 			'cc' => $this->getRecipients('cc'),
 			'bcc' => $this->getRecipients('bcc'),
 		];
@@ -238,11 +244,6 @@ class Email extends Endpoint {
 			return;
 		}
 		
-		if ($type === 'to' && (count($this->recipients['to']) >= 1)) {
-			// multiple to can currently not supported
-			return;
-		}
-		
 		$this->recipients[$type][] = new Address($address);
 	}
 	
@@ -282,11 +283,12 @@ class Email extends Endpoint {
 	/**
 	 * Get the recipients for a type
 	 *
-	 * @param string $type to, cc or bcc
+	 * @param string $type  to, cc or bcc
+	 * @param int    $limit number of recipients to return
 	 *
 	 * @return string|Address|Address[]
 	 */
-	protected function getRecipients($type) {
+	protected function getRecipients($type, $limit = null) {
 		
 		if (!in_array($type, ['to', 'cc', 'bcc'])) {
 			return '';
@@ -295,6 +297,11 @@ class Email extends Endpoint {
 		$recipients = elgg_extract($type, $this->recipients, []);
 		if (empty($recipients)) {
 			return '';
+		}
+		
+		if (isset($limit)) {
+			$limit = (int) $limit;
+			$recipients = array_slice($recipients, 0, $limit);
 		}
 		
 		if (count($recipients) === 1) {
