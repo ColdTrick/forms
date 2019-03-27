@@ -1,6 +1,16 @@
 Version history
 ===============
 
+2.0 (2019-03-27):
+
+- changed: form friendly title resource now uses a controller
+- changed: forms delete now uses generic entity delete
+- changed: minimal requirements updated to Elgg 3.0
+- changed: moved pagehandler function to route registration
+- changed: plugin initialisation via elgg-plugin and bootstrap
+- fixed: fatal error for supplying wrong e-mail recipient
+- fixed: history sidebar uses correct system_log function
+
 1.4 (2018-09-07):
 
 - added: option to prefill a field with a user attibute/profile field
