@@ -1,8 +1,9 @@
 <?php
-
 /**
  * All helper functions are bundled here
  */
+
+use Elgg\Database\QueryBuilder;
 
 /**
  * Prepare the create/edit vars for the form
@@ -80,11 +81,13 @@ function forms_is_valid_friendly_url($friendly_url, $entity_guid = null) {
 			'metadata_name_value_pairs' => [
 				'friendly_url' => $friendly_url,
 			],
+			'wheres' => [],
 		];
 		
 		if (!empty($entity_guid)) {
-			$entity_guid = (int) $entity_guid;
-			$options['wheres'] = "e.guid != {$entity_guid}";
+			$options['wheres'][] = function (QueryBuilder $qb, $main_alias) use ($entity_guid) {
+				return $qb->compare("{$main_alias}.guid", '!=', $entity_guid, ELGG_VALUE_GUID);
+			};
 		}
 		return elgg_get_entities($options);
 	});
