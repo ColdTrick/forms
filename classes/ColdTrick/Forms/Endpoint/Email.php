@@ -178,7 +178,11 @@ class Email extends Endpoint {
 		
 		// to is special, 1st gets added to the Email, rest needs to be handled by other means
 		$to = $this->getRecipients('to');
-		array_shift($to);
+		if (is_array($to)) {
+			array_shift($to);
+		} else {
+			$to = [];
+		}
 		
 		$result = [
 			'to' => $to,
