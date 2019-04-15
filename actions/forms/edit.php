@@ -12,7 +12,7 @@ $description = get_input('description');
 $access_id = (int) get_input('access_id');
 $endpoint = get_input('endpoint');
 $endpoint_config = (array) get_input('endpoint_config', []);
-$definition = get_uploaded_file('definition');
+$definition = elgg_get_uploaded_file('definition');
 $thankyou = get_input('thankyou');
 
 $entity = false;
@@ -51,7 +51,8 @@ if (empty($entity)) {
 	
 	// check for uploaded definition
 	if (!empty($definition)) {
-		$entity->importDefinition($definition);
+		$definition_json = file_get_contents($definition->getPathname());
+		$entity->importDefinition($definition_json);
 	}
 }
 
