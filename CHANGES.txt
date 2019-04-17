@@ -1,6 +1,10 @@
 Version history
 ===============
 
+2.0.1 (2019-04-17):
+
+- several small chores/fixes
+
 2.0 (2019-03-27):
 
 - changed: form friendly title resource now uses a controller
