@@ -186,8 +186,9 @@ class Field {
 		
 		if ($apply_section_filter) {
 			$sections = [];
+			$field_value = (array) $this->value;
 			foreach ($this->conditional_sections_objects as $section) {
-				if ($this->value !== $section->getValue()) {
+				if (!in_array($section->getValue(), $field_value)) {
 					continue;
 				}
 				
