@@ -294,7 +294,7 @@ class Field {
 	/**
 	 * Get the validation rule for this field
 	 *
-	 * @return fasle|array
+	 * @return false|array
 	 */
 	protected function getValidationRule() {
 		
