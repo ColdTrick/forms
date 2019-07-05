@@ -155,7 +155,7 @@ function forms_get_validation_rules() {
 /**
  * Get the vaidation rule definitions
  *
- * @access private
+ * @internal
  * @return bool
  */
 function forms_save_validation_rules($rules = []) {
