@@ -7,26 +7,24 @@ class ValidationRule {
 	/**
 	 * Add a menu item to the page menu in forms
 	 *
-	 * @param string          $hook         the name of the hook
-	 * @param string          $type         the type of the hook
-	 * @param \ElggMenuItem[] $return_value current return value
-	 * @param array           $params       supplied params
+	 * @param \Elgg\Hook $hook 'register', 'menu:validation_rule'
 	 *
 	 * @return void|\ElggMenuItem[]
 	 */
-	public static function registerEdit($hook, $type, $return_value, $params) {
+	public static function registerEdit(\Elgg\Hook $hook) {
 		
 		if (!elgg_is_admin_logged_in()) {
 			return;
 		}
 		
-		$rule = elgg_extract('rule', $params);
+		$rule = $hook->getParam('rule');
 		if (empty($rule)) {
 			return;
 		}
 		
 		$name = elgg_extract('name', $rule);
 		
+		$return_value = $hook->getValue();
 		$return_value[] = \ElggMenuItem::factory([
 			'name' => 'edit',
 			'text' => elgg_echo('edit'),

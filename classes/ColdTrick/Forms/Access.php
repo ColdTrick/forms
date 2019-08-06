@@ -7,20 +7,17 @@ class Access {
 	/**
 	 * Change the write access array for forms
 	 *
-	 * @param string $hook
-	 * @param string $type
-	 * @param array $return_value
-	 * @param array $params
+	 * @param \Elgg\Hook $hook 'access:collections:write', 'user'
 	 *
 	 * @return void|array
 	 */
-	public static function formWriteAccess($hook, $type, $return_value, $params) {
-		
+	public static function formWriteAccess(\Elgg\Hook $hook) {
+		$return_value = $hook->getValue();
 		if (!is_array($return_value)) {
 			return;
 		}
 		
-		$input_params = elgg_extract('input_params', $params);
+		$input_params = $hook->getParam('input_params');
 		if (empty($input_params) || !is_array($input_params)) {
 			return;
 		}
