@@ -26,11 +26,7 @@ $body .= elgg_view_form('forms/submit', $form_vars, $body_vars);
 // clear sticky values
 elgg_clear_sticky_form("forms_{$guid}");
 
-// build page
-$body = elgg_view_layout('one_column', [
-	'title' => $title,
+// draw page
+echo elgg_view_page($title, [
 	'content' => $body,
 ]);
-
-// draw page
-echo elgg_view_page($title, $body);
