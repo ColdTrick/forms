@@ -1,10 +1,11 @@
 <?php
 /**
- * This file was created by Translation Editor v6.1
- * On 2018-08-03 14:51
+ * This file was created by Translation Editor v7.0.4
+ * On 2020-05-18 12:11
  */
 
 return array (
+  'forms:action:definition:error:no_def' => 'Geen formulier definitie gevonden',
   'forms:by_line:submissions' => 'Aantal ingevulde formulieren',
   'forms:compose:field:edit:default_value' => 'Standaard waarde',
   'forms:compose:field:edit:default_value:help' => 'Je kunt een gebruikers attribuut selecteren om het veld standaard mee in te vullen',
