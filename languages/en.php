@@ -126,6 +126,7 @@ return [
 	
 	'forms:action:validation_rules:edit:error:regex' => "The regex you provided doesn't seem to be valid",
 	
+	'forms:action:definition:error:no_def' => "No form definition could be found",
 	'forms:action:definition:import:error:json_format' => "The format of the import is incorrect",
 	'forms:action:definition:import:error:json_definition' => "An error occured while importing the definition",
 	'forms:action:definition:import:success' => "Definition successfully imported",
