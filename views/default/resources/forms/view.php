@@ -16,6 +16,7 @@ $body = elgg_view('output/longtext', [
 
 $form_vars = [
 	'enctype' => 'multipart/form-data',
+	'prevent_double_submit' => true
 ];
 $body_vars = [
 	'entity' => $entity,

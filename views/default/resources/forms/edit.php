@@ -15,7 +15,7 @@ elgg_push_entity_breadcrumbs($entity);
 
 $body_vars = forms_prepare_form_vars( $entity->getContainerGUID(), $entity);
 
-$content = elgg_view_form('forms/edit', [], $body_vars);
+$content = elgg_view_form('forms/edit', ['prevent_double_submit' => true], $body_vars);
 
 $sidebar = elgg_view('form/sidebar/history', ['entity' => $entity]);
 

@@ -17,7 +17,7 @@ $title = elgg_echo('forms:add:title');
 
 $body_vars = forms_prepare_form_vars($guid);
 
-$content = elgg_view_form('forms/edit', [], $body_vars);
+$content = elgg_view_form('forms/edit', ['prevent_double_submit' => true], $body_vars);
 
 // build page
 $page_data = elgg_view_layout('default', [
