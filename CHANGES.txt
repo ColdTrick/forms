@@ -1,6 +1,11 @@
 Version history
 ===============
 
+3.0 (2020-05-26):
+
+- changed: added double submit prevention to forms
+- changed: increased minimal Elgg version to 3.3
+
 2.0.3 (2019-08-22):
 
 - several small chores/fixes
