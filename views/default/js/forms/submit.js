@@ -139,6 +139,10 @@ define(function(require) {
 			return;
 		}
 		
+		if ($(event.target).is('textarea')) {
+			return;
+		}
+		
 		if (!$('.elgg-form-forms-submit .elgg-module-tabs').length) {
 			// no tabs on this form
 			return;
