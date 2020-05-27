@@ -4,7 +4,7 @@ namespace ColdTrick\Forms\Endpoint;
 
 use ColdTrick\Forms\Endpoint;
 use ColdTrick\Forms\Result;
-use Elgg\Email;
+use Elgg\Email as ElggMail;
 
 class Csv extends Endpoint {
 
@@ -83,7 +83,7 @@ class Csv extends Endpoint {
 			return;
 		}
 		
-		$email = Email::factory([
+		$email = ElggMail::factory([
 			'to' => $to,
 			'subject' => elgg_echo('forms:endpoint:csv:notification:subject', [$form->getDisplayName()]),
 			'body' => elgg_echo('forms:endpoint:csv:notification:body', [
