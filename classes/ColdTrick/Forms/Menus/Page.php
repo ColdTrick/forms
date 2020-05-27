@@ -13,7 +13,16 @@ class Page {
 	 */
 	public static function registerValidationRules(\Elgg\Hook $hook) {
 		
-		if (!elgg_in_context('forms') || !elgg_is_logged_in() || elgg_in_context('compose')) {
+		if (!elgg_in_context('forms') || elgg_in_context('compose')) {
+			return;
+		}
+		
+		$page_owner = elgg_get_page_owner_entity();
+		if (!$page_owner instanceof \ElggGroup) {
+			$page_owner = elgg_get_site_entity();
+		}
+		
+		if (!$page_owner->canWriteToContainer(0, 'object', 'form')) {
 			return;
 		}
 		

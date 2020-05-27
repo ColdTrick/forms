@@ -49,6 +49,7 @@ class Bootstrap extends DefaultPluginBootstrap {
 		$hooks->registerHandler('access:collections:write', 'user', '\ColdTrick\Forms\Access::formWriteAccess');
 		$hooks->registerHandler('register', 'menu:entity', '\ColdTrick\Forms\Menus\Entity::registerForm');
 		$hooks->registerHandler('register', 'menu:page', '\ColdTrick\Forms\Menus\Page::registerValidationRules');
+		$hooks->registerHandler('register', 'menu:title', '\ColdTrick\Forms\Menus\Title::addCsvDownload');
 		$hooks->registerHandler('register', 'menu:validation_rule', '\ColdTrick\Forms\Menus\ValidationRule::registerEdit');
 	}
 }

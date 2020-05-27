@@ -11,7 +11,7 @@ class Definition {
 	protected $config;
 
 	/**
-	 * @var Form The form for this definition
+	 * @var \Form The form for this definition
 	 */
 	protected $form;
 	

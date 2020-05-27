@@ -3,7 +3,13 @@
  * List all the forms in the system
  */
 
-elgg_register_title_button('forms', 'add', 'object', 'form');
+$page_owner = elgg_get_page_owner_entity();
+if (!$page_owner instanceof ElggGroup) {
+	$page_owner = elgg_get_site_entity();
+}
+if ($page_owner->canWriteToContainer(0, 'object', 'form')) {
+	elgg_register_title_button('forms', 'add', 'object', 'form');
+}
 
 elgg_push_collection_breadcrumbs('object', 'form');
 
@@ -16,12 +22,7 @@ $content = elgg_list_entities([
 	'no_results' => true,
 ]);
 
-// build page
-$page_data = elgg_view_layout('default', [
-	'title' => $title_text,
-	'content' => $content,
-	'filter' => false,
-]);
-
 // draw page
-echo elgg_view_page($title_text, $page_data);
+echo elgg_view_page($title_text, [
+	'content' => $content,
+]);

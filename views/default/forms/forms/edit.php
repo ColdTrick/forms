@@ -68,14 +68,7 @@ echo elgg_view_field([
 ]);
 
 // endpoint config
-// @todo this needs to be extended with more options
-echo elgg_view_field([
-	'#type' => 'hidden',
-	'name' => 'endpoint',
-	'value' => 'email',
-]);
-
-echo elgg_view('form/edit/endpoint/email', $vars);
+echo elgg_view('form/edit/endpoint', $vars);
 
 // footer
 if (!empty($entity)) {

@@ -30,4 +30,5 @@ elgg_clear_sticky_form("forms_{$guid}");
 // draw page
 echo elgg_view_page($title, [
 	'content' => $body,
+	'entity' => $entity,
 ]);

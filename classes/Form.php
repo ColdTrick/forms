@@ -25,8 +25,8 @@ class Form extends \ElggObject {
 		$site = elgg_get_site_entity();
 		
 		$this->attributes['subtype'] = self::SUBTYPE;
-		$this->attributes['owner_guid'] = $site->getGUID();
-		$this->attributes['container_guid'] = $site->getGUID();
+		$this->attributes['owner_guid'] = $site->guid;
+		$this->attributes['container_guid'] = $site->guid;
 	}
 	
 	/**
@@ -36,7 +36,9 @@ class Form extends \ElggObject {
 	public function getURL() {
 		
 		if (!empty($this->friendly_url)) {
-			return "forms/{$this->friendly_url}";
+			return elgg_generate_url('view:object:form:friendly', [
+				'title' => $this->friendly_url,
+			]);
 		}
 		
 		return elgg_generate_entity_url($this);
@@ -201,7 +203,7 @@ class Form extends \ElggObject {
 			return false;
 		}
 		
-		if (!($endpoint instanceof Endpoint)) {
+		if (!$endpoint instanceof Endpoint) {
 			elgg_log('Form endpoint is not an instanceof \ColdTrick\Forms\Endpoint', 'ERROR');
 			return false;
 		}

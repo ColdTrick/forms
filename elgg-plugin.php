@@ -51,12 +51,15 @@ return [
 		'collection:validation_rules' => [
 			'path' => '/forms/validation_rules',
 			'resource' => 'forms/validation_rules',
+			'middleware' => [
+				AdminGatekeeper::class,
+			],
 		],
 		'default:object:form' => [
 			'path' => '/forms',
 			'resource' => 'forms/all',
 		],
-		'view:form:friendly' => [
+		'view:object:form:friendly' => [
 			'path' => '/forms/{title}',
 			'controller' => \ColdTrick\Forms\Controllers\FriendlyForm::class,
 		],

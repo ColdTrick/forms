@@ -23,7 +23,7 @@ function forms_prepare_form_vars($container_guid, $entity = null) {
 		'thankyou' => '',
 		'access_id' => ACCESS_PRIVATE,
 		'container_guid' => (int) $container_guid,
-		'endpoint' => '',
+		'endpoint' => 'email',
 		'endpoint_config' => [],
 	];
 	
@@ -129,6 +129,9 @@ function forms_generate_valid_friendly_url($friendly_url, $entity_guid = null) {
 function forms_get_available_endpoints() {
 	
 	$result = [
+		'csv' => [
+			'class' => '\ColdTrick\Forms\Endpoint\Csv',
+		],
 		'email' => [
 			'class' => '\ColdTrick\Forms\Endpoint\Email',
 		],

@@ -81,6 +81,26 @@ return [
 	'forms:edit:thankyou' => "Thank you message",
 	'forms:edit:thankyou:help' => "When a user completes the form they will be send to a thank you page, you can add custom text to that page.",
 	
+	'forms:edit:endpoint' => "Endpoint",
+	'forms:edit:endpoint:help' => "When a form is filled in what should happen with the results",
+	'forms:edit:endpoint:email' => "E-mail notification",
+	'forms:edit:endpoint:csv' => "CSV file",
+	
+	'forms:endpoint:csv' => "CSV file configuration",
+	'forms:endpoint:csv:to' => "E-mail address for notification upon form completion",
+	'forms:endpoint:csv:to:help' => "An e-mail notification can be send when a form is filled in. This notification does not contain the form answers.",
+	'forms:endpoint:csv:downloaders' => "Who can download the CSV file with the results",
+	'forms:endpoint:csv:downloaders:help' => "By default only site administrators can download the results of this form. Additional users can be configured",
+	
+	'forms:endpoint:csv:notification:subject' => "New submittion of the form: %s",
+	'forms:endpoint:csv:notification:body' => "Hi,
+
+A new submittion was made on the form: %s
+
+If you wish to download all responses until now check the link below
+
+%s",
+	
 	'forms:endpoint:email' => "Email configuration",
 	'forms:endpoint:email:subject' => "A new reponse for form: %s",
 	'forms:endpoint:email:to' => "To",

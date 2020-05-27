@@ -13,7 +13,7 @@ class Result extends Definition {
 	/**
 	 * Create a form result
 	 *
-	 * @param Form $form the form for this result
+	 * @param \Form $form the form for this result
 	 */
 	public function __construct(\Form $form) {
 		parent::__construct($form);
