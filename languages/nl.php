@@ -17,7 +17,6 @@ return array (
   'forms:submit:tab:text' => 'Pagina %d',
   'forms:compose:field:type:number' => 'Nummer',
   'item:object:form' => 'Formulier',
-  'forms:file:upload_limit' => 'Maximaal toegestane bestandsgrootte is %s',
   'forms:invalid_input_exception:required' => 'Verplicht veld ontbreekt',
   'forms:invalid_input_exception:pattern' => 'Invoer komt niet overeen met het verwachte patroon',
   'forms:invalid_input_exception:value:email' => 'Geef een geldig e-mailadres op',

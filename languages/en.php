@@ -5,8 +5,6 @@ return [
 	'item:object:form' => "Form",
 	'collection:object:form' => "Forms",
 	
-	'forms:file:upload_limit' => "Maximum allowed file size is %s",
-	
 	'forms:invalid_input_exception:required' => "Missing required field",
 	'forms:invalid_input_exception:pattern' => "Field input doesn't match pattern",
 	'forms:invalid_input_exception:value:email' => "Please provide a valid e-mail address",
