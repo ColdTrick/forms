@@ -1,4 +1,12 @@
 <?php
+/**
+ * Sidebar view for adding fields to a form
+ *
+ * @uses $vars['entity'] the form entity
+ */
+
+/* @var $entity \Form */
+$entity = elgg_extract('entity', $vars);
 
 $types = [
 	[
@@ -54,6 +62,12 @@ $types = [
 $list = '';
 foreach ($types as $type_params) {
 	
+	$field_type = elgg_extract('#type', $type_params);
+	if ($entity->endpoint === 'csv' && $field_type=== 'file') {
+		// file inputs aren't allowed on CSV endpoints
+		continue;
+	}
+	
 	$type_body = elgg_format_element('span', [], elgg_extract('#label', $type_params));
 	
 	$type_body .= elgg_format_element([
@@ -72,7 +86,7 @@ foreach ($types as $type_params) {
 		'class' => 'forms-compose-delete',
 	]);
 	
-	if (in_array(elgg_extract('#type', $type_params), ['select', 'radio'])) {
+	if (in_array($field_type, ['select', 'radio'])) {
 		$type_body .= elgg_view_icon('indent', [
 			'title' => elgg_echo('forms:compose:field:conditional:title'),
 			'class' => 'link forms-compose-add-conditional-section',
