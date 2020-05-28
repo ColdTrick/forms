@@ -2,6 +2,8 @@
 
 namespace ColdTrick\Forms\Controllers;
 
+use Elgg\Http\ResponseBuilder;
+
 class FriendlyForm {
 	
 	/**
