@@ -101,6 +101,10 @@ If you wish to download all responses until now check the link below
 
 %s",
 	
+	'forms:endpoint:csv:download' => "Download CSV results",
+	'forms:endpoint:csv:clear' => "Clear CSV results",
+	'forms:endpoint:csv:clear:confirm' => "Are you sure you wish to clear all results?",
+	
 	'forms:endpoint:email' => "Email configuration",
 	'forms:endpoint:email:subject' => "A new reponse for form: %s",
 	'forms:endpoint:email:to' => "To",
@@ -148,4 +152,9 @@ If you wish to download all responses until now check the link below
 	'forms:action:definition:import:error:json_format' => "The format of the import is incorrect",
 	'forms:action:definition:import:error:json_definition' => "An error occured while importing the definition",
 	'forms:action:definition:import:success' => "Definition successfully imported",
+	
+	'forms:action:endpoints:csv:clear:error:endpoint' => "This form doesn't have a CSV enpoint configured",
+	'forms:action:endpoints:csv:clear:error:no_file' => "There is no CSV file to remove",
+	'forms:action:endpoints:csv:clear:error:delete_file' => "An error occured while removing the CSV file",
+	'forms:action:endpoints:csv:clear:success' => "The CSV file was removed successfully",
 ];

@@ -70,6 +70,7 @@ return [
 		'forms/definition/export' => ['access' => 'admin'],
 		'forms/definition/import' => ['access' => 'admin'],
 		'forms/edit' => ['access' => 'admin'],
+		'forms/endpoints/csv/clear' => ['access' => 'admin'],
 		'forms/submit' => ['access' => 'public'],
 		'forms/validation_rules/delete' => ['access' => 'admin'],
 		'forms/validation_rules/edit' => ['access' => 'admin'],
@@ -83,12 +84,15 @@ return [
 		'register' => [
 			'menu:entity' => [
 				'\ColdTrick\Forms\Menus\Entity::registerForm' => [],
+				'\ColdTrick\Forms\Menus\Entity::addCsvDownload' => [],
+				'\ColdTrick\Forms\Menus\Entity::addCsvClear' => [],
 			],
 			'menu:page' => [
 				'\ColdTrick\Forms\Menus\Page::registerValidationRules' => [],
 			],
 			'menu:title' => [
 				'\ColdTrick\Forms\Menus\Title::addCsvDownload' => [],
+				'\ColdTrick\Forms\Menus\Title::addCsvClear' => [],
 			],
 			'menu:validation_rule' => [
 				'\ColdTrick\Forms\Menus\ValidationRule::registerEdit' => [],
