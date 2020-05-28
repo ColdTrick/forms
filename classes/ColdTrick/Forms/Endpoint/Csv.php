@@ -54,7 +54,7 @@ class Csv extends Endpoint {
 		}
 		
 		// add values
-		array_unshift($values, date('r')); // add time value
+		array_unshift($values, date('Y-m-d H:i:s')); // add time value
 		fputcsv($fh, $values, ';');
 		
 		$file->close();
