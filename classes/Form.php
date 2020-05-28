@@ -80,10 +80,32 @@ class Form extends \ElggObject {
 	 */
 	public function getDefinition() {
 		if (!isset($this->definition_object)) {
-			$this->definition_object = new Definition($this);
+			$endpoints = forms_get_available_endpoints();
+			$endpoint = elgg_extract($this->endpoint, $endpoints);
+			$class = elgg_extract('definition', $endpoint, Definition::class);
+			
+			$definition = new $class($this);
+			if (!$definition instanceof Definition) {
+				throw new InvalidClassException("{$class} must extend " . Definition::class);
+			}
+			
+			$this->definition_object = $definition;
 		}
 		
 		return $this->definition_object;
+	}
+	
+	/**
+	 * Can the form be used / filled in
+	 *
+	 * @return bool
+	 */
+	public function isValid() {
+		if (!$this->hasDefinition()) {
+			return false;
+		}
+		
+		return $this->getDefinition()->isValid();
 	}
 	
 	/**

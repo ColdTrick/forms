@@ -37,7 +37,8 @@ if ($entity->hasDefinition()) {
 // build page elements
 $title = elgg_echo('forms:compose:title', [$entity->getDisplayName()]);
 
-$content = elgg_view_form('forms/compose', ['prevent_double_submit' => true], ['entity' => $entity]);
+$content = elgg_view('form/compose/validation', ['entity' => $entity]);
+$content .= elgg_view_form('forms/compose', ['prevent_double_submit' => true], ['entity' => $entity]);
 
 // build page
 elgg_push_context('compose');

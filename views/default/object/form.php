@@ -26,6 +26,14 @@ if ($full_view) {
 		];
 	}
 	
+	if (!$entity->isValid()) {
+		$imprint[] = [
+			'icon_name' => 'exclamation-circle',
+			'content' => elgg_echo('forms:definition:validation:error:imprint'),
+			'class' => 'elgg-state elgg-state-error',
+		];
+	}
+	
 	$params = [
 		'entity' => $entity,
 		'content' => elgg_get_excerpt($entity->description),

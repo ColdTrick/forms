@@ -131,6 +131,7 @@ function forms_get_available_endpoints() {
 	$result = [
 		'csv' => [
 			'class' => '\ColdTrick\Forms\Endpoint\Csv',
+			'definition' => '\ColdTrick\Forms\Definition\Csv',
 		],
 		'email' => [
 			'class' => '\ColdTrick\Forms\Endpoint\Email',

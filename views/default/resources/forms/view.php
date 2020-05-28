@@ -1,9 +1,17 @@
 <?php
 
+use Elgg\HttpException;
+
 $guid = elgg_extract('guid', $vars);
 elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE);
 
+/* @var $entity Form */
 $entity = get_entity($guid);
+if (!$entity->isValid()) {
+	throw new HttpException(elgg_echo('forms:view:error:validation', [$entity->getDisplayName()]), ELGG_HTTP_NOT_FOUND);
+}
+
+
 $sticky_values = elgg_get_sticky_values("forms_{$guid}");
 
 // build page elements

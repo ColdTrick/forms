@@ -105,6 +105,9 @@ If you wish to download all responses until now check the link below
 	'forms:endpoint:csv:clear' => "Clear CSV results",
 	'forms:endpoint:csv:clear:confirm' => "Are you sure you wish to clear all results?",
 	
+	'form:endpoint:csv:validation:file_exists' => "The form already has some responses. Changing the form could result in unusable output in the CSV file.
+To make sure headers in the CSV match with the data, please download the results first and then clear the results.",
+	
 	'forms:endpoint:email' => "Email configuration",
 	'forms:endpoint:email:subject' => "A new reponse for form: %s",
 	'forms:endpoint:email:to' => "To",
@@ -112,6 +115,11 @@ If you wish to download all responses until now check the link below
 	'forms:endpoint:email:cc:user' => "Automatically send a copy to the user filling in this form",
 	'forms:endpoint:email:bcc' => "BCC",
 	'forms:endpoint:email:body:attachment' => "(see attachment)",
+	
+	'forms:definition:validation:error:imprint' => "This form can't be used",
+	'forms:definition:validation:error:csv:file' => "The field with the label '%s' is of the type File, this isn't allowed for CSV forms.",
+	
+	'forms:view:error:validation' => "The form '%s' contains error which prevent it's use. Please contact the form owner to fix this issue and try again later.",
 	
 	'forms:entity:clone:title' => "Copy of %s",
 	

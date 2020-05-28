@@ -75,4 +75,22 @@ class Definition {
 		
 		return $result;
 	}
+	
+	/**
+	 * Check if a definition is valid
+	 *
+	 * @return bool
+	 */
+	public function isValid() {
+		return true;
+	}
+	
+	/**
+	 * When a definition isn't valid use this function to get the validation errors
+	 *
+	 * @return string[]
+	 */
+	public function getValidationErrors() {
+		return [];
+	}
 }
