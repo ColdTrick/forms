@@ -74,6 +74,27 @@ return [
 		'forms/validation_rules/delete' => ['access' => 'admin'],
 		'forms/validation_rules/edit' => ['access' => 'admin'],
 	],
+	'hooks' => [
+		'access:collections:write' => [
+			'user' => [
+				'\ColdTrick\Forms\Access::formWriteAccess' => [],
+			],
+		],
+		'register' => [
+			'menu:entity' => [
+				'\ColdTrick\Forms\Menus\Entity::registerForm' => [],
+			],
+			'menu:page' => [
+				'\ColdTrick\Forms\Menus\Page::registerValidationRules' => [],
+			],
+			'menu:title' => [
+				'\ColdTrick\Forms\Menus\Title::addCsvDownload' => [],
+			],
+			'menu:validation_rule' => [
+				'\ColdTrick\Forms\Menus\ValidationRule::registerEdit' => [],
+			],
+		],
+	],
 	'view_extensions' => [
 		'css/elgg' => [
 			'css/forms.css' => [],

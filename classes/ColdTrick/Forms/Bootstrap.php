@@ -21,7 +21,6 @@ class Bootstrap extends DefaultPluginBootstrap {
 	 */
 	public function init() {
 		$this->initViews();
-		$this->initRegisterHooks();
 	}
 
 	/**
@@ -33,20 +32,5 @@ class Bootstrap extends DefaultPluginBootstrap {
 		elgg_register_ajax_view('form/friendly_title');
 		elgg_register_ajax_view('forms/forms/validation_rules/edit');
 		elgg_register_ajax_view('forms/forms/definition/import');
-	}
-	
-	/**
-	 * Register plugin hooks
-	 *
-	 * @return void
-	 */
-	protected function initRegisterHooks() {
-		$hooks = $this->elgg()->hooks;
-		
-		$hooks->registerHandler('access:collections:write', 'user', '\ColdTrick\Forms\Access::formWriteAccess');
-		$hooks->registerHandler('register', 'menu:entity', '\ColdTrick\Forms\Menus\Entity::registerForm');
-		$hooks->registerHandler('register', 'menu:page', '\ColdTrick\Forms\Menus\Page::registerValidationRules');
-		$hooks->registerHandler('register', 'menu:title', '\ColdTrick\Forms\Menus\Title::addCsvDownload');
-		$hooks->registerHandler('register', 'menu:validation_rule', '\ColdTrick\Forms\Menus\ValidationRule::registerEdit');
 	}
 }
