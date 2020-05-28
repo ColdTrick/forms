@@ -6,6 +6,7 @@ use ColdTrick\Forms\Endpoint;
 use ColdTrick\Forms\Result;
 use Elgg\Email as ElggMail;
 use Elgg\Values;
+use ColdTrick\Forms\Definition\Field;
 
 class Csv extends Endpoint {
 
@@ -19,16 +20,38 @@ class Csv extends Endpoint {
 		$headers = [];
 		$values = [];
 		
+		$add_field_value = function(Field $field) use (&$headers, &$values) {
+			$value = $field->getValue();
+			
+			switch ($field->getType()) {
+				case 'file':
+					return;
+				case 'longtext':
+				case 'plaintext':
+					$value = str_replace('\r', '', $value);
+					break;
+				default:
+					break;
+			}
+			
+			if (is_array($value)) {
+				$value = implode(',', $value);
+			}
+			
+			$headers[] = $field->getLabel();
+			$values[] = trim($value);
+		};
+		
 		foreach ($result->getPages() as $page) {
 			foreach ($page->getSections() as $section) {
 				foreach ($section->getFields() as $field) {
-					if ($field->getType() === 'file') {
-						// not supported
-						continue;
-					}
+					$add_field_value($field);
 					
-					$headers[] = $field->getLabel();
-					$values[] = $field->getValue();
+					foreach ($field->getConditionalSections() as $conditional_section) {
+						foreach ($conditional_section->getFields() as $conditional_field) {
+							$add_field_value($conditional_field);
+						}
+					}
 				}
 			}
 		}
