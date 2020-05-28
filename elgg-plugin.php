@@ -74,5 +74,10 @@ return [
 		'forms/validation_rules/delete' => ['access' => 'admin'],
 		'forms/validation_rules/edit' => ['access' => 'admin'],
 	],
+	'view_extensions' => [
+		'css/elgg' => [
+			'css/forms.css' => [],
+		],
+	],
 ];
 		

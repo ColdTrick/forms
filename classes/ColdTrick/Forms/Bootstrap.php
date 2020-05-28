@@ -30,12 +30,9 @@ class Bootstrap extends DefaultPluginBootstrap {
 	 * @return void
 	 */
 	protected function initViews() {
-		
 		elgg_register_ajax_view('form/friendly_title');
 		elgg_register_ajax_view('forms/forms/validation_rules/edit');
 		elgg_register_ajax_view('forms/forms/definition/import');
-		
-		elgg_extend_view('css/elgg', 'css/forms.css');
 	}
 	
 	/**
