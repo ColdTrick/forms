@@ -7,6 +7,10 @@ $config = elgg_extract('csv', $endpoint_config, []);
 // make form elements
 $csv = '';
 
+$csv .= elgg_view('output/longtext', [
+	'value' => elgg_echo('forms:endpoint:csv:description'),
+]);
+
 $csv .= elgg_view_field([
 	'#type' => 'email',
 	'#label' => elgg_echo('forms:endpoint:csv:to'),

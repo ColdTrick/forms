@@ -5,7 +5,13 @@ $endpoint_config = elgg_extract('endpoint_config', $vars, []);
 $config = elgg_extract('email', $endpoint_config, []);
 
 // make form elements
-$email = elgg_view_field([
+$email = '';
+
+$email .= elgg_view('output/longtext', [
+	'value' => elgg_echo('forms:endpoint:email:description'),
+]);
+
+$email .= elgg_view_field([
 	'#type' => 'email',
 	'#label' => elgg_echo('forms:endpoint:email:to'),
 	'name' => 'endpoint_config[email][to]',
