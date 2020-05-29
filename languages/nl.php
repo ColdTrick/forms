@@ -1,10 +1,43 @@
 <?php
 /**
- * This file was created by Translation Editor v7.0.4
- * On 2020-05-18 12:11
+ * This file was created by Translation Editor v8.0
+ * On 2020-05-29 10:43
  */
 
 return array (
+  'forms:edit:endpoint' => 'Eindpunt',
+  'forms:edit:endpoint:help' => 'Als het formulier is ingevuld, wat moet er gebeuren met de resultaten',
+  'forms:edit:endpoint:email' => 'E-mail notificatie',
+  'forms:edit:endpoint:csv' => 'CSV bestand',
+  'forms:endpoint:csv' => 'CSV bestand configuratie',
+  'forms:endpoint:csv:description' => 'De formulier resultaten zullen worden opgeslagen in een CSV bestand welke ten alle tijden is te downloaden. 
+Er kan een e-mail adres worden geconfigureerd welke een notificatie ontvangt als het formulier is ingevuld. Ook is het mogelijk gebruikers te configureren welke het CSV bestand mogen downloaden. 
+Vanwege de CSV bestandsopslag is het niet mogelijk vragen van het type Bestand op te nemen op het formulier.',
+  'forms:endpoint:csv:to' => 'E-mail adres welke de notificatie ontvangt als een formulier is ingevuld',
+  'forms:endpoint:csv:to:help' => 'Er kan een e-mail notificatie worden verzonden als het formulier is ingevuld. Deze notificatie bevat geen antwoorden van het formulier.',
+  'forms:endpoint:csv:downloaders' => 'Wie mogen het CSV bestand met de resultaten downloaden',
+  'forms:endpoint:csv:downloaders:help' => 'Standaard mogen alleen de site beheerders de resultaten downloaden. Extra gebruikers kunnen hier worden geconfigureerd.',
+  'forms:endpoint:csv:notification:subject' => 'Het formulier \'%s\' is ingevuld',
+  'forms:endpoint:csv:notification:body' => 'Hallo,
+
+Iemand heeft het formulier \'%s\' ingevuld.
+
+Als je alle resultaten wilt downloaden, klik op onderstaande link
+%s',
+  'forms:endpoint:csv:download' => 'Download CSV bestand',
+  'forms:endpoint:csv:clear' => 'Wis CSV bestand',
+  'forms:endpoint:csv:clear:confirm' => 'Weet je zeker dat je alle resultaten wilt verwijderen',
+  'form:endpoint:csv:validation:file_exists' => 'Het formulier is al een aantal keer ingevuld. Wijzigingen op het formulier kunnen resulteren in onbruikbare data in het CSV bestand.
+Om er zeker van te zijn dat de koppen in het CSV bestand overeen komen met de data, download eerst de huidige resultaten en verwijder deze dan.',
+  'forms:endpoint:email:description' => 'De resultaten van het formulier zullen worden gemaild naar de geconfigureerde e-mail adressen. Het is ook mogelijk een kopie van het formulier naar de gebruiker te sturen welke het heeft ingevuld.
+Bepaalde velden op het formulier kunnen worden ingesteld om ook een kopie van het formulier te krijgen.',
+  'forms:definition:validation:error:imprint' => 'Dit formulier kan niet worden gebruikt',
+  'forms:definition:validation:error:csv:file' => 'Het veld met het label \'%s\' is van het type Bestand, dit is niet toegestaan voor CSV formulieren.',
+  'forms:view:error:validation' => 'Het formulier \'%s\' bevat fouten welke voorkomen dat het formulier gebruikt kan worden. Neem contact op met de formulier eigenaar om dit op te laten lossen en probeer het later nogmaals.',
+  'forms:action:endpoints:csv:clear:error:endpoint' => 'Dit formulier heeft geen CSV eindpunt geconfigureerd',
+  'forms:action:endpoints:csv:clear:error:no_file' => 'Er is geen CSV bestand om te verwijderen',
+  'forms:action:endpoints:csv:clear:error:delete_file' => 'Er is een fout opgetreden tijdens het verwijderen van het CSV bestand',
+  'forms:action:endpoints:csv:clear:success' => 'Het CSV bestand is verwijderd',
   'forms:action:definition:error:no_def' => 'Geen formulier definitie gevonden',
   'forms:by_line:submissions' => 'Aantal ingevulde formulieren',
   'forms:compose:field:edit:default_value' => 'Standaard waarde',

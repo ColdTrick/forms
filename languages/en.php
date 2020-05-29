@@ -87,8 +87,9 @@ return [
 	'forms:edit:endpoint:csv' => "CSV file",
 	
 	'forms:endpoint:csv' => "CSV file configuration",
-	'forms:endpoint:csv:description' => "Form results will be stored in a CSV which can be downloaded at any time. An e-mail address can be configured to receive a notification when a form is submitted.
-Also it's possible to configure users who are allowed to download the CSV file. Due to the CSV storage File questions on the form aren't allowed.",
+	'forms:endpoint:csv:description' => "Form results will be stored in a CSV which can be downloaded at any time.
+An e-mail address can be configured to receive a notification when a form is submitted. Also it's possible to configure users who are allowed to download the CSV file.
+Due to the CSV storage File questions on the form aren't allowed.",
 	'forms:endpoint:csv:to' => "E-mail address for notification upon form completion",
 	'forms:endpoint:csv:to:help' => "An e-mail notification can be send when a form is filled in. This notification does not contain the form answers.",
 	'forms:endpoint:csv:downloaders' => "Who can download the CSV file with the results",
