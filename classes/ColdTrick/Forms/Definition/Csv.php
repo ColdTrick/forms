@@ -38,6 +38,8 @@ class Csv extends Definition {
 	
 	/**
 	 * Validates the definition
+	 *
+	 * @return void
 	 */
 	protected function validate() {
 		$this->validation_errors = [];
@@ -45,17 +47,33 @@ class Csv extends Definition {
 		foreach ($this->getPages() as $page) {
 			foreach ($page->getSections() as $section) {
 				foreach ($section->getFields() as $field) {
+					$this->validateField($field);
 					
-					switch ($field->getType()) {
-						case 'file':
-							$this->validation_errors[] = elgg_echo('forms:definition:validation:error:csv:file', [$field->getLabel()]);
-							break;
-						default:
-							// all is good
-							continue(2);
+					foreach ($field->getConditionalSections() as $conditional_section) {
+						foreach ($conditional_section->getFields() as $conditional_field) {
+							$this->validateField($conditional_field);
+						}
 					}
 				}
 			}
+		}
+	}
+	
+	/**
+	 * Validate a single field on the form
+	 *
+	 * @param Field $field the field to check
+	 *
+	 * @return void
+	 */
+	protected function validateField(Field $field) {
+		switch ($field->getType()) {
+			case 'file':
+				$this->validation_errors[] = elgg_echo('forms:definition:validation:error:csv:file', [$field->getLabel()]);
+				break;
+			default:
+				// all is good
+				break;
 		}
 	}
 }
