@@ -3,18 +3,28 @@
 namespace ColdTrick\Forms\Controllers;
 
 use Elgg\Http\ResponseBuilder;
+use Elgg\Exceptions\Http\EntityNotFoundException;
 
 class FriendlyForm {
+	
+	const HANDLERS = [
+		'all',
+		'add',
+		'edit',
+		'view',
+		'compose',
+		'validation_rules',
+		'thankyou',
+	];
 	
 	/**
 	 * Rewrite /forms/form-name to a workable page handler
 	 *
 	 * @param \Elgg\Request $request Request
+	 *
 	 * @return ResponseBuilder
 	 *
-	 * @throws \Elgg\BadRequestException
-	 * @throws \Elgg\EntityNotFoundException
-	 * @throws \Elgg\EntityNotFoundException
+	 * @throws EntityNotFoundException
 	 */
 	public function __invoke(\Elgg\Request $request) {
 		
@@ -23,7 +33,7 @@ class FriendlyForm {
 			return;
 		}
 		
-		if (in_array($friendly_url, \ColdTrick\Forms\Bootstrap::HANDLERS)) {
+		if (in_array($friendly_url, self::HANDLERS)) {
 			return;
 		}
 		
@@ -36,7 +46,7 @@ class FriendlyForm {
 		]);
 		
 		if (empty($entities)) {
-			throw new \Elgg\EntityNotFoundException();
+			throw new EntityNotFoundException();
 		}
 		
 		$entity = $entities[0];

@@ -10,7 +10,7 @@ foreach (elgg_extract('fields', $section, []) as $field) {
 	$fields_result .= elgg_view('form/compose/canvas/field', ['field' => $field]);
 }
 
-$section_title = elgg_view_icon('minus-square-o', [
+$section_title = elgg_view_icon('minus-square-regular', [
 	'class' => 'forms-compose-toggle-element',
 ]);
 

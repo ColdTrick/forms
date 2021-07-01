@@ -25,4 +25,5 @@ $content = elgg_list_entities([
 // draw page
 echo elgg_view_page($title_text, [
 	'content' => $content,
+	'filter_value' => 'all',
 ]);

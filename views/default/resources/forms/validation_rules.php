@@ -15,19 +15,12 @@ elgg_register_menu_item('title', [
 	],
 ]);
 
-// build page elements
-$title = elgg_echo('forms:validation_rules:title');
-
 $body = elgg_view('form/validation_rules/list', [
 	'rules' => forms_get_validation_rules(),
 ]);
 
-// build page
-$page_data = elgg_view_layout('default', [
-	'title' => $title,
+// draw page
+echo elgg_view_page(elgg_echo('forms:validation_rules:title'), [
 	'content' => $body,
 	'filter' => false,
 ]);
-
-// draw page
-echo elgg_view_page($title, $page_data);

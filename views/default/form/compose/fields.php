@@ -101,4 +101,4 @@ foreach ($types as $type_params) {
 
 $body = elgg_format_element('ul', ['class' => 'forms-compose-fields'], $list);
 
-echo elgg_view_module('aside', elgg_view_icon('plus-square-o') . '&nbsp;' . elgg_echo('forms:compose:fields:title'), $body);
+echo elgg_view_module('aside', elgg_view_icon('plus-square-regular') . '&nbsp;' . elgg_echo('forms:compose:fields:title'), $body);

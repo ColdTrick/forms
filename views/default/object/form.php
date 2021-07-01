@@ -18,7 +18,7 @@ if ($full_view) {
 	$imprint = [];
 	if ($entity->canEdit()) {
 		$imprint[] = [
-			'icon_name' => 'check-square-o',
+			'icon_name' => 'check-square-regular',
 			'content' => elgg_format_element('span', [
 				'title' => elgg_echo('forms:by_line:submissions'),
 				'class' => 'forms-submissions',

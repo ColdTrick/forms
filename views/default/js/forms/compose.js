@@ -1,7 +1,4 @@
-define(function(require) {
-	
-	var $ = require('jquery');
-	var elgg = require('elgg');
+define(['jquery', 'elgg', 'jquery-ui/widgets/sortable', 'jquery-ui/widgets/draggable'], function($, elgg) {
 	
 	var addPage = function() {
 		
@@ -121,7 +118,7 @@ define(function(require) {
 	
 	var toggleElement = function() {
 		$(this).parent().parent().find(' > .ui-sortable').slideToggle();
-		$(this).toggleClass('elgg-icon-minus-square-o fa-minus-square elgg-icon-plus-square-o fa-plus-square');
+		$(this).toggleClass('elgg-icon-minus-square-regular fa-minus-square elgg-icon-plus-square-regular fa-plus-square');
 	};
 	
 	var initSortablePages = function() {
@@ -229,30 +226,24 @@ define(function(require) {
 		$('.elgg-form-forms-compose').submit();
 	};
 	
-	// sortable
-	var init = function() {
-		
-		initSortablePages();
-		
-		// draggable
-		$('.forms-compose-fields > li').draggable({
-			helper: 'clone',
-			stack: '.forms-compose-list-field',
-			connectToSortable: '.forms-compose-list-section > ul, .forms-compose-conditional-section > ul'
-		});
-		
-		$(document).on('click', '.forms-compose-add-page', addPage);
-		$(document).on('click', '.forms-compose-add-section', addSection);
-		$(document).on('click', '.forms-compose-add-conditional-section', addConditionalSection);
-		$(document).on('click', '.forms-compose-save', saveDefinition);
-		$(document).on('click', '.forms-compose-delete', deleteFormElement);
-		$(document).on('click', '.forms-compose-field-edit', editField);
-		$(document).on('click', '.forms-compose-field-save', saveField);
-		$(document).on('change', '.forms-compose-edit-field [name="#type"]', toggleConditionalFields);
-		$(document).on('click', '.forms-compose-edit-title', editTitle);
-		$(document).on('click', '.forms-compose-toggle-element', toggleElement);
-	};
+	initSortablePages();
 	
-	elgg.register_hook_handler('init', 'system', init);
+	// draggable
+	$('.forms-compose-fields > li').draggable({
+		helper: 'clone',
+		stack: '.forms-compose-list-field',
+		connectToSortable: '.forms-compose-list-section > ul, .forms-compose-conditional-section > ul'
+	});
+	
+	$(document).on('click', '.forms-compose-add-page', addPage);
+	$(document).on('click', '.forms-compose-add-section', addSection);
+	$(document).on('click', '.forms-compose-add-conditional-section', addConditionalSection);
+	$(document).on('click', '.forms-compose-save', saveDefinition);
+	$(document).on('click', '.forms-compose-delete', deleteFormElement);
+	$(document).on('click', '.forms-compose-field-edit', editField);
+	$(document).on('click', '.forms-compose-field-save', saveField);
+	$(document).on('change', '.forms-compose-edit-field [name="#type"]', toggleConditionalFields);
+	$(document).on('click', '.forms-compose-edit-title', editTitle);
+	$(document).on('click', '.forms-compose-toggle-element', toggleElement);
 	
 });

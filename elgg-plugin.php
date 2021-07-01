@@ -1,12 +1,13 @@
 <?php
 
-use ColdTrick\Forms\Bootstrap;
 use Elgg\Router\Middleware\AdminGatekeeper;
 
 require_once(dirname(__FILE__) . '/lib/functions.php');
 
 return [
-	'bootstrap' => Bootstrap::class,
+	'plugin' => [
+		'version' => '3.1',
+	],
 	'entities' => [
 		[
 			'type' => 'object',
@@ -103,6 +104,11 @@ return [
 		'css/elgg' => [
 			'css/forms.css' => [],
 		],
+	],
+	'view_options' => [
+		'form/friendly_title' => ['ajax' => true],
+		'forms/forms/validation_rules/edit' => ['ajax' => true],
+		'forms/forms/definition/import' => ['ajax' => true],
 	],
 ];
 		

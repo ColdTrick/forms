@@ -2,6 +2,7 @@
 
 use \ColdTrick\Forms\Definition;
 use \ColdTrick\Forms\Endpoint;
+use Elgg\Exceptions\InvalidArgumentException;
 
 /**
  * @property int submitted_count the number of submitted forms
@@ -34,7 +35,6 @@ class Form extends \ElggObject {
 	 * @see ElggEntity::getURL()
 	 */
 	public function getURL() {
-		
 		if (!empty($this->friendly_url)) {
 			return elgg_generate_url('view:object:form:friendly', [
 				'title' => $this->friendly_url,
@@ -62,6 +62,7 @@ class Form extends \ElggObject {
 		$this->attributes['time_created'] = null;
 		$this->title = elgg_echo('forms:entity:clone:title', [$this->title]);
 		$this->friendly_url = forms_generate_valid_friendly_url("{$this->friendly_url}-copy");
+		unset($this->submitted_count);
 	}
 	
 	/**
@@ -69,7 +70,7 @@ class Form extends \ElggObject {
 	 *
 	 * @return bool
 	 */
-	public function hasDefinition() {
+	public function hasDefinition(): bool {
 		return !empty($this->definition);
 	}
 	
@@ -77,8 +78,10 @@ class Form extends \ElggObject {
 	 * Get the form definition
 	 *
 	 * @return \ColdTrick\Forms\Definition
+	 *
+	 * @throws InvalidArgumentException
 	 */
-	public function getDefinition() {
+	public function getDefinition(): \ColdTrick\Forms\Definition {
 		if (!isset($this->definition_object)) {
 			$endpoints = forms_get_available_endpoints();
 			$endpoint = elgg_extract($this->endpoint, $endpoints);
@@ -86,7 +89,7 @@ class Form extends \ElggObject {
 			
 			$definition = new $class($this);
 			if (!$definition instanceof Definition) {
-				throw new InvalidClassException("{$class} must extend " . Definition::class);
+				throw new InvalidArgumentException("{$class} must extend " . Definition::class);
 			}
 			
 			$this->definition_object = $definition;
@@ -100,7 +103,7 @@ class Form extends \ElggObject {
 	 *
 	 * @return bool
 	 */
-	public function isValid() {
+	public function isValid(): bool {
 		if (!$this->hasDefinition()) {
 			return false;
 		}
@@ -135,7 +138,7 @@ class Form extends \ElggObject {
 	 *
 	 * @return bool
 	 */
-	public function importDefinition($json_string) {
+	public function importDefinition(string $json_string): bool {
 		
 		$data = @json_decode($json_string, true);
 		if (empty($data)) {
@@ -176,7 +179,7 @@ class Form extends \ElggObject {
 	 *
 	 * @return array
 	 */
-	public function getEndpointConfig($endpoint = null) {
+	public function getEndpointConfig(string $endpoint = null): array {
 		
 		if (empty($this->endpoint_config)) {
 			return [];
@@ -196,7 +199,6 @@ class Form extends \ElggObject {
 	 * @return false|\ColdTrick\Forms\Endpoint
 	 */
 	public function getEndpoint() {
-		
 		if (empty($this->endpoint)) {
 			return false;
 		}
@@ -238,13 +240,13 @@ class Form extends \ElggObject {
 	 *
 	 * @return void
 	 */
-	public function logSubmission() {
-		
+	public function logSubmission(): void {
 		$count = 0;
 		if (isset($this->submitted_count)) {
 			$count = (int) $this->submitted_count;
 		}
 		$count++;
+		
 		$this->submitted_count = $count;
 	}
 }

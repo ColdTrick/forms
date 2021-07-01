@@ -9,11 +9,12 @@ foreach (elgg_extract('sections', $page, []) as $section) {
 
 $sections_result .= elgg_format_element('li', [], elgg_view_field([
 	'#type' => 'button',
+	'icon' => 'plus',
 	'class' => 'elgg-button-action forms-compose-add-section',
 	'value' => elgg_echo('forms:compose:section:add'),
 ]));
 
-$page_title = elgg_view_icon('minus-square-o', [
+$page_title = elgg_view_icon('minus-square-regular', [
 	'class' => 'forms-compose-toggle-element',
 ]);
 

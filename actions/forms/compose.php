@@ -6,7 +6,7 @@ if (empty($guid)) {
 }
 
 $entity = get_entity($guid);
-if (!($entity instanceof Form) || !$entity->canEdit()) {
+if (!$entity instanceof Form || !$entity->canEdit()) {
 	return elgg_error_response(elgg_echo('actionunauthorized'));
 }
 
@@ -17,4 +17,4 @@ if (empty($definition)) {
 
 $entity->definition = $definition;
 
-return elgg_ok_response();
+return elgg_ok_response('', elgg_echo('save:success'));

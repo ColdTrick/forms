@@ -1,6 +1,6 @@
 <?php
 
-use Elgg\HttpException;
+use Elgg\Exceptions\HttpException;
 
 $guid = elgg_extract('guid', $vars);
 elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE);
@@ -39,4 +39,5 @@ elgg_clear_sticky_form("forms_{$guid}");
 echo elgg_view_page($title, [
 	'content' => $body,
 	'entity' => $entity,
+	'filter' => false,
 ]);

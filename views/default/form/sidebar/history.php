@@ -1,11 +1,13 @@
 <?php
 
+use Elgg\SystemLog\SystemLog;
+
 $entity = elgg_extract('entity', $vars);
 if (!$entity instanceof Form || !elgg_is_active_plugin('system_log')) {
 	return;
 }
 
-$system_log = system_log_get_log([
+$system_log = SystemLog::instance()->getAll([
 	'object_class' => Form::class,
 	'object_type' => 'object',
 	'object_subtype' => Form::SUBTYPE,

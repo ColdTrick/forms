@@ -10,8 +10,8 @@ return array (
   'forms:edit:endpoint:email' => 'E-mail notificatie',
   'forms:edit:endpoint:csv' => 'CSV bestand',
   'forms:endpoint:csv' => 'CSV bestand configuratie',
-  'forms:endpoint:csv:description' => 'De formulier resultaten zullen worden opgeslagen in een CSV bestand welke ten alle tijden is te downloaden. 
-Er kan een e-mail adres worden geconfigureerd welke een notificatie ontvangt als het formulier is ingevuld. Ook is het mogelijk gebruikers te configureren welke het CSV bestand mogen downloaden. 
+  'forms:endpoint:csv:description' => 'De formulier resultaten zullen worden opgeslagen in een CSV bestand welke ten alle tijden is te downloaden.
+Er kan een e-mail adres worden geconfigureerd welke een notificatie ontvangt als het formulier is ingevuld. Ook is het mogelijk gebruikers te configureren welke het CSV bestand mogen downloaden.
 Vanwege de CSV bestandsopslag is het niet mogelijk vragen van het type Bestand op te nemen op het formulier.',
   'forms:endpoint:csv:to' => 'E-mail adres welke de notificatie ontvangt als een formulier is ingevuld',
   'forms:endpoint:csv:to:help' => 'Er kan een e-mail notificatie worden verzonden als het formulier is ingevuld. Deze notificatie bevat geen antwoorden van het formulier.',
@@ -61,7 +61,7 @@ Bepaalde velden op het formulier kunnen worden ingesteld om ook een kopie van he
   'forms:add' => 'Nieuw formulier',
   'collection:object:form' => 'Formulieren',
   'forms:add:title' => 'Nieuw formulier',
-  'forms:edit:title' => 'Bewerkt formulier: %s',
+  'forms:edit:title' => 'Bewerk formulier: %s',
   'forms:compose:title' => 'Samenstellen formulier: %s',
   'forms:thankyou:title' => 'Bedankt voor het invullen van %s',
   'forms:compose:section:new' => 'Nieuwe sectie',

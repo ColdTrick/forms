@@ -1,8 +1,4 @@
-define(function(require) {
-	
-	var $ = require('jquery');
-	var elgg = require('elgg');
-	require('page/components/tabs');
+define(['jquery', 'elgg', 'page/components/tabs'], function($, elgg) {
 	
 	var checkConditional = function() {
 		
@@ -171,21 +167,16 @@ define(function(require) {
 			$checkboxes.prop('required', true);
 		}
 	};
-	
-	var init = function() {
-		
-		$(document).on('change', '.forms-submit-conditional', checkConditional);
-		
-		$(document).on('input', '.elgg-form-forms-submit input, .elgg-form-forms-submit textarea', clearCustomErrorMessage);
-		$(document).on('change', '.elgg-form-forms-submit select, .elgg-form-forms-submit input[type="radio"], .elgg-form-forms-submit input[type="checkbox"]', clearCustomErrorMessage);
-		$(document).on('input', '.elgg-form-forms-submit [data-custom-error-message]', setCustomErrorMessage);
 
-		$(document).on('change', '.elgg-form-forms-submit .elgg-input-checkboxes input[type="checkbox"]', checkRequiredCheckboxes);
-		
-		$(document).on('click', '.elgg-form-forms-submit .forms-submit-buttons-prev, .elgg-form-forms-submit .forms-submit-buttons-next', navButtonClick);
-		$('body').on('click', '.elgg-form-forms-submit .elgg-tabs a', tabNavClick); // register on body to be before tab switch in page/components/tabs.js
-		$(document).on('keydown', '.elgg-form-forms-submit', preventEnter);
-	};
+	$(document).on('change', '.forms-submit-conditional', checkConditional);
 	
-	elgg.register_hook_handler('init', 'system', init);
+	$(document).on('input', '.elgg-form-forms-submit input, .elgg-form-forms-submit textarea', clearCustomErrorMessage);
+	$(document).on('change', '.elgg-form-forms-submit select, .elgg-form-forms-submit input[type="radio"], .elgg-form-forms-submit input[type="checkbox"]', clearCustomErrorMessage);
+	$(document).on('input', '.elgg-form-forms-submit [data-custom-error-message]', setCustomErrorMessage);
+
+	$(document).on('change', '.elgg-form-forms-submit .elgg-input-checkboxes input[type="checkbox"]', checkRequiredCheckboxes);
+	
+	$(document).on('click', '.elgg-form-forms-submit .forms-submit-buttons-prev, .elgg-form-forms-submit .forms-submit-buttons-next', navButtonClick);
+	$('body').on('click', '.elgg-form-forms-submit .elgg-tabs a', tabNavClick); // register on body to be before tab switch in page/components/tabs.js
+	$(document).on('keydown', '.elgg-form-forms-submit', preventEnter);
 });

@@ -60,7 +60,9 @@ class Email extends Endpoint {
 		// set recipients after body processing because some can be added
 		$email = \Elgg\Email::factory([
 			'from' => $this->getFrom(),
-			'to' => $this->getRecipients('to', 1),
+			'to' => $this->getRecipients('to'),
+			'cc' => $this->getRecipients('cc'),
+			'bcc' => $this->getRecipients('bcc'),
 			'subject' => elgg_echo('forms:endpoint:email:subject', [$form->getDisplayName()]),
 			'body' => $body,
 			'params' => $this->getParams(),
@@ -175,21 +177,7 @@ class Email extends Endpoint {
 	 * @return array
 	 */
 	protected function getParams() {
-		
-		// to is special, 1st gets added to the Email, rest needs to be handled by other means
-		$to = $this->getRecipients('to');
-		if (is_array($to)) {
-			array_shift($to);
-		} else {
-			$to = [];
-		}
-		
-		$result = [
-			'to' => $to,
-			'cc' => $this->getRecipients('cc'),
-			'bcc' => $this->getRecipients('bcc'),
-		];
-		
+		$result = [];
 		if (!empty($this->attachments)) {
 			$result['attachments'] = $this->attachments;
 		}

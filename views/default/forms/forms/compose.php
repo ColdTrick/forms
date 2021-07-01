@@ -34,6 +34,7 @@ echo elgg_format_element('ul', [
 
 $footer = elgg_view_field([
 	'#type' => 'button', // don't use submit to prevent submit on enter keydown
+	'icon' => 'save',
 	'class' => 'elgg-button-submit forms-compose-save',
 	'value' => elgg_echo('save'),
 ]);

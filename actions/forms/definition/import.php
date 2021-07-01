@@ -20,7 +20,7 @@ if (empty($text) && empty($file)) {
 }
 
 $json = $text;
-if (($file instanceof UploadedFile) && $file->isValid()) {
+if ($file instanceof UploadedFile && $file->isValid()) {
 	// file import wins over raw text
 	$json = file_get_contents($file->getPathname());
 }

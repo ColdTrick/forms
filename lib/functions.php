@@ -13,7 +13,7 @@ use Elgg\Database\QueryBuilder;
  *
  * @return array
  */
-function forms_prepare_form_vars($container_guid, $entity = null) {
+function forms_prepare_form_vars(int $container_guid, Form $entity = null) {
 	
 	// defaults
 	$vars = [
@@ -30,7 +30,6 @@ function forms_prepare_form_vars($container_guid, $entity = null) {
 	// from entity
 	if ($entity instanceof Form) {
 		foreach ($vars as $name => $value) {
-			
 			switch ($name) {
 				case 'endpoint_config':
 					$vars[$name] = $entity->getEndpointConfig();
@@ -63,21 +62,20 @@ function forms_prepare_form_vars($container_guid, $entity = null) {
  *
  * @return bool
  */
-function forms_is_valid_friendly_url($friendly_url, $entity_guid = null) {
+function forms_is_valid_friendly_url(string $friendly_url, int $entity_guid = null): bool {
 	
-	if (empty($friendly_url) || !is_string($friendly_url)) {
+	if (empty($friendly_url)) {
 		return false;
 	}
 	
-	if (in_array($friendly_url, \ColdTrick\Forms\Bootstrap::HANDLERS)) {
+	if (in_array($friendly_url, \ColdTrick\Forms\Controllers\FriendlyForm::HANDLERS)) {
 		return false;
 	}
 	
-	$count = elgg_call(ELGG_IGNORE_ACCESS|ELGG_SHOW_DISABLED_ENTITIES, function() use ($entity_guid, $friendly_url) {
+	return elgg_call(ELGG_IGNORE_ACCESS|ELGG_SHOW_DISABLED_ENTITIES, function() use ($entity_guid, $friendly_url) {
 		$options = [
 			'type' => 'object',
 			'subtype' => Form::SUBTYPE,
-			'count' => true,
 			'metadata_name_value_pairs' => [
 				'friendly_url' => $friendly_url,
 			],
@@ -89,10 +87,8 @@ function forms_is_valid_friendly_url($friendly_url, $entity_guid = null) {
 				return $qb->compare("{$main_alias}.guid", '!=', $entity_guid, ELGG_VALUE_GUID);
 			};
 		}
-		return elgg_get_entities($options);
+		return empty(elgg_count_entities($options));
 	});
-	
-	return empty($count);
 }
 
 /**
@@ -103,8 +99,7 @@ function forms_is_valid_friendly_url($friendly_url, $entity_guid = null) {
  *
  * @return false|string
  */
-function forms_generate_valid_friendly_url($friendly_url, $entity_guid = null) {
-	
+function forms_generate_valid_friendly_url(string $friendly_url, int $entity_guid = null) {
 	if (empty($friendly_url)) {
 		return false;
 	}
@@ -126,8 +121,7 @@ function forms_generate_valid_friendly_url($friendly_url, $entity_guid = null) {
  *
  * @return array
  */
-function forms_get_available_endpoints() {
-	
+function forms_get_available_endpoints(): array {
 	$result = [
 		'csv' => [
 			'class' => '\ColdTrick\Forms\Endpoint\Csv',
@@ -146,15 +140,9 @@ function forms_get_available_endpoints() {
  *
  * @return array
  */
-function forms_get_validation_rules() {
-	
+function forms_get_validation_rules(): array {
 	$rules = elgg_get_plugin_setting('validation_rules', 'forms');
-	if (empty($rules)) {
-		return [];
-	}
-	
-	return json_decode($rules, true);
-}
+	return empty($rules) ? [] : json_decode($rules, true);}
 
 /**
  * Get the vaidation rule definitions
@@ -162,13 +150,13 @@ function forms_get_validation_rules() {
  * @internal
  * @return bool
  */
-function forms_save_validation_rules($rules = []) {
-	
+function forms_save_validation_rules(array $rules = []): bool {
+	$plugin = elgg_get_plugin_from_id('forms');
 	if (empty($rules)) {
-		return elgg_unset_plugin_setting('validation_rules', 'forms');
+		return $plugin->unsetSetting('validation_rules');
 	}
 	
-	return elgg_set_plugin_setting('validation_rules', json_encode($rules), 'forms');
+	return $plugin->setSetting('validation_rules', json_encode($rules));
 }
 
 /**
@@ -178,8 +166,6 @@ function forms_save_validation_rules($rules = []) {
  *
  * @return false|array
  */
-function forms_get_validation_rule($rule_name) {
-	
-	$rules = forms_get_validation_rules();
-	return elgg_extract($rule_name, $rules, false);
+function forms_get_validation_rule(string $rule_name) {
+	return elgg_extract($rule_name, forms_get_validation_rules(), false);
 }
