@@ -13,6 +13,9 @@ return [
 			'type' => 'object',
 			'subtype' => 'form',
 			'class' => \Form::class,
+			'capabilities' => [
+				'commentable' => false,
+			],
 		],
 	],
 	'routes' => [

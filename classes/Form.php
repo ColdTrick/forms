@@ -46,14 +46,6 @@ class Form extends \ElggObject {
 	
 	/**
 	 * {@inheritDoc}
-	 * @see ElggObject::canComment()
-	 */
-	public function canComment($user_guid = 0, $default = null) {
-		return false;
-	}
-	
-	/**
-	 * {@inheritDoc}
 	 * @see ElggEntity::__clone()
 	 */
 	public function __clone() {

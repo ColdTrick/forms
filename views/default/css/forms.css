@@ -121,3 +121,7 @@ ul .forms-field-unsortable:last-child {
 .forms-submissions:hover {
 	cursor: help;
 }
+
+.forms-submit-buttons > .elgg-field:last-child {
+	margin-left: auto;
+}

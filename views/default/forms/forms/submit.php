@@ -112,13 +112,22 @@ if (count($tabs) === 1) {
 	foreach ($tabs as $index => $tab) {
 		$buttons = [];
 		
+		// prev button
+		if ($index > 0) {
+			$buttons[] = [
+				'#type' => 'button',
+				'class' => [
+					'elgg-button-action',
+					'forms-submit-buttons-prev',
+				],
+				'value' => elgg_echo('previous'),
+			];
+		}
+		
 		// next button
 		if (($index + 1) < count($tabs)) {
 			$buttons[] = [
 				'#type' => 'button',
-				'#class' => [
-					'float-alt',
-				],
 				'class' => [
 					'elgg-button-submit',
 					'forms-submit-buttons-next',
@@ -131,24 +140,11 @@ if (count($tabs) === 1) {
 		if (($index + 1) === count($tabs)) {
 			$buttons[] = [
 				'#type' => 'submit',
-				'#class' => [
-					'float-alt',
-				],
 				'value' => elgg_echo('submit'),
 			];
 		}
 		
-		// prev button
-		if ($index > 0) {
-			$buttons[] = [
-				'#type' => 'button',
-				'class' => [
-					'elgg-button-action',
-					'forms-submit-buttons-prev',
-				],
-				'value' => elgg_echo('previous'),
-			];
-		}
+		
 		
 		$tabs[$index]['content'] .= elgg_view('input/fieldset', [
 			'class' => 'forms-submit-buttons',
