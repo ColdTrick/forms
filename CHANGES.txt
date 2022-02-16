@@ -1,6 +1,10 @@
 Version history
 ===============
 
+5.0 (2022-02-16):
+
+- changed: updated for Elgg 4.1 forms field alignment
+
 4.0 (2021-09-27):
 
 - changed: updated for Elgg 4
