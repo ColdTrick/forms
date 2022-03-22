@@ -15,10 +15,10 @@ $section_title = elgg_view_icon('minus-square-regular', [
 ]);
 
 $section_title .= elgg_view('output/url', [
-	'link' => false,
-	'class' => 'float-alt link forms-compose-delete',
 	'text' => elgg_view_icon('delete'),
 	'title' => elgg_echo('delete'),
+	'href' => false,
+	'class' => 'float-alt link forms-compose-delete',
 ]);
 
 $section_title .= elgg_format_element('span', [
