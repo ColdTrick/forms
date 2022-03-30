@@ -6,7 +6,7 @@ require_once(dirname(__FILE__) . '/lib/functions.php');
 
 return [
 	'plugin' => [
-		'version' => '5.0',
+		'version' => '5.0.1',
 	],
 	'entities' => [
 		[
