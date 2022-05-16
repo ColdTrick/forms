@@ -1,4 +1,4 @@
-define(['jquery', 'elgg', 'jquery-ui/widgets/sortable', 'jquery-ui/widgets/draggable'], function($, elgg) {
+define(['jquery', 'elgg/i18n', 'elgg/system_messages', 'jquery-ui/widgets/sortable', 'jquery-ui/widgets/draggable'], function($, i18n, system_messages) {
 	
 	var addPage = function() {
 		
@@ -108,7 +108,7 @@ define(['jquery', 'elgg', 'jquery-ui/widgets/sortable', 'jquery-ui/widgets/dragg
 	var editTitle = function(elem) {
 		var $title = $(this).prev(); 
 		
-		var result = prompt(elgg.echo('forms:compose:edit:title'), $title.text());
+		var result = prompt(i18n.echo('forms:compose:edit:title'), $title.text());
 		if (result === null) {
 			return;
 		}
@@ -170,7 +170,7 @@ define(['jquery', 'elgg', 'jquery-ui/widgets/sortable', 'jquery-ui/widgets/dragg
 				$(this).sortable('cancel');
 				
 				// notify user
-				elgg.register_error(elgg.echo('forms:compose:conditional_section:invalid_drop'));
+				system_messages.error(i18n.echo('forms:compose:conditional_section:invalid_drop'));
 			}
 		});
 	};
