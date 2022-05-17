@@ -74,7 +74,7 @@ class Result extends Definition {
 		try {
 			$field->validate();
 		} catch (InvalidInputException $e) {
-			register_error(elgg_echo('forms:result:validate:error', [$field->getLabel(), $e->getMessage()]));
+			elgg_register_error_message(elgg_echo('forms:result:validate:error', [$field->getLabel(), $e->getMessage()]));
 			return false;
 		}
 		
