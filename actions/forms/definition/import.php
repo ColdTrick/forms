@@ -9,7 +9,7 @@ if (empty($guid)) {
 
 $entity = get_entity($guid);
 if (!($entity instanceof Form) || !$entity->canEdit()) {
-	return elgg_error_response(elgg_echo('noaccess'));
+	return elgg_error_response(elgg_echo('actionunauthorized'));
 }
 
 $text = get_input('json_text');
