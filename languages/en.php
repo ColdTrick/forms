@@ -95,10 +95,8 @@ Due to the CSV storage File questions on the form aren't allowed.",
 	'forms:endpoint:csv:downloaders' => "Who can download the CSV file with the results",
 	'forms:endpoint:csv:downloaders:help' => "By default only site administrators can download the results of this form. Additional users can be configured",
 	
-	'forms:endpoint:csv:notification:subject' => "New submittion of the form: %s",
-	'forms:endpoint:csv:notification:body' => "Hi,
-
-A new submittion was made on the form: %s
+	'forms:endpoint:csv:notification:subject' => "New submission of the form: %s",
+	'forms:endpoint:csv:notification:body' => "A new submission was made on the form: %s
 
 If you wish to download all responses until now check the link below
 

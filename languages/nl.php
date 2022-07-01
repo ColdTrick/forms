@@ -18,9 +18,7 @@ Vanwege de CSV bestandsopslag is het niet mogelijk vragen van het type Bestand o
   'forms:endpoint:csv:downloaders' => 'Wie mogen het CSV bestand met de resultaten downloaden',
   'forms:endpoint:csv:downloaders:help' => 'Standaard mogen alleen de site beheerders de resultaten downloaden. Extra gebruikers kunnen hier worden geconfigureerd.',
   'forms:endpoint:csv:notification:subject' => 'Het formulier \'%s\' is ingevuld',
-  'forms:endpoint:csv:notification:body' => 'Hallo,
-
-Iemand heeft het formulier \'%s\' ingevuld.
+  'forms:endpoint:csv:notification:body' => 'Iemand heeft het formulier \'%s\' ingevuld.
 
 Als je alle resultaten wilt downloaden, klik op onderstaande link
 %s',
