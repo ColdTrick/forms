@@ -105,7 +105,7 @@ class Csv extends Endpoint {
 	 */
 	protected function sendNotification(\Form $form) {
 		$to = $this->getConfig('to');
-		if (empty($to) || !is_email_address($to)) {
+		if (empty($to) || !elgg_is_valid_email((string) $to)) {
 			return;
 		}
 		

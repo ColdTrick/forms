@@ -439,7 +439,7 @@ class Field {
 		
 		switch ($this->getType()) {
 			case 'email':
-				if (!is_email_address($this->value)) {
+				if (!elgg_is_valid_email((string) $this->value)) {
 					throw new InvalidInputException(elgg_echo('forms:invalid_input_exception:value:email'));
 				}
 				break;

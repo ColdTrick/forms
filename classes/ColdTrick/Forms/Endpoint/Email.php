@@ -228,11 +228,11 @@ class Email extends Endpoint {
 	 */
 	protected function addRecipient($type, $address) {
 		
-		if (!in_array($type, ['to', 'cc', 'bcc'])) {
+		if (!in_array($type, ['to', 'cc', 'bcc']) || !is_string($address)) {
 			return;
 		}
 		
-		if (!is_email_address($address)) {
+		if (!elgg_is_valid_email($address)) {
 			return;
 		}
 		
