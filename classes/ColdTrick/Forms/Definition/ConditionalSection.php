@@ -2,6 +2,9 @@
 
 namespace ColdTrick\Forms\Definition;
 
+/**
+ * Conditional Form Section
+ */
 class ConditionalSection extends Section {
 	
 	/**
@@ -9,7 +12,7 @@ class ConditionalSection extends Section {
 	 *
 	 * @return string
 	 */
-	public function getValue() {
+	public function getValue(): ?string {
 		return elgg_extract('value', $this->config);
 	}
 }

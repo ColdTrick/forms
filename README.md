@@ -1,8 +1,7 @@
 # Forms
 
 ![Elgg 4.3](https://img.shields.io/badge/Elgg-4.3-green.svg)
-[![Build Status](https://scrutinizer-ci.com/g/ColdTrick/forms/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/forms/build-status/master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ColdTrick/forms/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/forms/?branch=master)
+![Lint Checks](https://github.com/ColdTrick/entity_view_counter/actions/workflows/lint.yml/badge.svg?event=push)
 [![Latest Stable Version](https://poser.pugx.org/coldtrick/forms/v/stable.svg)](https://packagist.org/packages/coldtrick/forms)
 [![License](https://poser.pugx.org/coldtrick/forms/license.svg)](https://packagist.org/packages/coldtrick/forms)
 

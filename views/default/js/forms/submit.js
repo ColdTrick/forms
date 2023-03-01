@@ -41,7 +41,7 @@ define(['jquery', 'elgg', 'page/components/tabs'], function($, elgg) {
 		
 		if ($(this).attr('type') === 'radio' || $(this).attr('type') === 'checkbox') {
 			var $form = $(this).closest('.elgg-form-forms-submit');
-			$form.find('input[type="' + $(this).attr('type') + '"][name="' + $(this).attr('name')  +'"]').each(function(index, elem) {
+			$form.find('input[type="' + $(this).attr('type') + '"][name="' + $(this).attr('name') + '"]').each(function(index, elem) {
 				elem.setCustomValidity('');
 			})
 		}
@@ -100,6 +100,7 @@ define(['jquery', 'elgg', 'page/components/tabs'], function($, elgg) {
 				if (!elem.validity.customError) {
 					elem.setCustomValidity(elem.validationMessage);
 				}
+				
 				valid = false;
 			}
 		});

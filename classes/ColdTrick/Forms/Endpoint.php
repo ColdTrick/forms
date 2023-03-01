@@ -2,12 +2,15 @@
 
 namespace ColdTrick\Forms;
 
+/**
+ * Form Endpoint
+ */
 abstract class Endpoint {
 	
 	/**
 	 * @var array $config the endpoint configuration
 	 */
-	protected $config;
+	protected array $config;
 	
 	/**
 	 * Create a new endpoint
@@ -33,7 +36,7 @@ abstract class Endpoint {
 	/**
 	 * Process the result of a form
 	 *
-	 * @param Result $result
+	 * @param Result $result result of processing the form
 	 *
 	 * @return bool
 	 */

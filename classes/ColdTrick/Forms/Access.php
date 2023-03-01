@@ -2,22 +2,25 @@
 
 namespace ColdTrick\Forms;
 
+/**
+ * Access related callbacks
+ */
 class Access {
 	
 	/**
 	 * Change the write access array for forms
 	 *
-	 * @param \Elgg\Hook $hook 'access:collections:write', 'user'
+	 * @param \Elgg\Event $event 'access:collections:write', 'user'
 	 *
 	 * @return void|array
 	 */
-	public static function formWriteAccess(\Elgg\Hook $hook) {
-		$return_value = $hook->getValue();
+	public static function formWriteAccess(\Elgg\Event $event) {
+		$return_value = $event->getValue();
 		if (!is_array($return_value)) {
 			return;
 		}
 		
-		$input_params = $hook->getParam('input_params');
+		$input_params = $event->getParam('input_params');
 		if (empty($input_params) || !is_array($input_params)) {
 			return;
 		}

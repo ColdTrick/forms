@@ -6,55 +6,6 @@
 use Elgg\Database\QueryBuilder;
 
 /**
- * Prepare the create/edit vars for the form
- *
- * @param int  $container_guid the container_guid for the entity
- * @param Form $entity         (optional) the entity to edit
- *
- * @return array
- */
-function forms_prepare_form_vars(int $container_guid, Form $entity = null) {
-	
-	// defaults
-	$vars = [
-		'title' => '',
-		'friendly_url' => '',
-		'description' => '',
-		'thankyou' => '',
-		'access_id' => ACCESS_PRIVATE,
-		'container_guid' => (int) $container_guid,
-		'endpoint' => 'email',
-		'endpoint_config' => [],
-	];
-	
-	// from entity
-	if ($entity instanceof Form) {
-		foreach ($vars as $name => $value) {
-			switch ($name) {
-				case 'endpoint_config':
-					$vars[$name] = $entity->getEndpointConfig();
-					break;
-				default:
-					$vars[$name] = $entity->$name;
-					break;
-			}
-		}
-		
-		$vars['entity'] = $entity;
-	}
-	
-	// from sticky form
-	$sticky_values = elgg_get_sticky_values('forms/edit');
-	if (!empty($sticky_values)) {
-		$vars = array_merge($vars, $sticky_values);
-		
-		elgg_clear_sticky_form('forms/edit');
-	}
-	
-	return $vars;
-}
-
-/**
  * Check if a friendly url exists and is valid for use
  *
  * @param string $friendly_url the string to test
@@ -72,7 +23,7 @@ function forms_is_valid_friendly_url(string $friendly_url, int $entity_guid = nu
 		return false;
 	}
 	
-	return elgg_call(ELGG_IGNORE_ACCESS|ELGG_SHOW_DISABLED_ENTITIES, function() use ($entity_guid, $friendly_url) {
+	return elgg_call(ELGG_IGNORE_ACCESS | ELGG_SHOW_DISABLED_ENTITIES, function() use ($entity_guid, $friendly_url) {
 		$options = [
 			'type' => 'object',
 			'subtype' => Form::SUBTYPE,
@@ -87,6 +38,7 @@ function forms_is_valid_friendly_url(string $friendly_url, int $entity_guid = nu
 				return $qb->compare("{$main_alias}.guid", '!=', $entity_guid, ELGG_VALUE_GUID);
 			};
 		}
+		
 		return empty(elgg_count_entities($options));
 	});
 }
@@ -132,7 +84,7 @@ function forms_get_available_endpoints(): array {
 		],
 	];
 	
-	return elgg_trigger_plugin_hook('endpoints', 'forms', $result, $result);
+	return elgg_trigger_event_results('endpoints', 'forms', $result, $result);
 }
 
 /**
@@ -142,10 +94,13 @@ function forms_get_available_endpoints(): array {
  */
 function forms_get_validation_rules(): array {
 	$rules = elgg_get_plugin_setting('validation_rules', 'forms');
-	return empty($rules) ? [] : json_decode($rules, true);}
+	return empty($rules) ? [] : json_decode($rules, true);
+}
 
 /**
  * Get the vaidation rule definitions
+ *
+ * @param array $rules validation rules
  *
  * @internal
  * @return bool

@@ -2,22 +2,25 @@
 
 namespace ColdTrick\Forms\Definition;
 
+/**
+ * Page of a Form
+ */
 class Page {
 	
 	/**
 	 * @var array the page configuration
 	 */
-	protected $config;
+	protected array $config;
 	
 	/**
 	 * @var \ColdTrick\Forms\Definition\Section[] all the sections on this page
 	 */
-	protected $sections;
+	protected array $sections;
 	
 	/**
 	 * Create a page based on a config
 	 *
-	 * @param array $config
+	 * @param array $config configuration
 	 */
 	public function __construct($config) {
 
@@ -29,8 +32,8 @@ class Page {
 	 *
 	 * @return string
 	 */
-	public function getTitle() {
-		return elgg_extract('title', $this->config, '');
+	public function getTitle(): string {
+		return (string) elgg_extract('title', $this->config, '');
 	}
 	
 	/**
@@ -38,7 +41,7 @@ class Page {
 	 *
 	 * @return \ColdTrick\Forms\Definition\Section[]
 	 */
-	public function getSections() {
+	public function getSections(): array {
 		
 		if (isset($this->sections)) {
 			return $this->sections;
@@ -59,7 +62,7 @@ class Page {
 	 *
 	 * @return array
 	 */
-	public function getValidationRules() {
+	public function getValidationRules(): array {
 		$result = [];
 		
 		foreach ($this->getSections() as $section) {
@@ -74,7 +77,7 @@ class Page {
 	 *
 	 * @return void
 	 */
-	public function populateFromInput() {
+	public function populateFromInput(): void {
 		
 		foreach ($this->getSections() as $section) {
 			$section->populateFromInput();

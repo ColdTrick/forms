@@ -34,4 +34,4 @@ if (!$entity->importDefinition($json)) {
 	return elgg_error_response(elgg_echo('forms:action:definition:import:error:json_definition'));
 }
 
-return elgg_ok_response('', elgg_echo('forms:action:definition:import:success'), REFERER);
+return elgg_ok_response('', elgg_echo('forms:action:definition:import:success'), REFERRER);

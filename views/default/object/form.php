@@ -14,7 +14,6 @@ if ($full_view) {
 	// @TODO make this
 	echo $entity->title;
 } else {
-	
 	$imprint = [];
 	if ($entity->canEdit()) {
 		$imprint[] = [
@@ -36,7 +35,7 @@ if ($full_view) {
 	
 	$params = [
 		'entity' => $entity,
-		'content' => elgg_get_excerpt($entity->description),
+		'content' => $entity->description ? elgg_get_excerpt($entity->description) : null,
 		'imprint' => $imprint,
 		'access' => false,
 		'byline_owner_entity' => false,

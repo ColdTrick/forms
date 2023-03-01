@@ -1,5 +1,6 @@
 <?php
 
+use ColdTrick\Forms\Forms\PrepareFields;
 use Elgg\Router\Middleware\AdminGatekeeper;
 
 require_once(dirname(__FILE__) . '/lib/functions.php');
@@ -79,10 +80,15 @@ return [
 		'forms/validation_rules/delete' => ['access' => 'admin'],
 		'forms/validation_rules/edit' => ['access' => 'admin'],
 	],
-	'hooks' => [
+	'events' => [
 		'access:collections:write' => [
 			'user' => [
 				'\ColdTrick\Forms\Access::formWriteAccess' => [],
+			],
+		],
+		'form:prepare:fields' => [
+			'forms/edit' => [
+				PrepareFields::class => [],
 			],
 		],
 		'register' => [
@@ -114,4 +120,3 @@ return [
 		'forms/forms/definition/import' => ['ajax' => true],
 	],
 ];
-		

@@ -9,11 +9,10 @@ $part_of_conditional_section = elgg_extract('part_of_conditional_section', $vars
 
 $field_body = elgg_format_element('span', [], elgg_extract('#label', $input_vars));
 
-$field_body .= elgg_format_element([
-	'#tag_name' => 'span',
+$field_body .= elgg_format_element('span', [
 	'title' => elgg_echo('field:required'),
 	'class' => 'elgg-required-indicator',
-	'#text' => "&ast;",
+	'#text' => '&ast;',
 ]);
 
 $field_body .= elgg_view_icon('edit', [
@@ -34,7 +33,7 @@ if (in_array($field->getType(), ['select', 'radio'])) {
 
 if (!$part_of_conditional_section) {
 	foreach ($field->getConditionalSections() as $conditional_section) {
- 		$field_body .= elgg_view('form/compose/canvas/conditional_section', ['conditional_section' => $conditional_section]);
+		$field_body .= elgg_view('form/compose/canvas/conditional_section', ['conditional_section' => $conditional_section]);
 	}
 }
 

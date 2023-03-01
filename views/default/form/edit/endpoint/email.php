@@ -37,5 +37,4 @@ $email .= elgg_view_field([
 	'value' => elgg_extract('bcc', $config),
 ]);
 
-// prepare output
 echo elgg_view_module('info', elgg_echo('forms:endpoint:email'), $email);

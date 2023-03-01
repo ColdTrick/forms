@@ -33,7 +33,7 @@
 	
 	&:hover > .forms-compose-edit-title {
 		display: inline-block;
-	} 
+	}
 }
 
 .forms-compose-add-section {
@@ -72,7 +72,7 @@
 
 .forms-compose-fields > li {
 	background: #f0f0f0;
-	margin-bottom: 5px;	
+	margin-bottom: 5px;
 }
 
 .forms-compose-edit-field {
@@ -112,10 +112,10 @@
 }
 
 ul .forms-field-unsortable {
-	display: none;	
+	display: none;
 }
 ul .forms-field-unsortable:last-child {
-	display: block;	
+	display: block;
 }
 
 .forms-submissions:hover {

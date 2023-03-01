@@ -5,6 +5,9 @@ namespace ColdTrick\Forms\Controllers;
 use Elgg\Http\ResponseBuilder;
 use Elgg\Exceptions\Http\EntityNotFoundException;
 
+/**
+ * Friendly form url controller
+ */
 class FriendlyForm {
 	
 	const HANDLERS = [

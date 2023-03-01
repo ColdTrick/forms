@@ -2,7 +2,7 @@
 
 $entity = elgg_extract('entity', $vars);
 
-$definition = json_decode($entity->definition, true);
+$definition = $entity->definition ? json_decode($entity->definition, true) : [];
 
 $pages = elgg_extract('pages', $definition);
 if (empty($pages)) {

@@ -14,11 +14,9 @@ $pages = $entity->getDefinition()->getPages();
 $tabs = [];
 $page_count = 1;
 foreach ($pages as $page_index => $page) {
-	
 	// sections
 	$page_body = '';
 	foreach ($page->getSections() as $section) {
-		
 		// fields
 		$section_body = '';
 		foreach ($section->getFields() as $field) {
@@ -37,7 +35,6 @@ foreach ($pages as $page_index => $page) {
 			if (!empty($condition_sections)) {
 				$condition_sections_body = '';
 				foreach ($condition_sections as $conditional_section) {
-					
 					$conditional_section_value = $conditional_section->getValue();
 					if ($conditional_section_value === null) {
 						// only show conditional section with a value to check
@@ -108,7 +105,6 @@ if (count($tabs) === 1) {
 		'value' => elgg_echo('submit'),
 	]);
 } else {
-	
 	foreach ($tabs as $index => $tab) {
 		$buttons = [];
 		

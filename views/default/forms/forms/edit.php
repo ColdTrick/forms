@@ -11,8 +11,6 @@ $entity = elgg_extract('entity', $vars);
 
 elgg_require_js('forms/edit');
 
-$footer = '';
-
 // form elements
 echo elgg_view_field([
 	'#type' => 'text',
@@ -71,6 +69,7 @@ echo elgg_view_field([
 echo elgg_view('form/edit/endpoint', $vars);
 
 // footer
+$footer = '';
 if (!empty($entity)) {
 	$footer .= elgg_view_field([
 		'#type' => 'hidden',
@@ -78,11 +77,13 @@ if (!empty($entity)) {
 		'value' => $entity->getGUID(),
 	]);
 }
+
 $footer .= elgg_view_field([
 	'#type' => 'hidden',
 	'name' => 'container_guid',
 	'value' => elgg_extract('container_guid', $vars),
 ]);
+
 $footer .= elgg_view_field([
 	'#type' => 'submit',
 	'value' => elgg_echo('save'),

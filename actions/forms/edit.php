@@ -18,7 +18,7 @@ $thankyou = get_input('thankyou');
 $entity = false;
 if (!empty($guid)) {
 	$entity = get_entity($guid);
-	if (!$entity instanceof Form || !$entity->canEdit()) {
+	if (!$entity instanceof \Form || !$entity->canEdit()) {
 		return elgg_error_response(elgg_echo('actionunauthorized'));
 	}
 }
@@ -32,17 +32,16 @@ if (!forms_is_valid_friendly_url($friendly_url, $guid)) {
 }
 
 $container = get_entity($container_guid);
-if (!$container instanceof ElggGroup) {
+if (!$container instanceof \ElggGroup) {
 	$container = elgg_get_site_entity();
 }
 
 if (empty($entity)) {
-	
 	if (!$container->canWriteToContainer(0, 'object', Form::SUBTYPE)) {
 		return elgg_error_response(elgg_echo('actionunauthorized'));
 	}
 	
-	$entity = new Form();
+	$entity = new \Form();
 	$entity->container_guid = $container->guid;
 	
 	if (!$entity->save()) {
@@ -67,6 +66,7 @@ $entity->endpoint_config = json_encode($endpoint_config);
 if (elgg_strip_tags($thankyou) === '') {
 	$thankyou = null;
 }
+
 $entity->thankyou = $thankyou;
 
 if (!$entity->save()) {

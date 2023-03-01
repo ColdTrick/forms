@@ -1,25 +1,15 @@
 <?php
-/**
- * Add a form
- */
+use Elgg\Exceptions\Http\EntityPermissionsException;
 
-$guid = (int) elgg_extract('guid', $vars);
-
-$container = get_entity($guid);
-if (!($container instanceof ElggGroup)) {
-	$container = elgg_get_site_entity();
+$container = elgg_get_page_owner_entity();
+if (!$container->canWriteToContainer(0, 'object', 'form')) {
+	throw new EntityPermissionsException();
 }
 
-elgg_push_collection_breadcrumbs('object', 'form', $container);
-elgg_push_breadcrumb(elgg_echo('add'));
+elgg_push_collection_breadcrumbs('object', 'form');
 
-$body_vars = forms_prepare_form_vars($guid);
-
-$content = elgg_view_form('forms/edit', ['prevent_double_submit' => true], $body_vars);
-
-// draw page
 echo elgg_view_page(elgg_echo('forms:add:title'), [
-	'content' => $content,
+	'content' => elgg_view_form('forms/edit', ['sticky_enabled' => true]),
 	'sidebar' => false,
-	'filter' => false,
+	'filter_id' => 'forms/add',
 ]);

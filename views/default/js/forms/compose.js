@@ -22,7 +22,7 @@ define(['jquery', 'elgg/i18n', 'elgg/system_messages', 'jquery-ui/widgets/sortab
 		initSortableFields();
 	};
 
-	var deleteFormElement = function(elem) {	
+	var deleteFormElement = function(elem) {
 		// resolves to parent li (which could be ConditionalSection, Field, Section or Page)
 		$(this).parents('.forms-compose-conditional-section, .forms-compose-list-field, .forms-compose-list-section, .forms-compose-list-page').eq(0).remove();
 	};
@@ -79,7 +79,7 @@ define(['jquery', 'elgg/i18n', 'elgg/system_messages', 'jquery-ui/widgets/sortab
 		var $form = $(this).parents('.forms-compose-edit-field').eq(0);
 		
 		$form.find('.hidden').hide();
-		$form.find('.forms-field-for-' + type).show();		
+		$form.find('.forms-field-for-' + type).show();
 	};
 	
 	var saveField = function(elem) {
@@ -106,7 +106,7 @@ define(['jquery', 'elgg/i18n', 'elgg/system_messages', 'jquery-ui/widgets/sortab
 	};
 	
 	var editTitle = function(elem) {
-		var $title = $(this).prev(); 
+		var $title = $(this).prev();
 		
 		var result = prompt(i18n.echo('forms:compose:edit:title'), $title.text());
 		if (result === null) {
@@ -134,7 +134,7 @@ define(['jquery', 'elgg/i18n', 'elgg/system_messages', 'jquery-ui/widgets/sortab
 		$('.forms-compose-list-page > ul').sortable({
 			axis: 'y',
 			items: '.forms-compose-list-section',
-			connectWith: '.forms-compose-list-page > ul'			
+			connectWith: '.forms-compose-list-page > ul'
 		});
 		
 		initSortableFields();
@@ -153,7 +153,7 @@ define(['jquery', 'elgg/i18n', 'elgg/system_messages', 'jquery-ui/widgets/sortab
 				if (typeof $data.params.name == 'undefined') {
 					$data.params.name = '__field_' + new Date().getTime();
 					$(ui.helper).data('params', $data.params);
-				}				
+				}
 			},
 			stop: function(event, ui) {
 				if ($(ui.item).parents('.forms-compose-conditional-section').length === 0) {
@@ -182,14 +182,14 @@ define(['jquery', 'elgg/i18n', 'elgg/system_messages', 'jquery-ui/widgets/sortab
 		
 		$('.forms-compose-list .forms-compose-list-page').each(function(page_index, page_element) {
 			var page = {
-				'title' :  $(page_element).find(' > .forms-compose-title-container .forms-compose-title').eq(0).text(),
-				'sections' : []
+				'title': $(page_element).find(' > .forms-compose-title-container .forms-compose-title').eq(0).text(),
+				'sections': []
 			};
 			
 			$(this).find('> ul > .forms-compose-list-section').each(function(section_index, section_element) {
 				var section = {
-					'title' : $(section_element).find(' > .forms-compose-title-container .forms-compose-title').eq(0).text(),
-					'fields' : []
+					'title': $(section_element).find(' > .forms-compose-title-container .forms-compose-title').eq(0).text(),
+					'fields': []
 				};
 				
 				$(this).find('> ul > .forms-compose-list-field').each(function(field_index, field_element) {
@@ -197,10 +197,10 @@ define(['jquery', 'elgg/i18n', 'elgg/system_messages', 'jquery-ui/widgets/sortab
 					field['conditional_sections'] = [];
 					
 					$(this).find('> .forms-compose-conditional-section').each(function(conditional_section_index, conditional_section_element) {
-						var conditional_value = $(conditional_section_element).find('[name="conditional_value"]').val(); 
+						var conditional_value = $(conditional_section_element).find('[name="conditional_value"]').val();
 						var conditional_section = {
-							'value' : conditional_value,
-							'fields' : []
+							'value': conditional_value,
+							'fields': []
 						};
 						
 						$(this).find('> ul > .forms-compose-list-field').each(function(conditional_field_index, conditional_field_element) {
@@ -218,8 +218,8 @@ define(['jquery', 'elgg/i18n', 'elgg/system_messages', 'jquery-ui/widgets/sortab
 			});
 			
 			result['pages'].push(page);
-		});	
-				
+		});
+		
 		result = JSON.stringify(result);
 
 		$('.elgg-form-forms-compose input[name="definition"]').val(result);

@@ -41,7 +41,7 @@ $rules = forms_get_validation_rules();
 $rules[$name] = $rule;
 
 if (forms_save_validation_rules($rules)) {
-	return elgg_ok_response('', elgg_echo('save:success'), REFERER);
+	return elgg_ok_response('', elgg_echo('save:success'), REFERRER);
 }
 
 return elgg_error_response(elgg_echo('save:fail'));

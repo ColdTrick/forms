@@ -49,7 +49,7 @@ $body = elgg_view_layout('default', [
 	'title' => $title,
 	'content' => $content,
 	'entity' => $entity,
-	'filter' => false,
+	'filter_id' => 'forms/compose',
 	'sidebar' => elgg_view('form/compose/fields', ['entity' => $entity]),
 	'show_owner_block_menu' => false,
 ]);

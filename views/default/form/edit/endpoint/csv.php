@@ -27,5 +27,4 @@ $csv .= elgg_view_field([
 	'value' => elgg_extract('downloaders', $config),
 ]);
 
-// prepare output
 echo elgg_view_module('info', elgg_echo('forms:endpoint:csv'), $csv);

@@ -61,20 +61,18 @@ $types = [
 
 $list = '';
 foreach ($types as $type_params) {
-	
 	$field_type = elgg_extract('#type', $type_params);
-	if ($entity->endpoint === 'csv' && $field_type=== 'file') {
+	if ($entity->endpoint === 'csv' && $field_type === 'file') {
 		// file inputs aren't allowed on CSV endpoints
 		continue;
 	}
 	
 	$type_body = elgg_format_element('span', [], elgg_extract('#label', $type_params));
 	
-	$type_body .= elgg_format_element([
-		'#tag_name' => 'span',
+	$type_body .= elgg_format_element('span', [
 		'title' => elgg_echo('field:required'),
 		'class' => 'elgg-required-indicator',
-		'#text' => "&ast;",
+		'#text' => '&ast;',
 	]);
 	
 	$type_body .= elgg_view_icon('edit', [

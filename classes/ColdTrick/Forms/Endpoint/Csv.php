@@ -8,6 +8,9 @@ use Elgg\Email as ElggMail;
 use Elgg\Values;
 use ColdTrick\Forms\Definition\Field;
 
+/**
+ * CSV Endpoint
+ */
 class Csv extends Endpoint {
 
 	const FILENAME = 'results.csv';
@@ -28,7 +31,7 @@ class Csv extends Endpoint {
 					return;
 				case 'longtext':
 				case 'plaintext':
-					$value = str_replace('\r', '', $value);
+					$value = str_replace('\r', '', (string) $value);
 					break;
 				default:
 					break;
@@ -39,7 +42,7 @@ class Csv extends Endpoint {
 			}
 			
 			$headers[] = $field->getLabel();
-			$values[] = trim($value);
+			$values[] = trim((string) $value);
 		};
 		
 		foreach ($result->getPages() as $page) {
@@ -88,6 +91,8 @@ class Csv extends Endpoint {
 	/**
 	 * Return an ElggFile for this endpoint
 	 *
+	 * @param \Form $form form to get file for
+	 *
 	 * @return \ElggFile
 	 */
 	public function getFile(\Form $form) {
@@ -100,6 +105,8 @@ class Csv extends Endpoint {
 	
 	/**
 	 * Send a notification that a form was filled in
+	 *
+	 * @param \Form $form notification related form
 	 *
 	 * @return void
 	 */

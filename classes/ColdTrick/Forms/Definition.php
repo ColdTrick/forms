@@ -2,28 +2,31 @@
 
 namespace ColdTrick\Forms;
 
+/**
+ * Form Definition
+ */
 class Definition {
 	
 	/**
 	 *
 	 * @var array the definition configuration
 	 */
-	protected $config;
+	protected array $config;
 
 	/**
 	 * @var \Form The form for this definition
 	 */
-	protected $form;
+	protected \Form $form;
 	
 	/**
 	 * @var \ColdTrick\Forms\Definition\Page[] the pages in this definition
 	 */
-	protected $pages;
+	protected array $pages;
 	
 	/**
 	 * Make a new definition
 	 *
-	 * @param \Form $form
+	 * @param \Form $form the form
 	 */
 	public function __construct(\Form $form) {
 		

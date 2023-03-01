@@ -118,7 +118,7 @@ Bepaalde velden op het formulier kunnen worden ingesteld om ook een kopie van he
   'forms:validation_rule:error_message' => 'Eigen foutmeldingstekst',
   'forms:validation_rule:error_message:help' => 'Als de waarde van het veld niet overeenkomt met het opgegeven patroon, toon deze foutmelding in plaats van de standaard browser melding',
   'forms:validation_rule:regex' => 'Reguliere expressie',
-  'forms:validation_rule:regex:help' => 'Een validatieregel bestaat uit een reguliere expressie welke wordt toegepast op de invoer (hierbij wordt gebruik gemaakt ven het HTML5 attribuut pattern)',
+  'forms:validation_rule:regex:help' => 'Een validatieregel bestaat uit een reguliere expressie welke wordt toegepast op de invoer (hierbij wordt gebruik gemaakt van het HTML5 attribuut pattern)',
   'forms:validation_rule:regex:output' => 'Reguliere expressie: %s',
   'forms:validation_rule:input:none' => 'Geen validatie',
   'forms:import:title' => 'Importeer een formulier definitie',

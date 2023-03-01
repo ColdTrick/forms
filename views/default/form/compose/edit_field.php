@@ -14,6 +14,7 @@ if (!empty($profile_fields)) {
 		if (elgg_language_key_exists("profile:{$metadata_name}")) {
 			$label = elgg_echo("profile:{$metadata_name}") . " ({$metadata_name})";
 		}
+		
 		$default_options[$metadata_name] = $label;
 	}
 }

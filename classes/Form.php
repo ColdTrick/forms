@@ -10,15 +10,11 @@ use Elgg\Exceptions\InvalidArgumentException;
 class Form extends \ElggObject {
 	
 	const SUBTYPE = 'form';
+
+	protected \ColdTrick\Forms\Definition $definition_object;
 	
 	/**
-	 * @var \ColdTrick\Forms\Definition
-	 */
-	protected $definition_object;
-	
-	/**
-	 * {@inheritDoc}
-	 * @see ElggObject::initializeAttributes()
+	 * {@inheritdoc}
 	 */
 	protected function initializeAttributes() {
 		parent::initializeAttributes();
@@ -31,22 +27,20 @@ class Form extends \ElggObject {
 	}
 	
 	/**
-	 * {@inheritDoc}
-	 * @see ElggEntity::getURL()
+	 * {@inheritdoc}
 	 */
-	public function getURL() {
+	public function getURL(): string {
 		if (!empty($this->friendly_url)) {
 			return elgg_generate_url('view:object:form:friendly', [
 				'title' => $this->friendly_url,
 			]);
 		}
 		
-		return elgg_generate_entity_url($this);
+		return (string) elgg_generate_entity_url($this);
 	}
 	
 	/**
-	 * {@inheritDoc}
-	 * @see ElggEntity::__clone()
+	 * {@inheritdoc}
 	 */
 	public function __clone() {
 		parent::__clone();
@@ -106,12 +100,12 @@ class Form extends \ElggObject {
 	/**
 	 * Export the form definition
 	 *
-	 * @return false|string
+	 * @return string|null
 	 */
-	public function exportDefinition() {
+	public function exportDefinition(): ?string {
 		
 		if (!$this->hasDefinition()) {
-			return false;
+			return null;
 		}
 		
 		$definition = json_decode($this->definition, true);
@@ -126,7 +120,7 @@ class Form extends \ElggObject {
 	/**
 	 * Import a form definition
 	 *
-	 * @param string $json_string
+	 * @param string $json_string json definition
 	 *
 	 * @return bool
 	 */
@@ -188,26 +182,26 @@ class Form extends \ElggObject {
 	/**
 	 * Get the form endpoint
 	 *
-	 * @return false|\ColdTrick\Forms\Endpoint
+	 * @return null|\ColdTrick\Forms\Endpoint
 	 */
-	public function getEndpoint() {
+	public function getEndpoint(): ?\ColdTrick\Forms\Endpoint {
 		if (empty($this->endpoint)) {
-			return false;
+			return null;
 		}
 		
 		$endpoints = forms_get_available_endpoints();
 		if (!is_array($endpoints)) {
-			return false;
+			return null;
 		}
 		
 		$endpoint_information = elgg_extract($this->endpoint, $endpoints);
 		if (empty($endpoint_information)) {
-			return false;
+			return null;
 		}
 		
 		$class = elgg_extract('class', $endpoint_information);
 		if (empty($class) || !class_exists($class)) {
-			return false;
+			return null;
 		}
 		
 		$endpoint_config = $this->getEndpointConfig($this->endpoint);
@@ -216,12 +210,12 @@ class Form extends \ElggObject {
 			$endpoint = new $class($endpoint_config);
 		} catch (Exception $e) {
 			elgg_log("Form->getEndpoint() error: {$e->getMessage()}", 'ERROR');
-			return false;
+			return null;
 		}
 		
 		if (!$endpoint instanceof Endpoint) {
 			elgg_log('Form endpoint is not an instanceof \ColdTrick\Forms\Endpoint', 'ERROR');
-			return false;
+			return null;
 		}
 		
 		return $endpoint;
@@ -237,6 +231,7 @@ class Form extends \ElggObject {
 		if (isset($this->submitted_count)) {
 			$count = (int) $this->submitted_count;
 		}
+		
 		$count++;
 		
 		$this->submitted_count = $count;

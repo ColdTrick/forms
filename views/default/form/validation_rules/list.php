@@ -8,7 +8,6 @@ if (empty($rules)) {
 
 $items = [];
 foreach ($rules as $name => $rule) {
-	
 	$output = elgg_view('form/validation_rules/item', [
 		'item' => $rule,
 	]);

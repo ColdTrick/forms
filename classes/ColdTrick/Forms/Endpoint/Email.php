@@ -7,6 +7,9 @@ use ColdTrick\Forms\Result;
 use ColdTrick\Forms\Definition\Field;
 use Elgg\Email\Address;
 
+/**
+ * Email Endpoint
+ */
 class Email extends Endpoint {
 	
 	/**
@@ -86,15 +89,12 @@ class Email extends Endpoint {
 				$field_content = [];
 				
 				foreach ($section->getFields() as $field) {
-					
 					$this->addRecipientFromField($field);
 					$field_content[] = $this->getBodyField($field);
 					
 					// add the conditional sections based on the value of the field
 					foreach ($field->getConditionalSections(true) as $conditional_section) {
-						
 						foreach ($conditional_section->getFields() as $conditional_field) {
-							
 							$this->addRecipientFromField($conditional_field);
 							$field_content[] = $this->getBodyField($conditional_field);
 						}
@@ -115,10 +115,12 @@ class Email extends Endpoint {
 				// no sections on this page
 				continue;
 			}
+			
 			if (!empty($body)) {
 				$body .= elgg_format_element('h3', [], '<hr />');
 				$body .= PHP_EOL;
 			}
+			
 			$body .= implode(PHP_EOL, $section_content);
 		}
 		
@@ -128,7 +130,7 @@ class Email extends Endpoint {
 	/**
 	 * Format a field for in the mail message
 	 *
-	 * @param Field $field
+	 * @param Field $field field
 	 *
 	 * @return void|string
 	 */
@@ -154,6 +156,7 @@ class Email extends Endpoint {
 		if (is_array($value)) {
 			$value = implode(', ', $value);
 		}
+		
 		$row .= elgg_format_element('td', ['style' => 'vertical-align: top'], $value);
 		$row .= PHP_EOL;
 		

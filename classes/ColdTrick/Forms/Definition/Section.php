@@ -2,24 +2,27 @@
 
 namespace ColdTrick\Forms\Definition;
 
+/**
+ * Form Section
+ */
 class Section {
 	
 	/**
 	 * @var array the configuration of this section
 	 */
-	protected $config;
+	protected array $config;
 	
 	/**
 	 * @var \ColdTrick\Forms\Definition\Field[] the fields in this section
 	 */
-	protected $fields;
+	protected array $fields;
 	
 	/**
 	 * Create a new section
 	 *
 	 * @param array $config the section configuration
 	 */
-	public function __construct($config) {
+	public function __construct(array $config) {
 
 		$this->config = $config;
 	}

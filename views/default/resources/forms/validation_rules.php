@@ -22,5 +22,5 @@ $body = elgg_view('form/validation_rules/list', [
 // draw page
 echo elgg_view_page(elgg_echo('forms:validation_rules:title'), [
 	'content' => $body,
-	'filter' => false,
+	'filter_id' => 'forms/validation_rules',
 ]);

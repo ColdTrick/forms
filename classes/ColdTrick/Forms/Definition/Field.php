@@ -5,6 +5,9 @@ namespace ColdTrick\Forms\Definition;
 use ColdTrick\Forms\Exception\InvalidInputException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Form Field
+ */
 class Field {
 	
 	/**
@@ -91,10 +94,12 @@ class Field {
 		if (isset($result['multiple']) && $result['multiple'] === '') {
 			unset($result['multiple']);
 		}
+		
 		// value (with support for default value)
 		if (isset($result['value']) && $result['value'] === '') {
 			unset($result['value']);
 		}
+		
 		$supports_default = ['text', 'email', 'number', 'plaintext', 'longtext', 'select'];
 		if (!isset($result['value']) && in_array($this->getType(), $supports_default) && !empty($result['default_value'])) {
 			$profile_field = $result['default_value'];
@@ -103,6 +108,7 @@ class Field {
 				$result['value'] = $user->$profile_field;
 			}
 		}
+		
 		unset($result['default_value']);
 		
 		// futher cleanup

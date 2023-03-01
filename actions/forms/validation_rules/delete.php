@@ -15,7 +15,7 @@ $label = elgg_extract('label', $rules[$name]);
 unset($rules[$name]);
 
 if (forms_save_validation_rules($rules)) {
-	return elgg_ok_response('', elgg_echo('entity:delete:success', [$label]), REFERER);
+	return elgg_ok_response('', elgg_echo('entity:delete:success', [$label]), REFERRER);
 }
 
 return elgg_error_response(elgg_echo('entity:delete:fail', [$label]));

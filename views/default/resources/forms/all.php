@@ -7,8 +7,9 @@ $page_owner = elgg_get_page_owner_entity();
 if (!$page_owner instanceof ElggGroup) {
 	$page_owner = elgg_get_site_entity();
 }
+
 if ($page_owner->canWriteToContainer(0, 'object', 'form')) {
-	elgg_register_title_button('forms', 'add', 'object', 'form');
+	elgg_register_title_button('add', 'object', 'form');
 }
 
 elgg_push_collection_breadcrumbs('object', 'form');
@@ -25,5 +26,5 @@ $content = elgg_list_entities([
 // draw page
 echo elgg_view_page($title_text, [
 	'content' => $content,
-	'filter_value' => 'all',
+	'filter_id' => 'forms',
 ]);

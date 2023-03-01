@@ -2,16 +2,19 @@
 
 namespace ColdTrick\Forms\Menus;
 
+/**
+ * Page related menus
+ */
 class Page {
 	
 	/**
 	 * Add a menu item to the page menu in forms
 	 *
-	 * @param \Elgg\Hook $hook 'register', 'menu:page'
+	 * @param \Elgg\Event $event 'register', 'menu:page'
 	 *
 	 * @return void|\ElggMenuItem[]
 	 */
-	public static function registerValidationRules(\Elgg\Hook $hook) {
+	public static function registerValidationRules(\Elgg\Event $event) {
 		
 		if (!elgg_in_context('forms') || elgg_in_context('compose')) {
 			return;
@@ -26,7 +29,7 @@ class Page {
 			return;
 		}
 		
-		$return_value = $hook->getValue();
+		$return_value = $event->getValue();
 		$return_value[] = \ElggMenuItem::factory([
 			'name' => 'forms',
 			'text' => elgg_echo('forms:page_menu:all'),
