@@ -73,6 +73,12 @@ if (!$entity->save()) {
 	return elgg_error_response(elgg_echo('save:fail'));
 }
 
+if (get_input('header_remove')) {
+	$entity->deleteIcon('header');
+} else {
+	$entity->saveIconFromUploadedFile('header', 'header');
+}
+
 elgg_clear_sticky_form('forms/edit');
 
 return elgg_ok_response('', elgg_echo('save:success'), elgg_generate_url('collection:object:form:all'));

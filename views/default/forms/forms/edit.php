@@ -37,6 +37,12 @@ echo elgg_view_field([
 	'value' => elgg_extract('description', $vars),
 ]);
 
+echo elgg_view('entity/edit/header', [
+	'entity' => $entity,
+	'entity_type' => 'object',
+	'entity_subtype' => 'form',
+]);
+
 echo elgg_view_field([
 	'#type' => 'longtext',
 	'#label' => elgg_echo('forms:edit:thankyou'),
