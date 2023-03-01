@@ -3,9 +3,7 @@
 namespace ColdTrick\Forms\Forms;
 
 /**
- * Prepare the fields for the blog/save form
- *
- * @since 5.0
+ * Prepare the fields for the forms/edit form
  */
 class PrepareFields {
 	
@@ -34,7 +32,6 @@ class PrepareFields {
 		
 		$form = elgg_extract('entity', $vars);
 		if ($form instanceof \Form) {
-			// load current blog values
 			foreach (array_keys($values) as $field) {
 				switch ($field) {
 					case 'endpoint_config':
