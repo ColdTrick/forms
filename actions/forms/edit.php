@@ -5,7 +5,7 @@ elgg_make_sticky_form('forms/edit');
 $guid = (int) get_input('guid');
 $container_guid = (int) get_input('container_guid');
 
-$title = get_input('title');
+$title = (string) get_input('title');
 $friendly_url = get_input('friendly_url', elgg_get_friendly_title($title));
 $friendly_url = elgg_get_friendly_title($friendly_url);
 $description = get_input('description');
