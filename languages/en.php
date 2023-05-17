@@ -17,7 +17,7 @@ return [
 	'forms:page_menu:all' => "All forms",
 	'forms:page_menu:validation_rules' => "Manage validation rules",
 	
-	'forms:add' => "Create form",
+	'add:object:form' => "Create form",
 	
 	'forms:add:title' => "Create form",
 	'forms:edit:title' => "Edit form: %s",

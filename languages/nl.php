@@ -1,7 +1,7 @@
 <?php
 /**
- * This file was created by Translation Editor v8.0
- * On 2020-05-29 10:43
+ * This file was created by Translation Editor v11.1
+ * On 2023-05-17 14:42
  */
 
 return array (
@@ -56,7 +56,7 @@ Bepaalde velden op het formulier kunnen worden ingesteld om ook een kopie van he
   'forms:entity_menu:copy:confirm' => 'Weet je zeker dat je dit formulier wilt kopiëren?',
   'forms:page_menu:all' => 'Alle formulieren',
   'forms:page_menu:validation_rules' => 'Beheer validatieregels',
-  'forms:add' => 'Nieuw formulier',
+  'add:object:form' => 'Nieuw formulier',
   'collection:object:form' => 'Formulieren',
   'forms:add:title' => 'Nieuw formulier',
   'forms:edit:title' => 'Bewerk formulier: %s',
