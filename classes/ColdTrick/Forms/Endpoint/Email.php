@@ -157,7 +157,7 @@ class Email extends Endpoint {
 			$value = implode(', ', $value);
 		}
 		
-		$row .= elgg_format_element('td', ['style' => 'vertical-align: top'], $value);
+		$row .= elgg_format_element('td', ['style' => 'vertical-align: top'], (string) $value);
 		$row .= PHP_EOL;
 		
 		return elgg_format_element('tr', [], $row);
