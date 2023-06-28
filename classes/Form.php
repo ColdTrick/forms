@@ -1,11 +1,18 @@
 <?php
 
-use \ColdTrick\Forms\Definition;
-use \ColdTrick\Forms\Endpoint;
+use ColdTrick\Forms\Definition;
+use ColdTrick\Forms\Endpoint;
 use Elgg\Exceptions\InvalidArgumentException;
 
 /**
- * @property int submitted_count the number of submitted forms
+ * Form entity
+ *
+ * @property string $definition      JSON encoded form configuration
+ * @property string $endpoint        which endpoint type to use
+ * @property string $endpoint_config JSON encoded configuration for the endpoint
+ * @property string $friendly_url    friendly URL to the form
+ * @property int    $submitted_count the number of submitted forms
+ * @property string $thankyou        text to display after the submission of a form
  */
 class Form extends \ElggObject {
 	
