@@ -108,6 +108,11 @@ return [
 				'\ColdTrick\Forms\Menus\ValidationRule::registerEdit' => [],
 			],
 		],
+		'seeds' => [
+			'database' => [
+				'\ColdTrick\Forms\Seeder::register' => [],
+			],
+		],
 	],
 	'view_extensions' => [
 		'css/elgg' => [
