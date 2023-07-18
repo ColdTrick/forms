@@ -36,7 +36,7 @@ $footer = elgg_view_field([
 	'#type' => 'button', // don't use submit to prevent submit on enter keydown
 	'icon' => 'save',
 	'class' => 'elgg-button-submit forms-compose-save',
-	'value' => elgg_echo('save'),
+	'text' => elgg_echo('save'),
 ]);
 
 elgg_set_form_footer($footer);

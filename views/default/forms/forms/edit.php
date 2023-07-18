@@ -92,7 +92,7 @@ $footer .= elgg_view_field([
 
 $footer .= elgg_view_field([
 	'#type' => 'submit',
-	'value' => elgg_echo('save'),
+	'text' => elgg_echo('save'),
 ]);
 
 elgg_set_form_footer($footer);

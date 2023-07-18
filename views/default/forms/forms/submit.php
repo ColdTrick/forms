@@ -102,7 +102,7 @@ if (count($tabs) === 1) {
 	
 	$footer .= elgg_view_field([
 		'#type' => 'submit',
-		'value' => elgg_echo('submit'),
+		'text' => elgg_echo('submit'),
 	]);
 } else {
 	foreach ($tabs as $index => $tab) {
@@ -116,7 +116,7 @@ if (count($tabs) === 1) {
 					'elgg-button-action',
 					'forms-submit-buttons-prev',
 				],
-				'value' => elgg_echo('previous'),
+				'text' => elgg_echo('previous'),
 			];
 		}
 		
@@ -128,7 +128,7 @@ if (count($tabs) === 1) {
 					'elgg-button-submit',
 					'forms-submit-buttons-next',
 				],
-				'value' => elgg_echo('next'),
+				'text' => elgg_echo('next'),
 			];
 		}
 		
@@ -136,11 +136,9 @@ if (count($tabs) === 1) {
 		if (($index + 1) === count($tabs)) {
 			$buttons[] = [
 				'#type' => 'submit',
-				'value' => elgg_echo('submit'),
+				'text' => elgg_echo('submit'),
 			];
 		}
-		
-		
 		
 		$tabs[$index]['content'] .= elgg_view('input/fieldset', [
 			'class' => 'forms-submit-buttons',

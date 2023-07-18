@@ -46,7 +46,7 @@ echo elgg_view_field([
 // footer
 $footer = elgg_view_field([
 	'#type' => 'submit',
-	'value' => elgg_echo('save'),
+	'text' => elgg_echo('save'),
 ]);
 if (!empty($name)) {
 	$footer .= elgg_view_field([

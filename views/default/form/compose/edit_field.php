@@ -118,7 +118,7 @@ $fields = [
 	[
 		'#type' => 'button',
 		'class' => 'elgg-button-action forms-compose-field-save',
-		'value' => elgg_echo('save'),
+		'text' => elgg_echo('save'),
 	],
 ];
 

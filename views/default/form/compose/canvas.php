@@ -32,7 +32,7 @@ $pages_result .= elgg_format_element('li', [], elgg_view_field([
 	'#type' => 'button',
 	'icon' => 'plus',
 	'class' => 'elgg-button-action forms-compose-add-page',
-	'value' => elgg_echo('forms:compose:page:add'),
+	'text' => elgg_echo('forms:compose:page:add'),
 ]));
 
 echo elgg_format_element('ul', ['class' => 'forms-compose-list'], $pages_result);
