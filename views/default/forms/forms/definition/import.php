@@ -44,6 +44,6 @@ $footer .= elgg_view_field([
 
 elgg_set_form_footer($footer);
 ?>
-<script type="text/javascript">
+<script>
 	$('.elgg-form-forms-definition-import').prop('enctype', 'multipart/form-data');
 </script>
