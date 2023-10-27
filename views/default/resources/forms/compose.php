@@ -1,18 +1,11 @@
 <?php
 
-use Elgg\Exceptions\Http\EntityPermissionsException;
-
-// validate input
-$guid = elgg_extract('guid', $vars);
-elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE);
+$guid = (int) elgg_extract('guid', $vars);
+elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE, true);
 
 /* @var $entity \Form */
 $entity = get_entity($guid);
-if (!$entity->canEdit()) {
-	throw new EntityPermissionsException();
-}
 
-// breadcrumb
 elgg_push_entity_breadcrumbs($entity);
 
 // import/export
