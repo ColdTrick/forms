@@ -141,7 +141,11 @@ class Field {
 		
 		$result['pattern'] = $this->getPattern();
 		unset($result['validation_rule']);
-		$result['data-custom-error-message'] = $this->getCustomErrorMessage();
+
+		$custom_error = $this->getCustomErrorMessage();
+		if (!empty($custom_error)) {
+			$result['oninvalid'] = 'this.setCustomValidity("' . $custom_error . '")';
+		}
 		
 		$result['required'] = (bool) elgg_extract('required', $result, false);
 		
