@@ -115,7 +115,7 @@ return [
 		],
 	],
 	'view_extensions' => [
-		'css/elgg' => [
+		'elgg.caa' => [
 			'css/forms.css' => [],
 		],
 	],
