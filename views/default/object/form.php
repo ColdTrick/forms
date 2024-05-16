@@ -6,11 +6,12 @@
  * @uses $vars['full_view'] show full view or listing
  */
 
-/* @var $entity Form */
 $entity = elgg_extract('entity', $vars);
-$full_view = (bool) elgg_extract('full_view', $vars);
+if (!$entity instanceof \Form) {
+	return;
+}
 
-if ($full_view) {
+if ((bool) elgg_extract('full_view', $vars)) {
 	// @TODO make this
 	echo $entity->title;
 } else {
@@ -34,12 +35,11 @@ if ($full_view) {
 	}
 	
 	$params = [
-		'entity' => $entity,
 		'content' => $entity->description ? elgg_get_excerpt($entity->description) : null,
 		'imprint' => $imprint,
 		'access' => false,
 		'byline_owner_entity' => false,
 	];
-	
+	$params = $params + $vars;
 	echo elgg_view('object/elements/summary', $params);
 }

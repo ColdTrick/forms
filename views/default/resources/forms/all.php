@@ -4,27 +4,17 @@
  */
 
 $page_owner = elgg_get_page_owner_entity();
-if (!$page_owner instanceof ElggGroup) {
+if (!$page_owner instanceof \ElggGroup) {
 	$page_owner = elgg_get_site_entity();
 }
 
-if ($page_owner->canWriteToContainer(0, 'object', 'form')) {
-	elgg_register_title_button('add', 'object', 'form');
+if ($page_owner->canWriteToContainer(0, 'object', \Form::SUBTYPE)) {
+	elgg_register_title_button('add', 'object', \Form::SUBTYPE);
 }
 
-elgg_push_collection_breadcrumbs('object', 'form');
+elgg_push_collection_breadcrumbs('object', \Form::SUBTYPE);
 
-// build page elements
-$title_text = elgg_echo('collection:object:form');
-
-$content = elgg_list_entities([
-	'type' => 'object',
-	'subtype' => Form::SUBTYPE,
-	'no_results' => true,
-]);
-
-// draw page
-echo elgg_view_page($title_text, [
-	'content' => $content,
+echo elgg_view_page(elgg_echo('collection:object:form'), [
+	'content' => elgg_view('form/listing/all'),
 	'filter_id' => 'forms',
 ]);

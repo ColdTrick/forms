@@ -107,10 +107,9 @@ class Form extends \ElggObject {
 	/**
 	 * Export the form definition
 	 *
-	 * @return string|null
+	 * @return null|string
 	 */
 	public function exportDefinition(): ?string {
-		
 		if (!$this->hasDefinition()) {
 			return null;
 		}
@@ -132,7 +131,6 @@ class Form extends \ElggObject {
 	 * @return bool
 	 */
 	public function importDefinition(string $json_string): bool {
-		
 		$data = @json_decode($json_string, true);
 		if (empty($data)) {
 			return false;
@@ -168,12 +166,11 @@ class Form extends \ElggObject {
 	/**
 	 * Get the endpoint configuration
 	 *
-	 * @param string $endpoint (optional) the endpoint to get the config for
+	 * @param null|string $endpoint (optional) the endpoint to get the config for
 	 *
 	 * @return array
 	 */
 	public function getEndpointConfig(string $endpoint = null): array {
-		
 		if (empty($this->endpoint_config)) {
 			return [];
 		}
@@ -197,9 +194,6 @@ class Form extends \ElggObject {
 		}
 		
 		$endpoints = forms_get_available_endpoints();
-		if (!is_array($endpoints)) {
-			return null;
-		}
 		
 		$endpoint_information = elgg_extract($this->endpoint, $endpoints);
 		if (empty($endpoint_information)) {

@@ -3,14 +3,14 @@
 use Elgg\SystemLog\SystemLog;
 
 $entity = elgg_extract('entity', $vars);
-if (!$entity instanceof Form || !elgg_is_active_plugin('system_log')) {
+if (!$entity instanceof \Form || !elgg_is_active_plugin('system_log')) {
 	return;
 }
 
 $system_log = SystemLog::instance()->getAll([
-	'object_class' => Form::class,
+	'object_class' => \Form::class,
 	'object_type' => 'object',
-	'object_subtype' => Form::SUBTYPE,
+	'object_subtype' => \Form::SUBTYPE,
 	'limit' => 10,
 	'object_id' => $entity->guid,
 ]);
@@ -23,7 +23,7 @@ $result = [];
 foreach ($system_log as $entry) {
 	$line = [];
 	$performer = get_entity($entry->performed_by_guid);
-	if ($performer instanceof ElggUser) {
+	if ($performer instanceof \ElggUser) {
 		$line[] = elgg_view('output/url', [
 			'text' => $performer->getDisplayName(),
 			'href' => $performer->getURL(),

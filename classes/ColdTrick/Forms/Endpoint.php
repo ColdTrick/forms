@@ -8,18 +8,11 @@ namespace ColdTrick\Forms;
 abstract class Endpoint {
 	
 	/**
-	 * @var array $config the endpoint configuration
-	 */
-	protected array $config;
-	
-	/**
 	 * Create a new endpoint
 	 *
-	 * @param array $configuration the endpoint configuration
+	 * @param array $config the endpoint configuration
 	 */
-	public function __construct(array $configuration) {
-		
-		$this->config = $configuration;
+	public function __construct(protected array $config) {
 	}
 	
 	/**
@@ -27,9 +20,9 @@ abstract class Endpoint {
 	 *
 	 * @param string $name the name of the configuration value
 	 *
-	 * @return void|mixed
+	 * @return mixed
 	 */
-	protected function getConfig($name) {
+	protected function getConfig(string $name): mixed {
 		return elgg_extract($name, $this->config);
 	}
 	
@@ -40,5 +33,5 @@ abstract class Endpoint {
 	 *
 	 * @return bool
 	 */
-	abstract public function process(Result $result);
+	abstract public function process(Result $result): bool;
 }

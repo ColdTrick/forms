@@ -32,28 +32,25 @@ class Email extends Endpoint {
 	];
 	
 	/**
-	 * {@inheritDoc}
-	 * @see \ColdTrick\Forms\Endpoint::__construct()
+	 * {@inheritdoc}
 	 */
-	public function __construct(array $configuration) {
+	public function __construct(array $config) {
+		parent::__construct($config);
 		
-		parent::__construct($configuration);
-		
-		$this->addRecipient('to', elgg_extract('to', $configuration));
-		$this->addRecipient('cc', elgg_extract('cc', $configuration));
-		$this->addRecipient('bcc', elgg_extract('bcc', $configuration));
+		$this->addRecipient('to', elgg_extract('to', $config));
+		$this->addRecipient('cc', elgg_extract('cc', $config));
+		$this->addRecipient('bcc', elgg_extract('bcc', $config));
 		
 		$user = elgg_get_logged_in_user_entity();
-		if (elgg_extract('cc_user', $configuration) && ($user instanceof \ElggUser)) {
+		if (elgg_extract('cc_user', $config) && ($user instanceof \ElggUser)) {
 			$this->addRecipient('cc', $user->email);
 		}
 	}
 	
 	/**
-	 * {@inheritDoc}
-	 * @see \ColdTrick\Forms\Endpoint::process()
+	 * {@inheritdoc}
 	 */
-	public function process(Result $result) {
+	public function process(Result $result): bool {
 		$this->result = $result;
 		
 		$form = $this->result->getForm();
@@ -79,7 +76,7 @@ class Email extends Endpoint {
 	 *
 	 * @return string
 	 */
-	protected function getBody() {
+	protected function getBody(): string {
 		$body = '';
 		
 		foreach ($this->result->getPages() as $page) {
@@ -132,10 +129,9 @@ class Email extends Endpoint {
 	 *
 	 * @param Field $field field
 	 *
-	 * @return void|string
+	 * @return string
 	 */
-	protected function getBodyField(Field $field) {
-		
+	protected function getBodyField(Field $field): string {
 		$row = elgg_format_element('td', ['style' => 'vertical-align: top; width: 200px;'], $field->getLabel() . ': ');
 		
 		$value = $field->getValue();
@@ -168,7 +164,7 @@ class Email extends Endpoint {
 	 *
 	 * @return \Elgg\Email\Address
 	 */
-	protected function getFrom() {
+	protected function getFrom(): Address {
 		$site = elgg_get_site_entity();
 		
 		return new Address($site->getEmailAddress(), $site->getDisplayName());
@@ -179,7 +175,7 @@ class Email extends Endpoint {
 	 *
 	 * @return array
 	 */
-	protected function getParams() {
+	protected function getParams(): array {
 		$result = [];
 		if (!empty($this->attachments)) {
 			$result['attachments'] = $this->attachments;
@@ -195,8 +191,7 @@ class Email extends Endpoint {
 	 *
 	 * @return void
 	 */
-	protected function addAttachment(Field $field) {
-		
+	protected function addAttachment(Field $field): void {
 		if ($field->getType() !== 'file') {
 			return;
 		}
@@ -229,9 +224,8 @@ class Email extends Endpoint {
 	 *
 	 * @return void
 	 */
-	protected function addRecipient($type, $address) {
-		
-		if (!in_array($type, ['to', 'cc', 'bcc']) || !is_string($address)) {
+	protected function addRecipient(string $type, string $address): void {
+		if (!in_array($type, ['to', 'cc', 'bcc'])) {
 			return;
 		}
 		
@@ -249,8 +243,7 @@ class Email extends Endpoint {
 	 *
 	 * @return void
 	 */
-	protected function addRecipientFromField(Field $field) {
-		
+	protected function addRecipientFromField(Field $field): void {
 		if (!$field->getValue()) {
 			return;
 		}
@@ -262,7 +255,6 @@ class Email extends Endpoint {
 				break;
 			default:
 				return;
-				break;
 		}
 		
 		$field_config = $field->getConfig();
@@ -281,21 +273,19 @@ class Email extends Endpoint {
 	 * @param string $type  to, cc or bcc
 	 * @param int    $limit number of recipients to return
 	 *
-	 * @return string|Address|Address[]
+	 * @return null|Address|Address[]
 	 */
-	protected function getRecipients($type, $limit = null) {
-		
+	protected function getRecipients(string $type, int $limit = 0) {
 		if (!in_array($type, ['to', 'cc', 'bcc'])) {
-			return '';
+			return null;
 		}
 		
 		$recipients = elgg_extract($type, $this->recipients, []);
 		if (empty($recipients)) {
-			return '';
+			return null;
 		}
 		
-		if (isset($limit)) {
-			$limit = (int) $limit;
+		if ($limit > 0) {
 			$recipients = array_slice($recipients, 0, $limit);
 		}
 		

@@ -12,12 +12,12 @@ class Csv extends Definition {
 	/**
 	 * @var string[]
 	 */
-	protected $validation_errors;
+	protected ?array $validation_errors;
 	
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
-	public function isValid() {
+	public function isValid(): bool {
 		if (!isset($this->validation_errors)) {
 			$this->validate();
 		}
@@ -26,9 +26,9 @@ class Csv extends Definition {
 	}
 	
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
-	public function getValidationErrors() {
+	public function getValidationErrors(): array {
 		if (!isset($this->validation_errors)) {
 			$this->validate();
 		}
@@ -41,7 +41,7 @@ class Csv extends Definition {
 	 *
 	 * @return void
 	 */
-	protected function validate() {
+	protected function validate(): void {
 		$this->validation_errors = [];
 		
 		foreach ($this->getPages() as $page) {
@@ -66,7 +66,7 @@ class Csv extends Definition {
 	 *
 	 * @return void
 	 */
-	protected function validateField(Field $field) {
+	protected function validateField(Field $field): void {
 		switch ($field->getType()) {
 			case 'file':
 				$this->validation_errors[] = elgg_echo('forms:definition:validation:error:csv:file', [$field->getLabel()]);

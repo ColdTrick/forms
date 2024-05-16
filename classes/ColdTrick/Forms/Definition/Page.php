@@ -8,11 +8,6 @@ namespace ColdTrick\Forms\Definition;
 class Page {
 	
 	/**
-	 * @var array the page configuration
-	 */
-	protected array $config;
-	
-	/**
 	 * @var \ColdTrick\Forms\Definition\Section[] all the sections on this page
 	 */
 	protected array $sections;
@@ -22,9 +17,7 @@ class Page {
 	 *
 	 * @param array $config configuration
 	 */
-	public function __construct($config) {
-
-		$this->config = $config;
+	public function __construct(protected array $config) {
 	}
 	
 	/**
@@ -42,7 +35,6 @@ class Page {
 	 * @return \ColdTrick\Forms\Definition\Section[]
 	 */
 	public function getSections(): array {
-		
 		if (isset($this->sections)) {
 			return $this->sections;
 		}
@@ -78,7 +70,6 @@ class Page {
 	 * @return void
 	 */
 	public function populateFromInput(): void {
-		
 		foreach ($this->getSections() as $section) {
 			$section->populateFromInput();
 		}

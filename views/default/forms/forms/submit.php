@@ -1,11 +1,11 @@
 <?php
 
 $entity = elgg_extract('entity', $vars);
-if (!($entity instanceof \Form)) {
+if (!$entity instanceof \Form) {
 	return;
 }
 
-elgg_require_js('forms/submit');
+elgg_import_esm('forms/forms/submit');
 
 $sticky_values = (array) elgg_extract('sticky_values', $vars, []);
 

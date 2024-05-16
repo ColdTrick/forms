@@ -25,19 +25,17 @@ class FriendlyForm {
 	 *
 	 * @param \Elgg\Request $request Request
 	 *
-	 * @return ResponseBuilder
-	 *
+	 * @return null|ResponseBuilder
 	 * @throws EntityNotFoundException
 	 */
-	public function __invoke(\Elgg\Request $request) {
-		
+	public function __invoke(\Elgg\Request $request): ?ResponseBuilder {
 		$friendly_url = $request->getParam('title');
 		if (empty($friendly_url)) {
-			return;
+			return null;
 		}
 		
 		if (in_array($friendly_url, self::HANDLERS)) {
-			return;
+			return null;
 		}
 		
 		$entities = elgg_get_entities([

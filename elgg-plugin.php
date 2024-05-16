@@ -116,7 +116,7 @@ return [
 	],
 	'view_extensions' => [
 		'elgg.css' => [
-			'css/forms.css' => [],
+			'form/site.css' => [],
 		],
 	],
 	'view_options' => [

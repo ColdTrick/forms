@@ -1,9 +1,10 @@
 <?php
 
 return [
-	
 	'item:object:form' => "Form",
 	'collection:object:form' => "Forms",
+	
+	'forms:no_results' => "No forms found",
 	
 	'forms:invalid_input_exception:required' => "Missing required field",
 	'forms:invalid_input_exception:pattern' => "Field input doesn't match pattern",

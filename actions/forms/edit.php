@@ -37,7 +37,7 @@ if (!$container instanceof \ElggGroup) {
 }
 
 if (empty($entity)) {
-	if (!$container->canWriteToContainer(0, 'object', Form::SUBTYPE)) {
+	if (!$container->canWriteToContainer(0, 'object', \Form::SUBTYPE)) {
 		return elgg_error_response(elgg_echo('actionunauthorized'));
 	}
 	

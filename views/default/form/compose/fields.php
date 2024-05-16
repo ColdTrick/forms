@@ -5,8 +5,10 @@
  * @uses $vars['entity'] the form entity
  */
 
-/* @var $entity \Form */
 $entity = elgg_extract('entity', $vars);
+if (!$entity instanceof \Form) {
+	return;
+}
 
 $types = [
 	[
@@ -98,5 +100,6 @@ foreach ($types as $type_params) {
 }
 
 $body = elgg_format_element('ul', ['class' => 'forms-compose-fields'], $list);
+$title = elgg_view_icon('plus-square-regular') . '&nbsp;' . elgg_echo('forms:compose:fields:title');
 
-echo elgg_view_module('aside', elgg_view_icon('plus-square-regular') . '&nbsp;' . elgg_echo('forms:compose:fields:title'), $body);
+echo elgg_view_module('aside', $title, $body, ['class' => 'forms-compose-fields-sidebar']);

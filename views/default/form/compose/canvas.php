@@ -1,6 +1,9 @@
 <?php
 
 $entity = elgg_extract('entity', $vars);
+if (!$entity instanceof \Form) {
+	return;
+}
 
 $definition = $entity->definition ? json_decode($entity->definition, true) : [];
 

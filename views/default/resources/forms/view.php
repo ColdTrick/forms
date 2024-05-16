@@ -11,7 +11,6 @@ if (!$entity->isValid()) {
 	throw new HttpException(elgg_echo('forms:view:error:validation', [$entity->getDisplayName()]), ELGG_HTTP_NOT_FOUND);
 }
 
-
 $sticky_values = elgg_get_sticky_values("forms_{$guid}");
 
 // build page elements
@@ -22,15 +21,10 @@ $body = elgg_view('output/longtext', [
 	'class' => 'mbm',
 ]);
 
-$form_vars = [
-	'enctype' => 'multipart/form-data',
-	'prevent_double_submit' => true
-];
-$body_vars = [
+$body .= elgg_view_form('forms/submit', [], [
 	'entity' => $entity,
 	'sticky_values' => $sticky_values,
-];
-$body .= elgg_view_form('forms/submit', $form_vars, $body_vars);
+]);
 
 // clear sticky values
 elgg_clear_sticky_form("forms_{$guid}");

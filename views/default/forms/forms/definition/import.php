@@ -3,7 +3,7 @@
 elgg_ajax_gatekeeper();
 
 $entity = elgg_extract('entity', $vars);
-if (!($entity instanceof Form)) {
+if (!$entity instanceof \Form) {
 	return;
 }
 
@@ -43,7 +43,3 @@ $footer .= elgg_view_field([
 ]);
 
 elgg_set_form_footer($footer);
-?>
-<script>
-	$('.elgg-form-forms-definition-import').prop('enctype', 'multipart/form-data');
-</script>

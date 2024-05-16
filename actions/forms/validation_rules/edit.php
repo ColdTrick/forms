@@ -25,7 +25,7 @@ if (!empty($name)) {
 	$rule = $found_rule;
 } else {
 	$name = 'rule-' . substr(md5(microtime(true)), 0, 6);
-	while (forms_get_validation_rule($name) !== false) {
+	while (forms_get_validation_rule($name) !== null) {
 		// make sure it's unique
 		$name = 'rule-' . substr(md5(microtime(true)), 0, 6);
 	}

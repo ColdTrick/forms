@@ -8,11 +8,6 @@ namespace ColdTrick\Forms\Definition;
 class Section {
 	
 	/**
-	 * @var array the configuration of this section
-	 */
-	protected array $config;
-	
-	/**
 	 * @var \ColdTrick\Forms\Definition\Field[] the fields in this section
 	 */
 	protected array $fields;
@@ -22,18 +17,16 @@ class Section {
 	 *
 	 * @param array $config the section configuration
 	 */
-	public function __construct(array $config) {
-
-		$this->config = $config;
+	public function __construct(protected array $config) {
 	}
 	
 	/**
 	 * Get the section title
 	 *
-	 * @return string
+	 * @return null|string
 	 */
-	public function getTitle() {
-		return elgg_extract('title', $this->config, '');
+	public function getTitle(): ?string {
+		return elgg_extract('title', $this->config);
 	}
 	
 	/**
@@ -41,15 +34,14 @@ class Section {
 	 *
 	 * @return \ColdTrick\Forms\Definition\Field[]
 	 */
-	public function getFields() {
-		
+	public function getFields(): array {
 		if (isset($this->fields)) {
 			return $this->fields;
 		}
 		
 		$this->fields = [];
 		
-		$fields = elgg_extract('fields', $this->config, []);
+		$fields = (array) elgg_extract('fields', $this->config);
 		foreach ($fields as $field) {
 			$this->fields[] = new Field($field);
 		}
@@ -62,7 +54,7 @@ class Section {
 	 *
 	 * @return array
 	 */
-	public function getValidationRules() {
+	public function getValidationRules(): array {
 		$result = [];
 		
 		foreach ($this->getFields() as $field) {
@@ -77,8 +69,7 @@ class Section {
 	 *
 	 * @return void
 	 */
-	public function populateFromInput() {
-		
+	public function populateFromInput(): void {
 		foreach ($this->getFields() as $field) {
 			$field->populateFromInput();
 		}

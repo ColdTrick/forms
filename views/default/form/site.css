@@ -1,10 +1,16 @@
 .forms-compose-list-page {
 	padding: 10px;
-	background: #F0F0F0;
+	background: $(background-color-mild);
 	margin-bottom: 10px;
 	
 	&:hover > .forms-compose-edit-title {
 		display: inline-block;
+	}
+	
+	&.ui-sortable-handle {
+		> .forms-compose-title-container {
+			cursor: move;
+		}
 	}
 	
 	> ul > li:last-child .elgg-field {
@@ -12,7 +18,7 @@
 	}
 	
 	.ui-sortable-placeholder {
-		border: 2px dotted #F0F0F0;
+		border: 2px dotted $(border-color-mild);
 		background: transparent;
 		visibility: visible !important;
 	}
@@ -20,19 +26,32 @@
 
 .forms-compose-list-section {
 	padding: 10px;
-	background: #444;
+	background: $(background-color-strong);
 	margin: 10px;
-
+	
+	&:hover > .forms-compose-edit-title {
+		display: inline-block;
+	}
+	
+	&.ui-sortable-handle {
+		> .forms-compose-title-container {
+			cursor: move;
+		}
+	}
+	
 	> .forms-compose-title-container {
-		color: #F0F0F0;
+		color: $(text-color-strong);
 	}
 	
 	> ul {
 		padding: 10px;
 	}
 	
-	&:hover > .forms-compose-edit-title {
-		display: inline-block;
+	.ui-sortable {
+		.ui-draggable-handle,
+		.ui-sortable-handle {
+			cursor: move;
+		}
 	}
 }
 
@@ -49,16 +68,20 @@
 }
 
 .forms-compose-list-field {
-	background: #F0F0F0;
+	background: $(background-color-mild);
 	margin-bottom: 5px;
 	padding: 5px;
 	
-	> .elgg-required-indicator {
-		display: none;
-	}
-	
 	&.forms-compose-list-field-required > .elgg-required-indicator {
 		display: inline-block;
+	}
+	
+	&.ui-draggable-handle {
+		cursor: grab;
+	}
+	
+	> .elgg-required-indicator {
+		display: none;
 	}
 	
 	> .elgg-icon {
@@ -70,14 +93,23 @@
 	visibility: visible;
 }
 
-.forms-compose-fields > li {
-	background: #f0f0f0;
-	margin-bottom: 5px;
+.forms-compose-fields-sidebar {
+	> .elgg-body {
+		background: white;
+		padding: 0.5rem;
+		
+		.forms-compose-fields {
+			> li {
+				background: $(background-color-mild);
+				margin-bottom: 5px;
+			}
+		}
+	}
 }
 
 .forms-compose-edit-field {
 	padding: 10px;
-	background: #FFF;
+	background: white;
 	
 	> .elgg-field:last-child {
 		margin: 0;
@@ -85,17 +117,17 @@
 }
 
 .forms-compose-conditional-section {
-	background: #e1e1e1;
+	background: $(background-color-strong);
 	margin-top: 5px;
 	padding: 10px;
-	
-	.forms-compose-add-conditional-section {
-		display: none;
-	}
 	
 	> .elgg-field > .elgg-field-label {
 		font-weight: normal;
 		font-size: 100%;
+	}
+	
+	.forms-compose-add-conditional-section {
+		display: none;
 	}
 }
 
@@ -104,6 +136,7 @@
 	margin-right: 4px;
 }
 
+.forms-compose-add-conditional-section,
 .forms-compose-field-edit,
 .forms-compose-delete,
 .forms-compose-edit-title {
@@ -113,9 +146,10 @@
 
 ul .forms-field-unsortable {
 	display: none;
-}
-ul .forms-field-unsortable:last-child {
-	display: block;
+	
+	&:last-child {
+		display: block;
+	}
 }
 
 .forms-submissions:hover {

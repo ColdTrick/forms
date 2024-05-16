@@ -1,6 +1,6 @@
 <?php
 
-elgg_push_collection_breadcrumbs('object', 'form');
+elgg_push_collection_breadcrumbs('object', \Form::SUBTYPE);
 
 // create add button
 elgg_register_menu_item('title', [

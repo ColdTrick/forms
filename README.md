@@ -1,6 +1,6 @@
 # Forms
 
-![Elgg 5.0](https://img.shields.io/badge/Elgg-5.0-green.svg)
+![Elgg 6.0](https://img.shields.io/badge/Elgg-6.0-green.svg)
 ![Lint Checks](https://github.com/ColdTrick/entity_view_counter/actions/workflows/lint.yml/badge.svg?event=push)
 [![Latest Stable Version](https://poser.pugx.org/coldtrick/forms/v/stable.svg)](https://packagist.org/packages/coldtrick/forms)
 [![License](https://poser.pugx.org/coldtrick/forms/license.svg)](https://packagist.org/packages/coldtrick/forms)

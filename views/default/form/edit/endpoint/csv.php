@@ -5,9 +5,7 @@ $endpoint_config = elgg_extract('endpoint_config', $vars, []);
 $config = elgg_extract('csv', $endpoint_config, []);
 
 // make form elements
-$csv = '';
-
-$csv .= elgg_view('output/longtext', [
+$csv = elgg_view('output/longtext', [
 	'value' => elgg_echo('forms:endpoint:csv:description'),
 ]);
 

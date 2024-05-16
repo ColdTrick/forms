@@ -3,6 +3,7 @@
 namespace ColdTrick\Forms\Menus;
 
 use ColdTrick\Forms\Endpoint\Csv;
+use Elgg\Menu\MenuItems;
 
 /**
  * Title menu callbacks
@@ -14,28 +15,27 @@ class Title {
 	 *
 	 * @param \Elgg\Event $event 'register', 'menu:title'
 	 *
-	 * @return array
+	 * @return null|MenuItems
 	 */
-	public static function addCsvDownload(\Elgg\Event $event) {
-		
+	public static function addCsvDownload(\Elgg\Event $event): ?MenuItems {
 		if (!elgg_is_logged_in()) {
-			return;
+			return null;
 		}
 		
 		$entity = $event->getEntityParam();
 		if (!$entity instanceof \Form || elgg_in_context('compose')) {
-			return;
+			return null;
 		}
 		
 		$endpoint = $entity->getEndpoint();
 		if (!$endpoint instanceof Csv) {
 			// only for CSV endpoints
-			return;
+			return null;
 		}
 		
 		$file = $endpoint->getFile($entity);
 		if (!$file->exists()) {
-			return;
+			return null;
 		}
 		
 		if (!$entity->canEdit()) {
@@ -43,7 +43,7 @@ class Title {
 			$endpoint_config = $entity->getEndpointConfig($entity->endpoint);
 			$downloaders = (array) elgg_extract('downloaders', $endpoint_config, []);
 			if (!in_array(elgg_get_logged_in_user_guid(), $downloaders)) {
-				return;
+				return null;
 			}
 		}
 		
@@ -66,27 +66,26 @@ class Title {
 	 *
 	 * @param \Elgg\Event $event 'register', 'menu:title'
 	 *
-	 * @return array
+	 * @return null|MenuItems
 	 */
-	public static function addCsvClear(\Elgg\Event $event) {
-		
+	public static function addCsvClear(\Elgg\Event $event): ?MenuItems {
 		$entity = $event->getEntityParam();
 		if (!$entity instanceof \Form || !$entity->canEdit() || elgg_in_context('compose')) {
-			return;
+			return null;
 		}
 		
 		$endpoint = $entity->getEndpoint();
 		if (!$endpoint instanceof Csv) {
 			// only for CSV endpoints
-			return;
+			return null;
 		}
 		
 		$file = $endpoint->getFile($entity);
 		if (!$file->exists()) {
-			return;
+			return null;
 		}
 		
-		/* @var $result \Elgg\Menu\MenuItems */
+		/* @var $result MenuItems */
 		$result = $event->getValue();
 		
 		$result[] = \ElggMenuItem::factory([

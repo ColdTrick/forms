@@ -2,6 +2,8 @@
 
 namespace ColdTrick\Forms\Menus;
 
+use Elgg\Menu\MenuItems;
+
 /**
  * Validation rule
  */
@@ -12,17 +14,16 @@ class ValidationRule {
 	 *
 	 * @param \Elgg\Event $event 'register', 'menu:validation_rule'
 	 *
-	 * @return void|\ElggMenuItem[]
+	 * @return null|MenuItems
 	 */
-	public static function registerEdit(\Elgg\Event $event) {
-		
+	public static function registerEdit(\Elgg\Event $event): ?MenuItems {
 		if (!elgg_is_admin_logged_in()) {
-			return;
+			return null;
 		}
 		
 		$rule = $event->getParam('rule');
 		if (empty($rule)) {
-			return;
+			return null;
 		}
 		
 		$name = elgg_extract('name', $rule);

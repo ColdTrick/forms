@@ -26,7 +26,7 @@ class Seeder extends Seed {
 	];
 	
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
 	public function seed() {
 		$this->advance($this->getCount());
@@ -57,7 +57,7 @@ class Seeder extends Seed {
 	}
 	
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
 	public function unseed() {
 		/* @var $entities \ElggBatch */
@@ -85,14 +85,14 @@ class Seeder extends Seed {
 	}
 	
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
 	public static function getType(): string {
 		return \Form::SUBTYPE;
 	}
 	
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
 	protected function getCountOptions(): array {
 		return [
@@ -213,7 +213,7 @@ class Seeder extends Seed {
 			'#type' => $this->supported_field_types[$key],
 			'#label' => $this->faker()->sentence(),
 			'#help' => $this->faker()->sentence(),
-			'name' => '__field_' . (int) (microtime(true) * 1000),
+			'name' => uniqid('__field_'),
 			'conditional_sections' => [], // not supported in seeding
 			'required' => $this->faker()->boolean(25) ? '1' : '0',
 		];

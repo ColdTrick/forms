@@ -2,8 +2,7 @@
 
 $rule = elgg_extract('item', $vars);
 
-$summary = '';
-$summary .= elgg_view('object/elements/summary/metadata', ['metadata' => elgg_view_menu('validation_rule', [
+$summary = elgg_view('object/elements/summary/metadata', ['metadata' => elgg_view_menu('validation_rule', [
 	'rule' => $rule,
 	'sort_by' => 'priority',
 	'class' => 'elgg-menu-hz elgg-menu-entity',

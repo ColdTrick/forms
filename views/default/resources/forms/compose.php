@@ -13,7 +13,9 @@ elgg_register_menu_item('title', [
 	'name' => 'import',
 	'icon' => 'upload',
 	'text' => elgg_echo('import'),
-	'href' => "ajax/form/forms/definition/import?guid={$entity->getGUID()}",
+	'href' => elgg_http_add_url_query_elements('ajax/form/forms/definition/import', [
+		'guid' => $entity->guid,
+	]),
 	'link_class' => 'elgg-button elgg-button-action elgg-lightbox',
 	'data-colorbox-opts' => json_encode([
 		'maxWidth' => '600px;',

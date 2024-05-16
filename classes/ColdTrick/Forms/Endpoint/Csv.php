@@ -16,10 +16,9 @@ class Csv extends Endpoint {
 	const FILENAME = 'results.csv';
 	
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
-	public function process(Result $result) {
-		
+	public function process(Result $result): bool {
 		$headers = [];
 		$values = [];
 		
@@ -86,6 +85,8 @@ class Csv extends Endpoint {
 		$file->close();
 		
 		$this->sendNotification($form);
+		
+		return true;
 	}
 	
 	/**
@@ -95,7 +96,7 @@ class Csv extends Endpoint {
 	 *
 	 * @return \ElggFile
 	 */
-	public function getFile(\Form $form) {
+	public function getFile(\Form $form): \ElggFile {
 		$file = new \ElggFile();
 		$file->owner_guid = $form->guid;
 		$file->setFilename(self::FILENAME);
@@ -108,12 +109,12 @@ class Csv extends Endpoint {
 	 *
 	 * @param \Form $form notification related form
 	 *
-	 * @return void
+	 * @return null|bool
 	 */
-	protected function sendNotification(\Form $form) {
+	protected function sendNotification(\Form $form): ?bool {
 		$to = $this->getConfig('to');
 		if (empty($to) || !elgg_is_valid_email((string) $to)) {
-			return;
+			return null;
 		}
 		
 		$email = ElggMail::factory([
@@ -129,6 +130,6 @@ class Csv extends Endpoint {
 			],
 		]);
 		
-		elgg_send_email($email);
+		return elgg_send_email($email);
 	}
 }

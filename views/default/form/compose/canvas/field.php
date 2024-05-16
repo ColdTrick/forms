@@ -1,7 +1,11 @@
 <?php
 
-/* @var $field \ColdTrick\Forms\Definition\Field */
+use ColdTrick\Forms\Definition\Field;
+
 $field = elgg_extract('field', $vars);
+if (!$field instanceof Field) {
+	return;
+}
 
 $input_vars = $field->getConfig();
 

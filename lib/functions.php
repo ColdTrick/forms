@@ -13,8 +13,7 @@ use Elgg\Database\QueryBuilder;
  *
  * @return bool
  */
-function forms_is_valid_friendly_url(string $friendly_url, int $entity_guid = null): bool {
-	
+function forms_is_valid_friendly_url(string $friendly_url, int $entity_guid = 0): bool {
 	if (empty($friendly_url)) {
 		return false;
 	}
@@ -49,11 +48,11 @@ function forms_is_valid_friendly_url(string $friendly_url, int $entity_guid = nu
  * @param string $friendly_url the base to start from
  * @param int    $entity_guid  (optional) the entity to generate for
  *
- * @return false|string
+ * @return null|string
  */
-function forms_generate_valid_friendly_url(string $friendly_url, int $entity_guid = null) {
+function forms_generate_valid_friendly_url(string $friendly_url, int $entity_guid = 0): ?string {
 	if (empty($friendly_url)) {
-		return false;
+		return null;
 	}
 	
 	if (forms_is_valid_friendly_url($friendly_url, $entity_guid)) {
@@ -88,7 +87,7 @@ function forms_get_available_endpoints(): array {
 }
 
 /**
- * Get the vaidation rule definitions
+ * Get the validation rule definitions
  *
  * @return array
  */
@@ -119,8 +118,8 @@ function forms_save_validation_rules(array $rules = []): bool {
  *
  * @param string $rule_name the name of the rule to get
  *
- * @return false|array
+ * @return null|array
  */
-function forms_get_validation_rule(string $rule_name) {
-	return elgg_extract($rule_name, forms_get_validation_rules(), false);
+function forms_get_validation_rule(string $rule_name): ?array {
+	return elgg_extract($rule_name, forms_get_validation_rules());
 }

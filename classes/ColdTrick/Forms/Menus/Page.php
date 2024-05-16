@@ -2,6 +2,8 @@
 
 namespace ColdTrick\Forms\Menus;
 
+use Elgg\Menu\MenuItems;
+
 /**
  * Page related menus
  */
@@ -12,12 +14,11 @@ class Page {
 	 *
 	 * @param \Elgg\Event $event 'register', 'menu:page'
 	 *
-	 * @return void|\ElggMenuItem[]
+	 * @return null|MenuItems
 	 */
-	public static function registerValidationRules(\Elgg\Event $event) {
-		
+	public static function registerValidationRules(\Elgg\Event $event): ?MenuItems {
 		if (!elgg_in_context('forms') || elgg_in_context('compose')) {
-			return;
+			return null;
 		}
 		
 		$page_owner = elgg_get_page_owner_entity();
@@ -25,8 +26,8 @@ class Page {
 			$page_owner = elgg_get_site_entity();
 		}
 		
-		if (!$page_owner->canWriteToContainer(0, 'object', 'form')) {
-			return;
+		if (!$page_owner->canWriteToContainer(0, 'object', \Form::SUBTYPE)) {
+			return null;
 		}
 		
 		$return_value = $event->getValue();

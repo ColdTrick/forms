@@ -9,7 +9,7 @@
 /* @var $entity \Form */
 $entity = elgg_extract('entity', $vars);
 
-elgg_require_js('forms/edit');
+elgg_import_esm('forms/forms/edit');
 
 // form elements
 echo elgg_view_field([
@@ -51,7 +51,7 @@ echo elgg_view_field([
 	'value' => elgg_extract('thankyou', $vars),
 ]);
 
-if (empty($entity)) {
+if (!$entity instanceof \Form) {
 	echo elgg_view_field([
 		'#type' => 'file',
 		'#label' => elgg_echo('forms:edit:definition'),
@@ -65,7 +65,7 @@ echo elgg_view_field([
 	'name' => 'access_id',
 	'value' => (int) elgg_extract('access_id', $vars),
 	'entity_type' => 'object',
-	'entity_subtype' => Form::SUBTYPE,
+	'entity_subtype' => \Form::SUBTYPE,
 	'entity' => $entity,
 	'container_guid' => elgg_extract('container_guid', $vars),
 	'entity_allows_comments' => false,
@@ -76,11 +76,11 @@ echo elgg_view('form/edit/endpoint', $vars);
 
 // footer
 $footer = '';
-if (!empty($entity)) {
+if ($entity instanceof \Form) {
 	$footer .= elgg_view_field([
 		'#type' => 'hidden',
 		'name' => 'guid',
-		'value' => $entity->getGUID(),
+		'value' => $entity->guid,
 	]);
 }
 

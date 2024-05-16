@@ -1,8 +1,11 @@
 <?php
 
-elgg_require_js('forms/compose');
-
 $entity = elgg_extract('entity', $vars);
+if (!$entity instanceof \Form) {
+	return;
+}
+
+elgg_import_esm('forms/forms/compose');
 
 echo elgg_view_field([
 	'#type' => 'hidden',

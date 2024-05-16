@@ -26,8 +26,7 @@ class Result extends Definition {
 	 *
 	 * @return void
 	 */
-	protected function populateFromInput() {
-		
+	protected function populateFromInput(): void {
 		foreach ($this->getPages() as $page) {
 			$page->populateFromInput();
 		}
@@ -38,7 +37,7 @@ class Result extends Definition {
 	 *
 	 * @return bool
 	 */
-	public function validate() {
+	public function validate(): bool {
 		$result = true;
 		
 		// pages
@@ -67,10 +66,10 @@ class Result extends Definition {
 	 * Validate one field
 	 *
 	 * @param Field $field the field to validate
+	 *
 	 * @return bool
 	 */
-	protected function validateField(Field $field) {
-		
+	protected function validateField(Field $field): bool {
 		try {
 			$field->validate();
 		} catch (InvalidInputException $e) {

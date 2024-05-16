@@ -8,16 +8,10 @@ namespace ColdTrick\Forms;
 class Definition {
 	
 	/**
-	 *
 	 * @var array the definition configuration
 	 */
 	protected array $config;
 
-	/**
-	 * @var \Form The form for this definition
-	 */
-	protected \Form $form;
-	
 	/**
 	 * @var \ColdTrick\Forms\Definition\Page[] the pages in this definition
 	 */
@@ -28,9 +22,7 @@ class Definition {
 	 *
 	 * @param \Form $form the form
 	 */
-	public function __construct(\Form $form) {
-		
-		$this->form = $form;
+	public function __construct(protected \Form $form) {
 		$this->config = json_decode($form->definition, true);
 	}
 	
@@ -39,7 +31,7 @@ class Definition {
 	 *
 	 * @return \Form
 	 */
-	public function getForm() {
+	public function getForm(): \Form {
 		return $this->form;
 	}
 	
@@ -48,8 +40,7 @@ class Definition {
 	 *
 	 * @return \ColdTrick\Forms\Definition\Page[]
 	 */
-	public function getPages() {
-		
+	public function getPages(): array {
 		if (isset($this->pages)) {
 			return $this->pages;
 		}
@@ -69,7 +60,7 @@ class Definition {
 	 *
 	 * @return array
 	 */
-	public function getValidationRules() {
+	public function getValidationRules(): array {
 		$result = [];
 		
 		foreach ($this->getPages() as $page) {
@@ -84,7 +75,7 @@ class Definition {
 	 *
 	 * @return bool
 	 */
-	public function isValid() {
+	public function isValid(): bool {
 		return true;
 	}
 	
@@ -93,7 +84,7 @@ class Definition {
 	 *
 	 * @return string[]
 	 */
-	public function getValidationErrors() {
+	public function getValidationErrors(): array {
 		return [];
 	}
 }

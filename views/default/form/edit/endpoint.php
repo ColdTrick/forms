@@ -8,7 +8,7 @@ if (empty($available_endpoints)) {
 	return;
 }
 
-elgg_require_js('form/edit/endpoint');
+elgg_import_esm('form/edit/endpoint');
 
 $options_values = [];
 $endpoints_config = '';
@@ -32,9 +32,7 @@ foreach ($available_endpoints as $endpoint => $config) {
 	}
 }
 
-$endpoints = '';
-
-$endpoints .= elgg_view_field([
+$endpoints = elgg_view_field([
 	'#type' => 'select',
 	'#label' => elgg_echo('forms:edit:endpoint'),
 	'#help' => elgg_echo('forms:edit:endpoint:help'),

@@ -11,19 +11,14 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Field {
 	
 	/**
-	 * @var array the field configiration
-	 */
-	protected $config;
-
-	/**
 	 * @var array the conditional section configuration
 	 */
-	protected $conditional_sections;
+	protected array $conditional_sections;
 	
 	/**
-	 * @var \ColdTrick\Forms\Definition\ConditionalSection[] the confitional sections
+	 * @var \ColdTrick\Forms\Definition\ConditionalSection[] the conditional sections
 	 */
-	protected $conditional_sections_objects;
+	protected array $conditional_sections_objects;
 	
 	/**
 	 * @var mixed the submitted value of this field
@@ -38,12 +33,9 @@ class Field {
 	/**
 	 * Create a new form field
 	 *
-	 * @param array $config the field configiration
+	 * @param array $config the field configuration
 	 */
-	public function __construct($config) {
-
-		$this->config = $config;
-		
+	public function __construct(protected array $config) {
 		$this->conditional_sections = elgg_extract('conditional_sections', $this->config, []);
 		unset($this->config['conditional_sections']);
 		
@@ -58,7 +50,7 @@ class Field {
 	 *
 	 * @return string
 	 */
-	public function getType() {
+	public function getType(): string {
 		return elgg_extract('#type', $this->config, '');
 	}
 	
@@ -67,7 +59,7 @@ class Field {
 	 *
 	 * @return string
 	 */
-	public function getName() {
+	public function getName(): string {
 		return elgg_extract('name', $this->config, '');
 	}
 	
@@ -76,7 +68,7 @@ class Field {
 	 *
 	 * @return string
 	 */
-	public function getLabel() {
+	public function getLabel(): string {
 		return elgg_extract('#label', $this->config, '');
 	}
 	
@@ -87,7 +79,7 @@ class Field {
 	 *
 	 * @return array
 	 */
-	public function getInputVars(array $additional_vars = []) {
+	public function getInputVars(array $additional_vars = []): array {
 		$result = $this->config;
 		
 		// remove unneeded vars
@@ -111,7 +103,7 @@ class Field {
 		
 		unset($result['default_value']);
 		
-		// futher cleanup
+		// further cleanup
 		$options_key = 'options_values';
 		$options = $this->getOptions();
 		unset($result['options']);
@@ -175,20 +167,18 @@ class Field {
 	 *
 	 * @return array
 	 */
-	public function getConfig() {
+	public function getConfig(): array {
 		return $this->config;
 	}
 	
 	/**
 	 * Get all the conditional sections for this field
 	 *
-	 * @param bool $apply_section_filter appy the conditional section filter
+	 * @param bool $apply_section_filter apply the conditional section filter
 	 *
 	 * @return \ColdTrick\Forms\Definition\ConditionalSection[]
 	 */
-	public function getConditionalSections($apply_section_filter = false) {
-		
-		$apply_section_filter = (bool) $apply_section_filter;
+	public function getConditionalSections(bool $apply_section_filter = false): array {
 		if ($apply_section_filter && !isset($this->conditional_sections_objects)) {
 			// load sections
 			$this->getConditionalSections();
@@ -225,7 +215,7 @@ class Field {
 	 *
 	 * @return array
 	 */
-	protected function getOptions() {
+	protected function getOptions(): array {
 		$options = elgg_extract('options', $this->config, '');
 		
 		$result = explode(',', $options);
@@ -246,17 +236,16 @@ class Field {
 	/**
 	 * Get a validation pattern to put on an input
 	 *
-	 * @return void|string
+	 * @return null|string
 	 */
-	protected function getPattern() {
-		
+	protected function getPattern(): ?string {
 		$rule = $this->getValidationRule();
 		if (empty($rule)) {
-			return;
+			return null;
 		}
 		
 		if (!in_array($this->getType(), elgg_extract('input_types', $rule))) {
-			return;
+			return null;
 		}
 		
 		return elgg_extract('regex', $rule);
@@ -265,17 +254,16 @@ class Field {
 	/**
 	 * Get the custom error message related to the validation rule
 	 *
-	 * @return void|string
+	 * @return null|string
 	 */
-	protected function getCustomErrorMessage() {
-		
+	protected function getCustomErrorMessage(): ?string {
 		$rule = $this->getValidationRule();
 		if (empty($rule)) {
-			return;
+			return null;
 		}
 		
 		if (!in_array($this->getType(), elgg_extract('input_types', $rule))) {
-			return;
+			return null;
 		}
 		
 		return elgg_extract('error_message', $rule);
@@ -286,8 +274,7 @@ class Field {
 	 *
 	 * @return array
 	 */
-	public function getValidationRules() {
-		
+	public function getValidationRules(): array {
 		$result = [];
 		
 		$rule = $this->getValidationRule();
@@ -305,21 +292,15 @@ class Field {
 	/**
 	 * Get the validation rule for this field
 	 *
-	 * @return false|array
+	 * @return null|array
 	 */
-	protected function getValidationRule() {
-		
+	protected function getValidationRule(): ?array {
 		$validation_rule = elgg_extract('validation_rule', $this->config);
 		if (empty($validation_rule)) {
-			return false;
+			return null;
 		}
 		
-		$rule = forms_get_validation_rule($validation_rule);
-		if (empty($rule)) {
-			return false;
-		}
-		
-		return $rule;
+		return forms_get_validation_rule($validation_rule);
 	}
 	
 	/**
@@ -327,8 +308,7 @@ class Field {
 	 *
 	 * @return void
 	 */
-	public function populateFromInput() {
-		
+	public function populateFromInput(): void {
 		foreach ($this->getConditionalSections() as $conditional_section) {
 			$conditional_section->populateFromInput();
 		}
@@ -378,7 +358,7 @@ class Field {
 	 *
 	 * @return void
 	 */
-	public function setValue($value) {
+	public function setValue(mixed $value): void {
 		$this->value = $value;
 	}
 	
@@ -387,7 +367,7 @@ class Field {
 	 *
 	 * @return mixed
 	 */
-	public function getValue() {
+	public function getValue(): mixed {
 		return $this->value;
 	}
 	
@@ -396,12 +376,11 @@ class Field {
 	 *
 	 * @param bool $only_valid_files only return valid files
 	 *
-	 * @return false|\Symfony\Component\HttpFoundation\File\UploadedFile[]
+	 * @return null|\Symfony\Component\HttpFoundation\File\UploadedFile[]
 	 */
-	public function getUploadedFiles($only_valid_files = false) {
-		
+	public function getUploadedFiles(bool $only_valid_files = false): ?array {
 		if ($this->getType() !== 'file' || empty($this->file_info)) {
-			return false;
+			return null;
 		}
 		
 		if (!$only_valid_files) {
@@ -426,12 +405,9 @@ class Field {
 	 * @throws InvalidInputException
 	 * @return void
 	 */
-	public function validate() {
-		
+	public function validate(): void {
 		$this->validateValue();
-		
 		$this->validateRequired();
-		
 		$this->validatePattern();
 	}
 	
@@ -441,8 +417,7 @@ class Field {
 	 * @throws InvalidInputException
 	 * @return void
 	 */
-	protected function validateValue() {
-		
+	protected function validateValue(): void {
 		if (!isset($this->value) || $this->value === '') {
 			return;
 		}
@@ -455,7 +430,7 @@ class Field {
 				break;
 			case 'number':
 				if (!is_numeric($this->value)) {
-					throw new InvalidInputException(elgg_echo('forms:invalid_input_exception:value:number'));
+					throw new InvalidInputException(elgg_echo('forms:invalid_input_exception:value:number') . var_export($this->value, true));
 				}
 				break;
 		}
@@ -467,8 +442,7 @@ class Field {
 	 * @throws InvalidInputException
 	 * @return void
 	 */
-	protected function validateRequired() {
-		
+	protected function validateRequired(): void {
 		if ($this->getType() === 'hidden') {
 			// hidden fields can't be required
 			return;
@@ -492,8 +466,7 @@ class Field {
 	 * @throws InvalidInputException
 	 * @return void
 	 */
-	protected function validatePattern() {
-		
+	protected function validatePattern(): void {
 		// pattern only applies to non-empty fields (eg same as HTML5)
 		if (!isset($this->value) || $this->value === '') {
 			return;
