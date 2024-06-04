@@ -1,10 +1,11 @@
 <?php
 /**
- * This file was created by Translation Editor v11.1
- * On 2023-05-17 14:42
+ * This file was created by Translation Editor v13.1.1
+ * On 2024-06-04 09:59
  */
 
 return array (
+  'forms:no_results' => 'Geen formulieren gevonden',
   'forms:edit:endpoint' => 'Eindpunt',
   'forms:edit:endpoint:help' => 'Als het formulier is ingevuld, wat moet er gebeuren met de resultaten',
   'forms:edit:endpoint:email' => 'E-mail notificatie',
