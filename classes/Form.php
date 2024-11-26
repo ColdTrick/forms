@@ -210,7 +210,7 @@ class Form extends \ElggObject {
 		try {
 			$endpoint = new $class($endpoint_config);
 		} catch (Exception $e) {
-			elgg_log("Form->getEndpoint() error: {$e->getMessage()}", 'ERROR');
+			elgg_log("Form->getEndpoint() error: {$e->getMessage()}", \Psr\Log\LogLevel::ERROR);
 			return null;
 		}
 		
