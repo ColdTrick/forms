@@ -40,8 +40,9 @@ class ValidationRule {
 		
 		$return_value[] = \ElggMenuItem::factory([
 			'name' => 'delete',
-			'text' => elgg_view_icon('delete'),
-			'title' => elgg_echo('edit'),
+			'icon' => 'delete',
+			'text' => false,
+			'title' => elgg_echo('delete'),
 			'href' => elgg_generate_action_url('forms/validation_rules/delete', ['name' => $name]),
 			'confirm' => elgg_echo('deleteconfirm'),
 			'priority' => 300,

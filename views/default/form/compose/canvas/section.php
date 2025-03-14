@@ -15,7 +15,8 @@ $section_title = elgg_view_icon('minus-square-regular', [
 ]);
 
 $section_title .= elgg_view('output/url', [
-	'text' => elgg_view_icon('delete'),
+	'icon' => 'delete',
+	'text' => false,
 	'title' => elgg_echo('delete'),
 	'href' => false,
 	'class' => 'float-alt link forms-compose-delete',
