@@ -23,7 +23,7 @@ class Definition {
 	 * @param \Form $form the form
 	 */
 	public function __construct(protected \Form $form) {
-		$this->config = json_decode($form->definition, true);
+		$this->config = json_decode($form->definition ?? '', true) ?? [];
 	}
 	
 	/**
