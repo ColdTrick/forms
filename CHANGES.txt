@@ -1,6 +1,10 @@
 Version history
 ===============
 
+9.0.3 (2025-05-28):
+
+- fixed: correctly parse form definition
+
 9.0.2 (2025-03-27):
 
 - fixed: use correct styling of icon only URLs
