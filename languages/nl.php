@@ -1,10 +1,11 @@
 <?php
 /**
- * This file was created by Translation Editor v13.1.1
- * On 2024-06-04 09:59
+ * This file was created by Translation Editor v14.0.3
+ * On 2025-06-19 09:08
  */
 
 return array (
+  'forms:memu:admin_header:manage' => 'Beheer formulieren',
   'forms:no_results' => 'Geen formulieren gevonden',
   'forms:edit:endpoint' => 'Eindpunt',
   'forms:edit:endpoint:help' => 'Als het formulier is ingevuld, wat moet er gebeuren met de resultaten',

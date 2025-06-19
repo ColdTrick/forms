@@ -92,6 +92,9 @@ return [
 			],
 		],
 		'register' => [
+			'menu:admin_header' => [
+				\ColdTrick\Forms\Menus\AdminHeader::class => [],
+			],
 			'menu:entity' => [
 				'\ColdTrick\Forms\Menus\Entity::registerForm' => [],
 				'\ColdTrick\Forms\Menus\Entity::addCsvDownload' => [],
