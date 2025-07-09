@@ -1,6 +1,10 @@
 Version history
 ===============
 
+9.0.4 (2025-07-09):
+
+- several small chores/fixes
+
 9.0.3 (2025-05-28):
 
 - fixed: correctly parse form definition
