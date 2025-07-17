@@ -3,6 +3,7 @@
 namespace ColdTrick\Forms\Definition;
 
 use ColdTrick\Forms\Exception\InvalidInputException;
+use Elgg\Values;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -124,6 +125,8 @@ class Field {
 				break;
 			case 'file':
 				unset($result['value']);
+				unset($result['max_file_size']);
+				$result['max_size'] = $this->getMaxFileSizeInBytes();
 				break;
 		}
 		
@@ -433,6 +436,29 @@ class Field {
 					throw new InvalidInputException(elgg_echo('forms:invalid_input_exception:value:number') . var_export($this->value, true));
 				}
 				break;
+			case 'file':
+				$files = $this->file_info;
+				$valid_files = [];
+				foreach ($files as $file) {
+					if (!$file->isValid()) {
+						throw new InvalidInputException($file->getErrorMessage());
+					}
+					
+					$valid_files[] = $file;
+				}
+				
+				$max_file_size = $this->getMaxFileSizeInBytes();
+				if (!empty($max_file_size)) {
+					foreach ($valid_files as $file) {
+						$file_size = $file->getSize();
+						if ($file_size > $max_file_size) {
+							throw new InvalidInputException(elgg_echo('upload:error:ini_size'));
+						}
+						
+						$max_file_size -= $file_size;
+					}
+				}
+				break;
 		}
 	}
 	
@@ -487,5 +513,44 @@ class Field {
 		}
 		
 		throw new InvalidInputException($error_message);
+	}
+	
+	/**
+	 * Get the max file size in bytes
+	 *
+	 * @return int|null
+	 */
+	protected function getMaxFileSizeInBytes(): ?int {
+		if ($this->getType() !== 'file') {
+			return null;
+		}
+		
+		$max_file_size = elgg_extract('max_file_size', $this->config);
+		if (empty($max_file_size)) {
+			return null;
+		}
+		
+		$matches = [];
+		if (!preg_match_all('/^(\d+)([kmg]?)$/i', $max_file_size, $matches)) {
+			return null;
+		}
+		
+		$value = (int) $matches[1][0];
+		if (isset($matches[2][0])) {
+			switch (strtolower($matches[2][0])) {
+				case 'g':
+					$value *= 1024;
+					// gigabytes
+				case 'm':
+					$value *= 1024;
+					// megabytes
+				case 'k':
+					$value *= 1024;
+					// kilobytes
+					break;
+			}
+		}
+		
+		return $value;
 	}
 }

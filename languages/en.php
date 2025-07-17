@@ -76,6 +76,9 @@ return [
 	'forms:compose:field:edit:email_recipient:cc' => "CC",
 	'forms:compose:field:edit:email_recipient:bcc' => "BCC",
 	
+	'forms:compose:field:edit:file:max_size' => "Max uploaded file size",
+	'forms:compose:field:edit:file:max_size:help' => "You can limit the max file size for this input. You can use bytes or the shorthand 3K/5M/1G.",
+	
 	'forms:compose:field:edit:select:multiple' => "Allow multiple values to be selected",
 	'forms:view:field:select:empty' => "Select a value...",
 	

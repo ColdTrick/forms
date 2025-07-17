@@ -113,6 +113,15 @@ $fields = [
 		'show_for_types' => ['text', 'email', 'number', 'plaintext', 'longtext', 'select'],
 	],
 	
+	[
+		'#type' => 'text',
+		'#label' => elgg_echo('forms:compose:field:edit:file:max_size'),
+		'#help' => elgg_echo('forms:compose:field:edit:file:max_size:help'),
+		'name' => 'max_file_size',
+		'pattern' => '^\d+[kmgKMG]?$',
+		'show_for_types' => ['file'],
+	],
+	
 	// end of conditional fields
 	
 	[
