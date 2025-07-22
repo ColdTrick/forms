@@ -16,8 +16,9 @@ class Section {
 	 * Create a new section
 	 *
 	 * @param array $config the section configuration
+	 * @param \Form $form   the Form this section is a part of
 	 */
-	public function __construct(protected array $config) {
+	public function __construct(protected array $config, protected \Form $form) {
 	}
 	
 	/**
@@ -43,7 +44,7 @@ class Section {
 		
 		$fields = (array) elgg_extract('fields', $this->config);
 		foreach ($fields as $field) {
-			$this->fields[] = new Field($field);
+			$this->fields[] = new Field($field, $this->form);
 		}
 		
 		return $this->fields;

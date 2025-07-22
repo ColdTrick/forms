@@ -16,8 +16,9 @@ class Page {
 	 * Create a page based on a config
 	 *
 	 * @param array $config configuration
+	 * @param \Form $form   the Form this page is a part of
 	 */
-	public function __construct(protected array $config) {
+	public function __construct(protected array $config, protected \Form $form) {
 	}
 	
 	/**
@@ -43,7 +44,7 @@ class Page {
 		
 		$sections = elgg_extract('sections', $this->config, []);
 		foreach ($sections as $section) {
-			$this->sections[] = new Section($section);
+			$this->sections[] = new Section($section, $this->form);
 		}
 		
 		return $this->sections;

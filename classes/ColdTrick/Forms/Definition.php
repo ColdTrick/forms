@@ -49,7 +49,7 @@ class Definition {
 		
 		$pages = elgg_extract('pages', $this->config, []);
 		foreach ($pages as $page) {
-			$this->pages[] = new Definition\Page($page);
+			$this->pages[] = new Definition\Page($page, $this->form);
 		}
 		
 		return $this->pages;

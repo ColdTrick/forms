@@ -34,9 +34,10 @@ class Field {
 	/**
 	 * Create a new form field
 	 *
-	 * @param array $config the field configuration
+	 * @param array      $config the field configuration
+	 * @param null|\Form $form   the Form this field is a part of
 	 */
-	public function __construct(protected array $config) {
+	public function __construct(protected array $config, protected ?\Form $form = null) {
 		$this->conditional_sections = elgg_extract('conditional_sections', $this->config, []);
 		unset($this->config['conditional_sections']);
 		
@@ -132,8 +133,9 @@ class Field {
 				$post_max_size = elgg_get_ini_setting_in_bytes('post_max_size');
 				$upload_max_filesize = elgg_get_ini_setting_in_bytes('upload_max_filesize');
 				$file_size = $result['max_size'] ?? max($post_max_size, $upload_max_filesize);
+				$form_size = $this->form->getMaxFileSizeBytes() ?? max($post_max_size, $upload_max_filesize);
 				
-				$result['data-original-max-size'] = min($post_max_size, $upload_max_filesize, $file_size);
+				$result['data-original-max-size'] = min($post_max_size, $upload_max_filesize, $file_size, $form_size);
 				
 				break;
 		}
@@ -534,13 +536,14 @@ class Field {
 		}
 		
 		$max_file_size = elgg_extract('max_file_size', $this->config);
-		if (empty($max_file_size)) {
+		$form_max_size = $this->form->getMaxFileSizeBytes();
+		if (empty($max_file_size) && empty($form_max_size)) {
 			return null;
 		}
 		
 		$matches = [];
 		if (!preg_match_all('/^(\d+)([kmg]?)$/i', $max_file_size, $matches)) {
-			return null;
+			return $form_max_size;
 		}
 		
 		$value = (int) $matches[1][0];
@@ -559,6 +562,6 @@ class Field {
 			}
 		}
 		
-		return $value;
+		return empty($form_max_size) ? $value : min($form_max_size, $value);
 	}
 }
