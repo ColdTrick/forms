@@ -127,6 +127,14 @@ class Field {
 				unset($result['value']);
 				unset($result['max_file_size']);
 				$result['max_size'] = $this->getMaxFileSizeInBytes();
+				
+				// original max file size
+				$post_max_size = elgg_get_ini_setting_in_bytes('post_max_size');
+				$upload_max_filesize = elgg_get_ini_setting_in_bytes('upload_max_filesize');
+				$file_size = $result['max_size'] ?? max($post_max_size, $upload_max_filesize);
+				
+				$result['data-original-max-size'] = min($post_max_size, $upload_max_filesize, $file_size);
+				
 				break;
 		}
 		
