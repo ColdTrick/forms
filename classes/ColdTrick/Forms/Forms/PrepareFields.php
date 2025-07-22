@@ -24,6 +24,7 @@ class PrepareFields {
 			'friendly_url' => null,
 			'thankyou' => null,
 			'access_id' => ACCESS_PRIVATE,
+			'max_file_size' => null,
 			'endpoint' => 'email',
 			'endpoint_config' => [],
 			'container_guid' => elgg_get_page_owner_guid(),

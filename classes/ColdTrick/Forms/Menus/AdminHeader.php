@@ -26,7 +26,7 @@ class AdminHeader {
 		
 		$result[] = \ElggMenuItem::factory([
 			'name' => 'forms',
-			'text' => elgg_echo('forms:memu:admin_header:manage'),
+			'text' => elgg_echo('forms:menu:admin_header:manage'),
 			'href' => elgg_generate_url('default:object:form'),
 			'parent_name' => 'utilities',
 		]);

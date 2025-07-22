@@ -76,4 +76,11 @@ class Csv extends Definition {
 				break;
 		}
 	}
+	
+	/**
+	 * {@inheritdoc}
+	 */
+	public function supportsFileUpload(): bool {
+		return false;
+	}
 }

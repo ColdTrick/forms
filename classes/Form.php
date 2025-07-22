@@ -13,6 +13,7 @@ use Elgg\Exceptions\InvalidArgumentException;
  * @property string $friendly_url    friendly URL to the form
  * @property int    $submitted_count the number of submitted forms
  * @property string $thankyou        text to display after the submission of a form
+ * @property string $max_file_size   maximum total file size of all attachments (can use PHP ini shorthand (10K/5M/1G))
  */
 class Form extends \ElggObject {
 	
@@ -236,5 +237,45 @@ class Form extends \ElggObject {
 		$count++;
 		
 		$this->submitted_count = $count;
+	}
+	
+	/**
+	 * Get the maximum allowed total file size
+	 *
+	 * @return int|null
+	 */
+	public function getMaxFileSizeBytes(): ?int {
+		if (!$this->getDefinition()->supportsFileUpload()) {
+			return null;
+		}
+		
+		$post_max_size = elgg_get_ini_setting_in_bytes('post_max_size');
+		
+		if (empty($this->max_file_size)) {
+			return $post_max_size;
+		}
+		
+		$matches = [];
+		if (!preg_match_all('/^(\d+)([kmg]?)$/i', $this->max_file_size, $matches)) {
+			return null;
+		}
+		
+		$value = (int) $matches[1][0];
+		if (isset($matches[2][0])) {
+			switch (strtolower($matches[2][0])) {
+				case 'g':
+					$value *= 1024;
+				// gigabytes
+				case 'm':
+					$value *= 1024;
+				// megabytes
+				case 'k':
+					$value *= 1024;
+					// kilobytes
+					break;
+			}
+		}
+		
+		return min($post_max_size, $value);
 	}
 }

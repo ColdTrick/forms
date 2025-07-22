@@ -87,4 +87,13 @@ class Definition {
 	public function getValidationErrors(): array {
 		return [];
 	}
+	
+	/**
+	 * Does this form definition support file upload
+	 *
+	 * @return bool
+	 */
+	public function supportsFileUpload(): bool {
+		return true;
+	}
 }

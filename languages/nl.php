@@ -5,7 +5,7 @@
  */
 
 return array (
-  'forms:memu:admin_header:manage' => 'Beheer formulieren',
+  'forms:menu:admin_header:manage' => 'Beheer formulieren',
   'forms:no_results' => 'Geen formulieren gevonden',
   'forms:edit:endpoint' => 'Eindpunt',
   'forms:edit:endpoint:help' => 'Als het formulier is ingevuld, wat moet er gebeuren met de resultaten',

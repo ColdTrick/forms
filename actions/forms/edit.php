@@ -11,6 +11,7 @@ $friendly_url = elgg_get_friendly_title($friendly_url);
 $description = get_input('description');
 $access_id = (int) get_input('access_id');
 $endpoint = get_input('endpoint');
+$max_file_size = get_input('max_file_size');
 $endpoint_config = (array) get_input('endpoint_config', []);
 $definition = elgg_get_uploaded_file('definition');
 $thankyou = get_input('thankyou');
@@ -59,6 +60,7 @@ $entity->title = $title;
 $entity->friendly_url = $friendly_url;
 $entity->description = $description;
 $entity->access_id = $access_id;
+$entity->max_file_size = $max_file_size;
 
 $entity->endpoint = $endpoint;
 $entity->endpoint_config = json_encode($endpoint_config);

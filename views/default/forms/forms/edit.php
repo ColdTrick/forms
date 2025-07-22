@@ -71,6 +71,17 @@ echo elgg_view_field([
 	'entity_allows_comments' => false,
 ]);
 
+$post_max_size = elgg_get_ini_setting_in_bytes('post_max_size');
+
+echo elgg_view_field([
+	'#type' => 'text',
+	'#label' => elgg_echo('forms:edit:max_file_size'),
+	'#help' => elgg_echo('forms:edit:max_file_size:help', [elgg_format_bytes($post_max_size)]),
+	'name' => 'max_file_size',
+	'value' => elgg_extract('max_file_size', $vars),
+	'pattern' => '^\d+[kmgKMG]?$',
+]);
+
 // endpoint config
 echo elgg_view('form/edit/endpoint', $vars);
 

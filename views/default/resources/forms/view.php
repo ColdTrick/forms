@@ -21,7 +21,15 @@ $body = elgg_view('output/longtext', [
 	'class' => 'mbm',
 ]);
 
-$body .= elgg_view_form('forms/submit', [], [
+$form_vars = [];
+
+$max_size = $entity->getMaxFileSizeBytes();
+if (!empty($max_size)) {
+	elgg_import_esm('forms/forms/submit_files');
+	$form_vars['data-max-file-size'] = $max_size;
+}
+
+$body .= elgg_view_form('forms/submit', $form_vars, [
 	'entity' => $entity,
 	'sticky_values' => $sticky_values,
 ]);
