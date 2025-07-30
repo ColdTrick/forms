@@ -1,6 +1,11 @@
 Version history
 ===============
 
+9.1 (2025-07-30):
+
+- added: form max file size
+- added: limit file size per input
+
 9.0.4 (2025-07-09):
 
 - several small chores/fixes
