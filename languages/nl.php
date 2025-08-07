@@ -1,10 +1,14 @@
 <?php
 /**
  * This file was created by Translation Editor v14.0.3
- * On 2025-06-19 09:08
+ * On 2025-08-07 11:31
  */
 
 return array (
+  'forms:compose:field:edit:file:max_size' => 'Maximale bestandsgrootte voor uploaden',
+  'forms:compose:field:edit:file:max_size:help' => 'Je kunt de maximale bestandsgrootte voor deze bestandsinvoer limiteren. Je kunt bytes gebruiken of de afkortingen 3K/5M/1G.',
+  'forms:edit:max_file_size' => 'Totale maximale bestandsgrootte om te uploaden',
+  'forms:edit:max_file_size:help' => 'Als er meerdere bestand invoeren zijn op het formulier kun je de totale grootte van alle bestanden limiteren. Je kunt bytes gebruiken of de afkortingen 3K/5M/1G. Deze waarde mag niet groter zijn dan %s.',
   'forms:menu:admin_header:manage' => 'Beheer formulieren',
   'forms:no_results' => 'Geen formulieren gevonden',
   'forms:edit:endpoint' => 'Eindpunt',
