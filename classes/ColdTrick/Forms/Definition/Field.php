@@ -217,7 +217,7 @@ class Field {
 		
 		$this->conditional_sections_objects = [];
 		foreach ($this->conditional_sections as $section) {
-			$this->conditional_sections_objects[] = new ConditionalSection($section);
+			$this->conditional_sections_objects[] = new ConditionalSection($section, $this->form);
 		}
 		
 		return $this->conditional_sections_objects;
