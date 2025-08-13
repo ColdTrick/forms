@@ -15,10 +15,10 @@ class Section {
 	/**
 	 * Create a new section
 	 *
-	 * @param array $config the section configuration
-	 * @param \Form $form   the Form this section is a part of
+	 * @param array      $config the section configuration
+	 * @param null|\Form $form   the Form this section is a part of
 	 */
-	public function __construct(protected array $config, protected \Form $form) {
+	public function __construct(protected array $config, protected ?\Form $form = null) {
 	}
 	
 	/**
