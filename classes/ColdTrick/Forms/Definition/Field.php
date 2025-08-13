@@ -541,9 +541,15 @@ class Field {
 			return null;
 		}
 		
+		$php_upload_file_size = elgg_get_ini_setting_in_bytes('upload_max_filesize');
+		
+		if (empty($max_file_size)) {
+			return min($form_max_size, $php_upload_file_size);
+		}
+		
 		$matches = [];
 		if (!preg_match_all('/^(\d+)([kmg]?)$/i', $max_file_size, $matches)) {
-			return $form_max_size;
+			return min($form_max_size, $php_upload_file_size);
 		}
 		
 		$value = (int) $matches[1][0];
@@ -562,6 +568,6 @@ class Field {
 			}
 		}
 		
-		return empty($form_max_size) ? $value : min($form_max_size, $value);
+		return empty($form_max_size) ? min($php_upload_file_size, $value) : min($php_upload_file_size, $form_max_size, $value);
 	}
 }
