@@ -1,6 +1,10 @@
 Version history
 ===============
 
+9.1.1 (2025-08-20):
+
+- fixed: pass correct variables to conditional section constructor
+
 9.1 (2025-07-30):
 
 - added: form max file size
