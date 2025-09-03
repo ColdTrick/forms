@@ -171,7 +171,7 @@ class Form extends \ElggObject {
 	 *
 	 * @return array
 	 */
-	public function getEndpointConfig(string $endpoint = null): array {
+	public function getEndpointConfig(?string $endpoint = null): array {
 		if (empty($this->endpoint_config)) {
 			return [];
 		}
