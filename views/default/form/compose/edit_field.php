@@ -131,7 +131,6 @@ $fields = [
 	],
 ];
 
-
 // set conditional view classes
 foreach ($fields as $key => $field) {
 	if (!isset($field['show_for_types'])) {
@@ -145,7 +144,6 @@ foreach ($fields as $key => $field) {
 	
 	$fields[$key]['#class'] = $classes;
 }
-
 
 echo elgg_view('input/fieldset', [
 	'class' => 'hidden forms-compose-edit-field',

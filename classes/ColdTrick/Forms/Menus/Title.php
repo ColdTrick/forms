@@ -39,7 +39,7 @@ class Title {
 		}
 		
 		if (!$entity->canEdit()) {
-			// check if current user is allowd to download
+			// check if current user is allowed to download
 			$endpoint_config = $entity->getEndpointConfig($entity->endpoint);
 			$downloaders = (array) elgg_extract('downloaders', $endpoint_config, []);
 			if (!in_array(elgg_get_logged_in_user_guid(), $downloaders)) {

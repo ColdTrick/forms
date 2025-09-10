@@ -14,7 +14,6 @@ echo elgg_view_field([
 ]);
 
 echo elgg_view('form/compose/canvas', $vars);
-
 echo elgg_view('form/compose/edit_field', $vars);
 echo elgg_view('form/compose/edit_conditional_section', $vars);
 

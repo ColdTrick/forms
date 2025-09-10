@@ -11,7 +11,6 @@ $entity = elgg_extract('entity', $vars);
 
 elgg_import_esm('forms/forms/edit');
 
-// form elements
 echo elgg_view_field([
 	'#type' => 'text',
 	'#label' => elgg_echo('title'),
@@ -82,10 +81,8 @@ echo elgg_view_field([
 	'pattern' => '^\d+[kmgKMG]?$',
 ]);
 
-// endpoint config
 echo elgg_view('form/edit/endpoint', $vars);
 
-// footer
 $footer = '';
 if ($entity instanceof \Form) {
 	$footer .= elgg_view_field([

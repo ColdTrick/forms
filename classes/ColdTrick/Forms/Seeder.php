@@ -102,7 +102,7 @@ class Seeder extends Seed {
 	}
 	
 	/**
-	 * Select an endoint and make the configuration
+	 * Select an endpoint and make the configuration
 	 *
 	 * @param \Form $entity the form
 	 *

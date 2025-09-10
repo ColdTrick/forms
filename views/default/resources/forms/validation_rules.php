@@ -2,7 +2,6 @@
 
 elgg_push_collection_breadcrumbs('object', \Form::SUBTYPE);
 
-// create add button
 elgg_register_menu_item('title', [
 	'name' => 'add',
 	'text' => elgg_echo('add'),
@@ -15,12 +14,7 @@ elgg_register_menu_item('title', [
 	],
 ]);
 
-$body = elgg_view('form/validation_rules/list', [
-	'rules' => forms_get_validation_rules(),
-]);
-
-// draw page
 echo elgg_view_page(elgg_echo('forms:validation_rules:title'), [
-	'content' => $body,
+	'content' => elgg_view('form/validation_rules/list', ['rules' => forms_get_validation_rules()]),
 	'filter_id' => 'forms/validation_rules',
 ]);

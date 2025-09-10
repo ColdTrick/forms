@@ -150,7 +150,6 @@ if (count($tabs) === 1) {
 	echo elgg_view('page/components/tabs', ['tabs' => $tabs]);
 }
 
-// build footer
 $footer .= elgg_view_field([
 	'#type' => 'hidden',
 	'name' => 'form_guid',

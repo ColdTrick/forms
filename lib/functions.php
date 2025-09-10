@@ -97,7 +97,7 @@ function forms_get_validation_rules(): array {
 }
 
 /**
- * Get the vaidation rule definitions
+ * Get the validation rule definitions
  *
  * @param array $rules validation rules
  *

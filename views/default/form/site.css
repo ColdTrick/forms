@@ -6,13 +6,7 @@
 	&:hover > .forms-compose-edit-title {
 		display: inline-block;
 	}
-	
-	&.ui-sortable-handle {
-		> .forms-compose-title-container {
-			cursor: move;
-		}
-	}
-	
+
 	> ul > li:last-child .elgg-field {
 		margin: 0;
 	}
@@ -32,26 +26,13 @@
 	&:hover > .forms-compose-edit-title {
 		display: inline-block;
 	}
-	
-	&.ui-sortable-handle {
-		> .forms-compose-title-container {
-			cursor: move;
-		}
-	}
-	
+
 	> .forms-compose-title-container {
 		color: $(text-color-strong);
 	}
 	
 	> ul {
 		padding: 10px;
-	}
-	
-	.ui-sortable {
-		.ui-draggable-handle,
-		.ui-sortable-handle {
-			cursor: move;
-		}
 	}
 }
 
@@ -108,12 +89,8 @@
 }
 
 .forms-compose-edit-field {
-	padding: 10px;
+	padding: 1rem;
 	background: white;
-	
-	> .elgg-field:last-child {
-		margin: 0;
-	}
 }
 
 .forms-compose-conditional-section {

@@ -34,10 +34,8 @@ $body .= elgg_view_form('forms/submit', $form_vars, [
 	'sticky_values' => $sticky_values,
 ]);
 
-// clear sticky values
 elgg_clear_sticky_form("forms_{$guid}");
 
-// draw page
 echo elgg_view_page($title, [
 	'content' => $body,
 	'entity' => $entity,

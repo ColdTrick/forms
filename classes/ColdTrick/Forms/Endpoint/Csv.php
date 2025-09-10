@@ -2,11 +2,10 @@
 
 namespace ColdTrick\Forms\Endpoint;
 
+use ColdTrick\Forms\Definition\Field;
 use ColdTrick\Forms\Endpoint;
 use ColdTrick\Forms\Result;
 use Elgg\Email as ElggMail;
-use Elgg\Values;
-use ColdTrick\Forms\Definition\Field;
 
 /**
  * CSV Endpoint
@@ -75,12 +74,12 @@ class Csv extends Endpoint {
 		if (!$exists) {
 			// add header row
 			array_unshift($headers, 'Time'); // add time header
-			fputcsv($fh, $headers, ';');
+			fputcsv($fh, $headers, ';', '"', '\\');
 		}
 		
 		// add values
 		array_unshift($values, date('Y-m-d H:i:s')); // add time value
-		fputcsv($fh, $values, ';');
+		fputcsv($fh, $values, ';', '"', '\\');
 		
 		$file->close();
 		

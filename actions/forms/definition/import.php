@@ -1,6 +1,6 @@
 <?php
 
-use \Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 $guid = (int) get_input('guid');
 if (empty($guid)) {
@@ -8,7 +8,7 @@ if (empty($guid)) {
 }
 
 $entity = get_entity($guid);
-if (!($entity instanceof \Form) || !$entity->canEdit()) {
+if (!$entity instanceof \Form || !$entity->canEdit()) {
 	return elgg_error_response(elgg_echo('actionunauthorized'));
 }
 

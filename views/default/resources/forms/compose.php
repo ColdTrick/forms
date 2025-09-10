@@ -51,5 +51,4 @@ $body = elgg_view_layout('default', [
 
 elgg_pop_context();
 
-// draw page
 echo elgg_view_page($title, $body);

@@ -146,7 +146,7 @@ class Form extends \ElggObject {
 		
 		$validation_rules = elgg_extract('rules', $data);
 		if (!empty($validation_rules)) {
-			// proccess validation rules
+			// process validation rules
 			$current_validation_rules = forms_get_validation_rules();
 			
 			foreach ($validation_rules as $name => $rule) {

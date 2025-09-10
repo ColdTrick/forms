@@ -3,7 +3,6 @@ import 'jquery-ui';
 import i18n from 'elgg/i18n';
 import system_messages from 'elgg/system_messages';
 
-
 function addPage() {
 	$(this).parents('li').eq(0).before($('#forms-compose-page-template .forms-compose-list-page').clone());
 	
