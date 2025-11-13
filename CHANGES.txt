@@ -1,6 +1,12 @@
 Version history
 ===============
 
+10.0 (2025-11-13):
+
+- changed: updated code to modern Elgg v6.3 possibilities
+- changed: updated minimal requirements to Elgg v6.3
+- fixed: PHP implicit null declaration
+
 9.1.1 (2025-08-20):
 
 - fixed: pass correct variables to conditional section constructor
