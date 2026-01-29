@@ -58,6 +58,63 @@ class Form extends \ElggObject {
 		$this->friendly_url = forms_generate_valid_friendly_url("{$this->friendly_url}-copy");
 		unset($this->submitted_count);
 	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public static function getDefaultFields(): array {
+		$result = parent::getDefaultFields();
+
+		$result[] = [
+			'#type' => 'text',
+			'#label' => elgg_echo('title'),
+			'id' => 'form_title',
+			'name' => 'title',
+			'required' => true,
+		];
+
+		$result[] = [
+			'#type' => 'text',
+			'#label' => elgg_echo('forms:edit:friendly_url'),
+			'id' => 'friendly_url',
+			'name' => 'friendly_url',
+			'required' => true,
+		];
+
+		$result[] = [
+			'#type' => 'longtext',
+			'#label' => elgg_echo('description'),
+			'name' => 'description',
+		];
+
+		$result[] = [
+			'#type' => 'longtext',
+			'#label' => elgg_echo('forms:edit:thankyou'),
+			'#help' => elgg_echo('forms:edit:thankyou:help'),
+			'name' => 'thankyou',
+		];
+
+		$result[] = [
+			'#type' => 'access',
+			'#label' => elgg_echo('access'),
+			'name' => 'access_id',
+			'entity_type' => 'object',
+			'entity_subtype' => self::SUBTYPE,
+			'entity_allows_comments' => false,
+		];
+
+		$post_max_size = elgg_get_ini_setting_in_bytes('post_max_size');
+
+		$result[] = [
+			'#type' => 'text',
+			'#label' => elgg_echo('forms:edit:max_file_size'),
+			'#help' => elgg_echo('forms:edit:max_file_size:help', [elgg_format_bytes($post_max_size)]),
+			'name' => 'max_file_size',
+			'pattern' => '^\d+[kmgKMG]?$',
+		];
+
+		return $result;
+	}
 	
 	/**
 	 * Check if this form has a saved definition

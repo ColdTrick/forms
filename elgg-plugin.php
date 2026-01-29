@@ -74,7 +74,14 @@ return [
 		'forms/copy' => ['access' => 'admin'],
 		'forms/definition/export' => ['access' => 'admin'],
 		'forms/definition/import' => ['access' => 'admin'],
-		'forms/edit' => ['access' => 'admin'],
+		'forms/edit' => [
+			'access' => 'admin',
+			'controller' => \ColdTrick\Forms\Controllers\EditAction::class,
+			'options' => [
+				'entity_type' => 'object',
+				'entity_subtype' => 'form',
+			],
+		],
 		'forms/endpoints/csv/clear' => ['access' => 'admin'],
 		'forms/submit' => ['access' => 'public'],
 		'forms/validation_rules/delete' => ['access' => 'admin'],
@@ -84,6 +91,11 @@ return [
 		'access:collections:write' => [
 			'user' => [
 				'\ColdTrick\Forms\Access::formWriteAccess' => [],
+			],
+		],
+		'allowed_type_subtypes' => [
+			'csv_exporter' => [
+				'\ColdTrick\Forms\Plugins\CSVExporter::register' => [],
 			],
 		],
 		'form:prepare:fields' => [
