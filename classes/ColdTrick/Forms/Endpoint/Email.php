@@ -2,9 +2,9 @@
 
 namespace ColdTrick\Forms\Endpoint;
 
+use ColdTrick\Forms\Definition\Field;
 use ColdTrick\Forms\Endpoint;
 use ColdTrick\Forms\Result;
-use ColdTrick\Forms\Definition\Field;
 use Elgg\Email\Address;
 
 /**
@@ -103,21 +103,16 @@ class Email extends Endpoint {
 					continue;
 				}
 				
-				$section_content[] = elgg_format_element('h4', [], $section->getTitle());
+				$section_content[] = elgg_format_element('h2', [], $section->getTitle());
 				$section_content[] = PHP_EOL;
-				$section_content[] = elgg_format_element('table', [], implode(PHP_EOL, $field_content));
+				$section_content[] = implode(PHP_EOL, $field_content);
 			}
 			
 			if (empty($section_content)) {
 				// no sections on this page
 				continue;
 			}
-			
-			if (!empty($body)) {
-				$body .= elgg_format_element('h3', [], '<hr />');
-				$body .= PHP_EOL;
-			}
-			
+						
 			$body .= implode(PHP_EOL, $section_content);
 		}
 		
@@ -132,7 +127,7 @@ class Email extends Endpoint {
 	 * @return string
 	 */
 	protected function getBodyField(Field $field): string {
-		$row = elgg_format_element('td', ['style' => 'vertical-align: top; width: 200px;'], $field->getLabel() . ': ');
+		$row = elgg_format_element('b', [], $field->getLabel() . ': ') . PHP_EOL;
 		
 		$value = $field->getValue();
 		if ($field->getType() === 'file') {
@@ -153,10 +148,9 @@ class Email extends Endpoint {
 			$value = implode(', ', $value);
 		}
 		
-		$row .= elgg_format_element('td', ['style' => 'vertical-align: top'], (string) $value);
-		$row .= PHP_EOL;
+		$row .= (string) $value . PHP_EOL;
 		
-		return elgg_format_element('tr', [], $row);
+		return $row;
 	}
 	
 	/**
