@@ -86,6 +86,7 @@ return [
 	'forms:edit:definition' => "Definition file (from export)",
 	'forms:edit:thankyou' => "Thank you message",
 	'forms:edit:thankyou:help' => "When a user completes the form they will be send to a thank you page, you can add custom text to that page.",
+	'forms:edit:admin_notes' => "Admin notes",
 	'forms:edit:max_file_size' => "Total maximum file size to upload",
 	'forms:edit:max_file_size:help' => "If you have multiple file inputs on a form you can limit the total size of all files. You can use bytes or the shorthand 3K/5M/1G. This value can't exceed %s.",
 	

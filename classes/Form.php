@@ -93,6 +93,12 @@ class Form extends \ElggObject {
 			'#help' => elgg_echo('forms:edit:thankyou:help'),
 			'name' => 'thankyou',
 		];
+		
+		$result[] = [
+			'#type' => 'longtext',
+			'#label' => elgg_echo('forms:edit:admin_notes'),
+			'name' => 'admin_notes',
+		];
 
 		$result[] = [
 			'#type' => 'access',

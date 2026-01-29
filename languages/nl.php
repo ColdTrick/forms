@@ -106,6 +106,7 @@ Bepaalde velden op het formulier kunnen worden ingesteld om ook een kopie van he
   'forms:edit:definition' => 'Definitiebestand (van een export)',
   'forms:edit:thankyou' => 'Bedankt bericht',
   'forms:edit:thankyou:help' => 'Als de gebruiker het formulier heeft ingevuld wordt deze doorgestuurd naar een bedank pagina, je kunt hier nog een eigen tekst tonen.',
+  'forms:edit:admin_notes' => 'Beheeders notities',
   'forms:endpoint:email' => 'E-mail configuratie',
   'forms:endpoint:email:subject' => 'Het formulier \'%s\' is ingevuld',
   'forms:endpoint:email:to' => 'Aan',
