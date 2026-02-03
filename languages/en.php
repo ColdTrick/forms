@@ -57,6 +57,7 @@ return [
 	'forms:compose:field:type:checkbox' => "Checkbox",
 	'forms:compose:field:type:checkboxes' => "Checkboxes",
 	'forms:compose:field:type:hidden' => "Hidden",
+	'forms:compose:field:type:text_output' => "Text block (output only)",
 	
 	'forms:compose:field:edit:label' => "Label",
 	'forms:compose:field:edit:type' => "Type",

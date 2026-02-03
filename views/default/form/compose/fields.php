@@ -59,6 +59,10 @@ $types = [
 		'#type' => 'hidden',
 		'#label' => elgg_echo('forms:compose:field:type:hidden'),
 	],
+	[
+		'#type' => 'text_output',
+		'#label' => elgg_echo('forms:compose:field:type:text_output'),
+	],
 ];
 
 $list = '';

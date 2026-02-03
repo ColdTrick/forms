@@ -49,6 +49,7 @@ Bepaalde velden op het formulier kunnen worden ingesteld om ook een kopie van he
   'forms:compose:field:edit:default_value:none' => 'Geen standaard waarde',
   'forms:endpoint:email:cc:user' => 'Stuur automatisch een kopie naar de gebruiker die het formulier invult',
   'forms:compose:field:type:hidden' => 'Verborgen',
+  'forms:compose:field:type:text_output' => 'Tekst blok (enkel weergave)',
   'forms:compose:field:edit:value' => 'Waarde',
   'forms:invalid_input_exception:value:number' => 'Geef een geldig nummer op',
   'forms:submit:tab:text' => 'Pagina %d',

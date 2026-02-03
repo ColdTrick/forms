@@ -53,6 +53,7 @@ $fields = [
 			'file' => elgg_echo('forms:compose:field:type:file'),
 			'date' => elgg_echo('forms:compose:field:type:date'),
 			'hidden' => elgg_echo('forms:compose:field:type:hidden'),
+			'text_output' => elgg_echo('forms:compose:field:type:text_output'),
 		],
 	],
 	
@@ -71,6 +72,13 @@ $fields = [
 		'#label' => elgg_echo('forms:compose:field:edit:validation_rule'),
 		'name' => 'validation_rule',
 		'show_for_types' => ['text'],
+	],
+
+	[
+		'#type' => 'plaintext',
+		'#label' => elgg_echo('forms:compose:field:edit:value'),
+		'name' => 'textvalue',
+		'show_for_types' => ['text_output'],
 	],
 	
 	[
