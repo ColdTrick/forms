@@ -19,18 +19,20 @@ class PrepareFields {
 		
 		// input names => defaults
 		$values = [
-			'title' => null,
-			'description' => null,
-			'friendly_url' => null,
-			'thankyou' => null,
 			'access_id' => ACCESS_PRIVATE,
-			'max_file_size' => null,
 			'endpoint' => 'email',
 			'endpoint_config' => [],
 			'container_guid' => elgg_get_page_owner_guid(),
-			'guid' => null,
 		];
-		
+
+		$fields = elgg()->fields->get('object', \Form::SUBTYPE);
+		foreach ($fields as $field) {
+			$name = (string) elgg_extract('name', $field);
+			if (!isset($values[$name])) {
+				$values[$name] = null;
+			}
+		}
+
 		$form = elgg_extract('entity', $vars);
 		if ($form instanceof \Form) {
 			foreach (array_keys($values) as $field) {
