@@ -3,7 +3,6 @@
 namespace ColdTrick\Forms\Definition;
 
 use ColdTrick\Forms\Exception\InvalidInputException;
-use Elgg\Values;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -327,6 +326,9 @@ class Field {
 		}
 		
 		switch ($this->getType()) {
+			case 'text_output':
+				// field does not support input
+				break;
 			case 'file':
 				$uploaded_files = elgg_get_uploaded_files($this->getName());
 				if (empty($uploaded_files)) {

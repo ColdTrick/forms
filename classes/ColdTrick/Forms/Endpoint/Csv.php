@@ -25,6 +25,7 @@ class Csv extends Endpoint {
 			$value = $field->getValue();
 			
 			switch ($field->getType()) {
+				case 'text_output':
 				case 'file':
 					return;
 				case 'longtext':

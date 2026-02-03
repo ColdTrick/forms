@@ -87,6 +87,10 @@ class Email extends Endpoint {
 				
 				foreach ($section->getFields() as $field) {
 					$this->addRecipientFromField($field);
+					if ($field->getType() === 'text_output') {
+						continue;
+					}
+					
 					$field_content[] = $this->getBodyField($field);
 					
 					// add the conditional sections based on the value of the field
