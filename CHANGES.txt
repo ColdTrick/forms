@@ -1,6 +1,13 @@
 Version history
 ===============
 
+10.1 (2026-02-11):
+
+- added: extra field only on edit page to write some notes in
+- added: text field for output now available when composing a form
+- changed: form entity now uses fields service
+- changed: improved the layout of an email endpoint
+
 10.0 (2025-11-13):
 
 - changed: updated code to modern Elgg v6.3 possibilities
