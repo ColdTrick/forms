@@ -32,7 +32,7 @@ foreach ($available_endpoints as $endpoint => $config) {
 	}
 }
 
-$endpoints = elgg_view_field([
+echo elgg_view_field([
 	'#type' => 'select',
 	'#label' => elgg_echo('forms:edit:endpoint'),
 	'#help' => elgg_echo('forms:edit:endpoint:help'),
@@ -43,6 +43,4 @@ $endpoints = elgg_view_field([
 ]);
 
 // available endpoints
-$endpoints .= $endpoints_config;
-
-echo elgg_format_element('div', ['class' => 'forms-edit-endpoints-wrapper'], $endpoints);
+echo $endpoints_config;

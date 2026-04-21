@@ -5,7 +5,7 @@ namespace ColdTrick\Forms\Endpoint;
 use ColdTrick\Forms\Definition\Field;
 use ColdTrick\Forms\Endpoint;
 use ColdTrick\Forms\Result;
-use Elgg\Email\Address;
+use Symfony\Component\Mime\Address;
 
 /**
  * Email Endpoint
@@ -160,7 +160,7 @@ class Email extends Endpoint {
 	/**
 	 * Get the from email address
 	 *
-	 * @return \Elgg\Email\Address
+	 * @return \Symfony\Component\Mime\Address
 	 */
 	protected function getFrom(): Address {
 		$site = elgg_get_site_entity();

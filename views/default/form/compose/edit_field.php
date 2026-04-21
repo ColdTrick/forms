@@ -153,8 +153,9 @@ foreach ($fields as $key => $field) {
 	$fields[$key]['#class'] = $classes;
 }
 
-echo elgg_view('input/fieldset', [
-	'class' => 'hidden forms-compose-edit-field',
+echo elgg_format_element('div', [
+	'class' => ['forms-compose-edit-field', 'hidden'],
 	'id' => 'forms-compose-edit-field',
+], elgg_view('input/fieldset', [
 	'fields' => $fields,
-]);
+]));

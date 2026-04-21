@@ -1,6 +1,6 @@
 .forms-compose-list-page {
 	padding: 10px;
-	background: $(background-color-mild);
+	background: var(--elgg-background-color-mild);
 	margin-bottom: 10px;
 	
 	&:hover > .forms-compose-edit-title {
@@ -12,7 +12,7 @@
 	}
 	
 	.ui-sortable-placeholder {
-		border: 2px dotted $(border-color-mild);
+		border: 2px dotted var(--elgg-border-color-mild);
 		background: transparent;
 		visibility: visible !important;
 	}
@@ -20,7 +20,7 @@
 
 .forms-compose-list-section {
 	padding: 10px;
-	background: $(background-color-strong);
+	background: var(--elgg-background-color-strong);
 	margin: 10px;
 	
 	&:hover > .forms-compose-edit-title {
@@ -28,7 +28,7 @@
 	}
 
 	> .forms-compose-title-container {
-		color: $(text-color-strong);
+		color: var(--elgg-text-color-strong);
 	}
 	
 	> ul {
@@ -49,7 +49,7 @@
 }
 
 .forms-compose-list-field {
-	background: $(background-color-mild);
+	background: var(--elgg-background-color-mild);
 	margin-bottom: 5px;
 	padding: 5px;
 	
@@ -76,12 +76,12 @@
 
 .forms-compose-fields-sidebar {
 	> .elgg-body {
-		background: white;
+		background: var(--elgg-layout-background-color);
 		padding: 0.5rem;
 		
 		.forms-compose-fields {
 			> li {
-				background: $(background-color-mild);
+				background: var(--elgg-background-color-mild);
 				margin-bottom: 5px;
 			}
 		}
@@ -90,11 +90,12 @@
 
 .forms-compose-edit-field {
 	padding: 1rem;
-	background: white;
+	background: var(--elgg-layout-background-color);
+	display: none;
 }
 
 .forms-compose-conditional-section {
-	background: $(background-color-strong);
+	background: var(--elgg-background-color-strong);
 	margin-top: 5px;
 	padding: 10px;
 	
