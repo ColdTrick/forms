@@ -58,7 +58,7 @@ class Email extends Endpoint {
 		$body = $this->getBody();
 		
 		// set recipients after body processing because some can be added
-		$email = \Elgg\Email::factory([
+		return elgg_send_email([
 			'from' => $this->getFrom(),
 			'to' => $this->getRecipients('to'),
 			'cc' => $this->getRecipients('cc'),
@@ -67,8 +67,6 @@ class Email extends Endpoint {
 			'body' => $body,
 			'params' => $this->getParams(),
 		]);
-						
-		return elgg_send_email($email);
 	}
 	
 	/**
