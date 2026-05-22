@@ -12,8 +12,6 @@ if ($page_owner->canWriteToContainer(0, 'object', \Form::SUBTYPE)) {
 	elgg_register_title_button('add', 'object', \Form::SUBTYPE);
 }
 
-elgg_push_collection_breadcrumbs('object', \Form::SUBTYPE);
-
 echo elgg_view_page(elgg_echo('collection:object:form'), [
 	'content' => elgg_view('form/listing/all'),
 	'filter_id' => 'forms',
