@@ -37,7 +37,10 @@ $body .= elgg_view_form('forms/submit', $form_vars, [
 elgg_clear_sticky_form("forms_{$guid}");
 
 echo elgg_view_page($title, [
-	'content' => $body,
+	'content' => elgg_view('object/elements/full', [
+		'entity' => $entity,
+		'body' => $body,
+	]),
 	'entity' => $entity,
 	'filter' => false,
 ]);
