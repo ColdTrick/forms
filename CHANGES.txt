@@ -1,6 +1,10 @@
 Version history
 ===============
 
+11.0 (2026-05-29):
+
+- changed: updated for Elgg 7
+
 10.1 (2026-02-11):
 
 - added: extra field only on edit page to write some notes in
