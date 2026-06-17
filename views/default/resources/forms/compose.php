@@ -1,10 +1,9 @@
 <?php
 
 $guid = (int) elgg_extract('guid', $vars);
-elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE, true);
 
 /* @var $entity \Form */
-$entity = get_entity($guid);
+$entity = elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE, true);
 
 elgg_push_entity_breadcrumbs($entity);
 

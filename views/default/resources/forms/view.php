@@ -3,10 +3,10 @@
 use Elgg\Exceptions\HttpException;
 
 $guid = elgg_extract('guid', $vars);
-elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE);
 
 /* @var $entity Form */
-$entity = get_entity($guid);
+$entity = elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE);
+
 if (!$entity->isValid()) {
 	throw new HttpException(elgg_echo('forms:view:error:validation', [$entity->getDisplayName()]), ELGG_HTTP_NOT_FOUND);
 }
