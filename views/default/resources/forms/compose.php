@@ -2,7 +2,7 @@
 
 $guid = (int) elgg_extract('guid', $vars);
 
-/* @var $entity \Form */
+/** @var \Form $entity */
 $entity = elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE, true);
 
 elgg_push_entity_breadcrumbs($entity);
@@ -12,7 +12,9 @@ elgg_register_menu_item('title', [
 	'name' => 'import',
 	'icon' => 'upload',
 	'text' => elgg_echo('import'),
-	'href' => elgg_http_add_url_query_elements('ajax/form/forms/definition/import', [
+	'href' => elgg_generate_url('ajax', [
+		'type' => 'form',
+		'segments' => 'forms/definition/import',
 		'guid' => $entity->guid,
 	]),
 	'link_class' => 'elgg-button elgg-button-action elgg-lightbox',
