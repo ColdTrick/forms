@@ -19,7 +19,7 @@ if (empty($system_log)) {
 }
 
 $result = [];
-/* @var $entry \Elgg\SystemLog\SystemLogEntry */
+/** @var \Elgg\SystemLog\SystemLogEntry $entry */
 foreach ($system_log as $entry) {
 	$line = [];
 	$performer = get_entity($entry->performed_by_guid);

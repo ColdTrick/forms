@@ -2,7 +2,7 @@
 
 $guid = elgg_extract('guid', $vars);
 
-/* @var $entity Form */
+/** @var \Form $entity */
 $entity = elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE);
 
 elgg_set_page_owner_guid($entity->container_guid);

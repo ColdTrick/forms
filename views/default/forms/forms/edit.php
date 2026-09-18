@@ -6,7 +6,7 @@
  * @uses $vars['container_guid'] where to place the form
  */
 
-/* @var $entity \Form */
+/** @var \Form $entity */
 $entity = elgg_extract('entity', $vars);
 
 elgg_import_esm('forms/forms/edit');

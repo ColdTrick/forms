@@ -35,7 +35,7 @@ class Seeder extends Seed {
 		
 		while ($this->getCount() < $this->limit) {
 			try {
-				/* @var $entity \Form */
+				/** @var \Form $entity */
 				$entity = $this->createObject([
 					'subtype' => \Form::SUBTYPE,
 					'owner_guid' => $site->guid,
@@ -60,7 +60,7 @@ class Seeder extends Seed {
 	 * {@inheritdoc}
 	 */
 	public function unseed() {
-		/* @var $entities \ElggBatch */
+		/** @var \ElggBatch $entities */
 		$entities = elgg_get_entities([
 			'type' => 'object',
 			'subtype' => \Form::SUBTYPE,
@@ -70,7 +70,7 @@ class Seeder extends Seed {
 			'batch_inc_offset' => false,
 		]);
 		
-		/* @var $entity \Form */
+		/** @var \Form $entity */
 		foreach ($entities as $entity) {
 			if ($entity->delete()) {
 				$this->log("Deleted form {$entity->guid}");

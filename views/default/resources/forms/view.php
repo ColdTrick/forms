@@ -4,7 +4,7 @@ use Elgg\Exceptions\HttpException;
 
 $guid = elgg_extract('guid', $vars);
 
-/* @var $entity Form */
+/** @var \Form $entity */
 $entity = elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE);
 
 if (!$entity->isValid()) {

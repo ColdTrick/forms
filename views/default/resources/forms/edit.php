@@ -2,7 +2,7 @@
 
 $guid = (int) elgg_extract('guid', $vars);
 
-/* @var $entity \Form */
+/** @var \Form $entity */
 $entity = elgg_entity_gatekeeper($guid, 'object', \Form::SUBTYPE, true);
 
 elgg_push_entity_breadcrumbs($entity);

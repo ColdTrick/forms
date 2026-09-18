@@ -47,7 +47,7 @@ class Title {
 			}
 		}
 		
-		/* @var $result \Elgg\Menu\MenuItems */
+		/** @var \Elgg\Menu\MenuItems $result */
 		$result = $event->getValue();
 		
 		$result[] = \ElggMenuItem::factory([
@@ -85,7 +85,7 @@ class Title {
 			return null;
 		}
 		
-		/* @var $result MenuItems */
+		/** @var MenuItems $result */
 		$result = $event->getValue();
 		
 		$result[] = \ElggMenuItem::factory([
